@@ -4,12 +4,12 @@ import 'react-native-get-random-values';
 import '@ethersproject/shims';
 
 import App from './App';
-//import { store } from './store';
+import { store } from './store';
 
 const ReduxApp = () => (
-  //<Provider store={store}>
+  <Provider store={store}>
     <App />
-  ///</Provider>
+  </Provider>
 );
 
 // registerRootComponent calls AppRegistry.registerComponent('main', () => App);
