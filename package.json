@@ -1,0 +1,18 @@
+{
+  "name": "outre-finance",
+  "version": "1.0.0",
+  "description": "crypto made simple",
+  "main": "index.js",
+  "repository": "https://github.com/kachdekan/outre-finance.git",
+  "author": "Kachi <kachdekan@gmail.com>",
+  "license": "Apache 2.0",
+  "workspaces":{
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": [
+      "**/@expo/vector-icons"
+    ]
+  },
+  "private": true
+}
