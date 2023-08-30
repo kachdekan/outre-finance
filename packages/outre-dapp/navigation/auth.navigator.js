@@ -1,24 +1,57 @@
-import { Box, Text } from '@gluestack-ui/themed';
+import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+//Screens
+import {
+  WelcomeScreen,
+  DummyScreen,
+  UserDetailsScreen,
+  //VerificationScreen,
+  //SetPasscodeScreen,
+  //LoginScreen,
+} from '@dapp/features/essentials';
+import { ImportWalletScreen } from '@dapp/features/wallet';
+import { useSelector } from 'react-redux';
 
 const AuthStack = createNativeStackNavigator();
 
-const AccountScreen = () => {
+export function AuthNavigator() {
+  const hasAccount = useSelector((s) => s.essential.userDetails.userToken);
   return (
-    <Box flex={1} bg="$primary100" alignItems="center" justifyContent="center">
-      <Text size="xl">Auth Screen!</Text>
-    </Box>
-  );
-};
+    <AuthStack.Navigator initialRouteName="Welcome">
+      {hasAccount ? (
+        <AuthStack.Screen name="Login" component={DummyScreen} options={{ headerShown: false }} />
+      ) : (
+        <AuthStack.Screen
+          name="Welcome"
+          component={WelcomeScreen}
+          options={{ headerShown: false }}
+        />
+      )}
 
-export const AuthNavigator = () => {
-  return (
-    <AuthStack.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}
-    >
-      <AuthStack.Screen name="Main" component={AccountScreen} />
+      <AuthStack.Group screenOptions={{ presentation: 'modal' }}>
+        <AuthStack.Screen name="DummyModal" component={DummyScreen} />
+        <AuthStack.Screen
+          name="importWallet"
+          component={ImportWalletScreen}
+          options={{ headerTitle: 'Restore Account' }}
+        />
+        <AuthStack.Screen
+          name="getUserDetails"
+          component={UserDetailsScreen}
+          options={{ headerTitle: 'Your Details' }}
+        />
+        <AuthStack.Screen
+          name="verifyPhoneNo"
+          component={DummyScreen}
+          options={{ headerTitle: 'Verification' }}
+        />
+        <AuthStack.Screen
+          name="setPasscode"
+          component={DummyScreen}
+          options={{ headerTitle: 'Set a Passcode' }}
+        />
+      </AuthStack.Group>
     </AuthStack.Navigator>
   );
-};
+}

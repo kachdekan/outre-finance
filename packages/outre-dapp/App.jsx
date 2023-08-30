@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { GluestackUIProvider, config, Text } from '@gluestack-ui/themed';
+import { NativeBaseProvider } from '@clixpesa/native-base';
 import { useState, useEffect } from 'react';
 import * as SplashScreen from 'expo-splash-screen';
 
@@ -10,9 +10,9 @@ import { Navigation } from './navigation';
 
 export default function App() {
   return (
-    <GluestackUIProvider config={config.theme}>
+    <NativeBaseProvider>
       <Navigation />
       <StatusBar style="auto" />
-    </GluestackUIProvider>
+    </NativeBaseProvider>
   );
 }

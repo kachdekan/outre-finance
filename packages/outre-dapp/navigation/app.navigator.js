@@ -1,4 +1,4 @@
-import { Box, Text } from '@gluestack-ui/themed';
+import { Box, Text } from '@clixpesa/native-base';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const AppStack = createNativeStackNavigator();

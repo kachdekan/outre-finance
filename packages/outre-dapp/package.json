@@ -9,8 +9,8 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@clixpesa/native-base": "^3.5.1",
     "@expo/vector-icons": "^13.0.0",
-    "@gluestack-ui/themed": "^0.1.10",
     "@react-native-community/datetimepicker": "7.2.0",
     "@react-navigation/bottom-tabs": "^6.5.8",
     "@react-navigation/material-top-tabs": "^6.6.3",
@@ -32,12 +32,12 @@
     "react-native-dotenv": "^3.4.9",
     "react-native-gesture-handler": "~2.12.0",
     "react-native-get-random-values": "~1.9.0",
-    "react-native-pager-view": "6.2.0", 
+    "react-native-pager-view": "6.2.0",
     "react-native-qrcode-svg": "^6.2.0",
     "react-native-remix-icon": "^0.4.0",
     "react-native-safe-area-context": "4.6.3",
     "react-native-screens": "~3.22.0",
-    "react-native-svg": "13.4.0",
+    "react-native-svg": "^13.13.0",
     "react-native-tab-view": "^3.5.2",
     "react-redux": "^8.1.2"
   },

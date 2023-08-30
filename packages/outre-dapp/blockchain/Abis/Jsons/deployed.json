@@ -1,0 +1,2207 @@
+{
+  "44787": [
+    {
+      "name": "alfajores",
+      "chainId": "44787",
+      "contracts": {
+        "P2PLoans": {
+          "address": "0xf6469ACA8f919a33970E41E42c40a9104939bCdD",
+          "abi": [
+            {
+              "inputs": [],
+              "stateMutability": "nonpayable",
+              "type": "constructor"
+            },
+            {
+              "anonymous": false,
+              "inputs": [
+                {
+                  "indexed": false,
+                  "internalType": "address",
+                  "name": "lender",
+                  "type": "address"
+                },
+                {
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "internalType": "string",
+                          "name": "loanId",
+                          "type": "string"
+                        },
+                        {
+                          "internalType": "contract IERC20",
+                          "name": "token",
+                          "type": "address"
+                        },
+                        {
+                          "internalType": "address payable",
+                          "name": "initiator",
+                          "type": "address"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "principal",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "interest",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "minDuration",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "maxDuration",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "bCreditScore",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "bool",
+                          "name": "isPrivate",
+                          "type": "bool"
+                        }
+                      ],
+                      "internalType": "struct P2PLoans.LoanDetails",
+                      "name": "LD",
+                      "type": "tuple"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "minLoanAmount",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "maxLoanAmount",
+                      "type": "uint256"
+                    }
+                  ],
+                  "indexed": false,
+                  "internalType": "struct P2PLoans.OfferLoanDetails",
+                  "name": "OLD",
+                  "type": "tuple"
+                }
+              ],
+              "name": "CreatedLoanOffer",
+              "type": "event"
+            },
+            {
+              "anonymous": false,
+              "inputs": [
+                {
+                  "indexed": false,
+                  "internalType": "address",
+                  "name": "borrower",
+                  "type": "address"
+                },
+                {
+                  "components": [
+                    {
+                      "internalType": "string",
+                      "name": "loanId",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "contract IERC20",
+                      "name": "token",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "address payable",
+                      "name": "initiator",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "principal",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "interest",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "minDuration",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "maxDuration",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "bCreditScore",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "bool",
+                      "name": "isPrivate",
+                      "type": "bool"
+                    }
+                  ],
+                  "indexed": false,
+                  "internalType": "struct P2PLoans.LoanDetails",
+                  "name": "LD",
+                  "type": "tuple"
+                }
+              ],
+              "name": "CreatedLoanRequest",
+              "type": "event"
+            },
+            {
+              "anonymous": false,
+              "inputs": [
+                {
+                  "indexed": false,
+                  "internalType": "address",
+                  "name": "initiator",
+                  "type": "address"
+                },
+                {
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "internalType": "string",
+                          "name": "loanId",
+                          "type": "string"
+                        },
+                        {
+                          "internalType": "contract IERC20",
+                          "name": "token",
+                          "type": "address"
+                        },
+                        {
+                          "internalType": "address payable",
+                          "name": "initiator",
+                          "type": "address"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "principal",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "interest",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "minDuration",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "maxDuration",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "bCreditScore",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "bool",
+                          "name": "isPrivate",
+                          "type": "bool"
+                        }
+                      ],
+                      "internalType": "struct P2PLoans.LoanDetails",
+                      "name": "LD",
+                      "type": "tuple"
+                    },
+                    {
+                      "components": [
+                        {
+                          "internalType": "address payable",
+                          "name": "borrower",
+                          "type": "address"
+                        },
+                        {
+                          "internalType": "address payable",
+                          "name": "lender",
+                          "type": "address"
+                        }
+                      ],
+                      "internalType": "struct P2PLoans.LoanParticipants",
+                      "name": "LP",
+                      "type": "tuple"
+                    },
+                    {
+                      "internalType": "enum P2PLoans.LoanState",
+                      "name": "LS",
+                      "type": "uint8"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "currentBalance",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "deadline",
+                      "type": "uint256"
+                    }
+                  ],
+                  "indexed": false,
+                  "internalType": "struct P2PLoans.P2PLoanDetails",
+                  "name": "P2PLD",
+                  "type": "tuple"
+                }
+              ],
+              "name": "CreatedP2PLoan",
+              "type": "event"
+            },
+            {
+              "anonymous": false,
+              "inputs": [
+                {
+                  "indexed": false,
+                  "internalType": "address",
+                  "name": "funder",
+                  "type": "address"
+                },
+                {
+                  "indexed": false,
+                  "internalType": "string",
+                  "name": "loanId",
+                  "type": "string"
+                },
+                {
+                  "indexed": false,
+                  "internalType": "uint256",
+                  "name": "amount",
+                  "type": "uint256"
+                }
+              ],
+              "name": "FundedP2PLoan",
+              "type": "event"
+            },
+            {
+              "anonymous": false,
+              "inputs": [
+                {
+                  "indexed": false,
+                  "internalType": "address",
+                  "name": "repayer",
+                  "type": "address"
+                },
+                {
+                  "indexed": false,
+                  "internalType": "string",
+                  "name": "loanId",
+                  "type": "string"
+                },
+                {
+                  "indexed": false,
+                  "internalType": "uint256",
+                  "name": "amount",
+                  "type": "uint256"
+                }
+              ],
+              "name": "RepaidP2PLoan",
+              "type": "event"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "string",
+                  "name": "_offerId",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "_loanId",
+                  "type": "string"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "_amount",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "_duration",
+                  "type": "uint256"
+                }
+              ],
+              "name": "borrowFromOffer",
+              "outputs": [],
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "internalType": "string",
+                          "name": "loanId",
+                          "type": "string"
+                        },
+                        {
+                          "internalType": "contract IERC20",
+                          "name": "token",
+                          "type": "address"
+                        },
+                        {
+                          "internalType": "address payable",
+                          "name": "initiator",
+                          "type": "address"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "principal",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "interest",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "minDuration",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "maxDuration",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "bCreditScore",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "bool",
+                          "name": "isPrivate",
+                          "type": "bool"
+                        }
+                      ],
+                      "internalType": "struct P2PLoans.LoanDetails",
+                      "name": "LD",
+                      "type": "tuple"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "minLoanAmount",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "maxLoanAmount",
+                      "type": "uint256"
+                    }
+                  ],
+                  "internalType": "struct P2PLoans.OfferLoanDetails",
+                  "name": "OLD",
+                  "type": "tuple"
+                }
+              ],
+              "name": "createLoanOffer",
+              "outputs": [],
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "components": [
+                    {
+                      "internalType": "string",
+                      "name": "loanId",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "contract IERC20",
+                      "name": "token",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "address payable",
+                      "name": "initiator",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "principal",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "interest",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "minDuration",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "maxDuration",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "bCreditScore",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "bool",
+                      "name": "isPrivate",
+                      "type": "bool"
+                    }
+                  ],
+                  "internalType": "struct P2PLoans.LoanDetails",
+                  "name": "LD",
+                  "type": "tuple"
+                }
+              ],
+              "name": "createLoanRequest",
+              "outputs": [],
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "string",
+                  "name": "_loanId",
+                  "type": "string"
+                }
+              ],
+              "name": "fundLoanRequest",
+              "outputs": [],
+              "stateMutability": "payable",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "string",
+                  "name": "_loanId",
+                  "type": "string"
+                }
+              ],
+              "name": "fundPendingLoan",
+              "outputs": [],
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "inputs": [],
+              "name": "getAllP2PLoans",
+              "outputs": [
+                {
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "internalType": "string",
+                          "name": "loanId",
+                          "type": "string"
+                        },
+                        {
+                          "internalType": "contract IERC20",
+                          "name": "token",
+                          "type": "address"
+                        },
+                        {
+                          "internalType": "address payable",
+                          "name": "initiator",
+                          "type": "address"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "principal",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "interest",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "minDuration",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "maxDuration",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "bCreditScore",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "bool",
+                          "name": "isPrivate",
+                          "type": "bool"
+                        }
+                      ],
+                      "internalType": "struct P2PLoans.LoanDetails",
+                      "name": "LD",
+                      "type": "tuple"
+                    },
+                    {
+                      "components": [
+                        {
+                          "internalType": "address payable",
+                          "name": "borrower",
+                          "type": "address"
+                        },
+                        {
+                          "internalType": "address payable",
+                          "name": "lender",
+                          "type": "address"
+                        }
+                      ],
+                      "internalType": "struct P2PLoans.LoanParticipants",
+                      "name": "LP",
+                      "type": "tuple"
+                    },
+                    {
+                      "internalType": "enum P2PLoans.LoanState",
+                      "name": "LS",
+                      "type": "uint8"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "currentBalance",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "deadline",
+                      "type": "uint256"
+                    }
+                  ],
+                  "internalType": "struct P2PLoans.P2PLoanDetails[]",
+                  "name": "",
+                  "type": "tuple[]"
+                }
+              ],
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "inputs": [],
+              "name": "getAvailableOffers",
+              "outputs": [
+                {
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "internalType": "string",
+                          "name": "loanId",
+                          "type": "string"
+                        },
+                        {
+                          "internalType": "contract IERC20",
+                          "name": "token",
+                          "type": "address"
+                        },
+                        {
+                          "internalType": "address payable",
+                          "name": "initiator",
+                          "type": "address"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "principal",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "interest",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "minDuration",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "maxDuration",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "bCreditScore",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "bool",
+                          "name": "isPrivate",
+                          "type": "bool"
+                        }
+                      ],
+                      "internalType": "struct P2PLoans.LoanDetails",
+                      "name": "LD",
+                      "type": "tuple"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "minLoanAmount",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "maxLoanAmount",
+                      "type": "uint256"
+                    }
+                  ],
+                  "internalType": "struct P2PLoans.OfferLoanDetails[]",
+                  "name": "",
+                  "type": "tuple[]"
+                }
+              ],
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "inputs": [],
+              "name": "getAvailableRequests",
+              "outputs": [
+                {
+                  "components": [
+                    {
+                      "internalType": "string",
+                      "name": "loanId",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "contract IERC20",
+                      "name": "token",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "address payable",
+                      "name": "initiator",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "principal",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "interest",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "minDuration",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "maxDuration",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "bCreditScore",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "bool",
+                      "name": "isPrivate",
+                      "type": "bool"
+                    }
+                  ],
+                  "internalType": "struct P2PLoans.LoanDetails[]",
+                  "name": "",
+                  "type": "tuple[]"
+                }
+              ],
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "string",
+                  "name": "_loanId",
+                  "type": "string"
+                }
+              ],
+              "name": "getOfferById",
+              "outputs": [
+                {
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "internalType": "string",
+                          "name": "loanId",
+                          "type": "string"
+                        },
+                        {
+                          "internalType": "contract IERC20",
+                          "name": "token",
+                          "type": "address"
+                        },
+                        {
+                          "internalType": "address payable",
+                          "name": "initiator",
+                          "type": "address"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "principal",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "interest",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "minDuration",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "maxDuration",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "bCreditScore",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "bool",
+                          "name": "isPrivate",
+                          "type": "bool"
+                        }
+                      ],
+                      "internalType": "struct P2PLoans.LoanDetails",
+                      "name": "LD",
+                      "type": "tuple"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "minLoanAmount",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "maxLoanAmount",
+                      "type": "uint256"
+                    }
+                  ],
+                  "internalType": "struct P2PLoans.OfferLoanDetails",
+                  "name": "",
+                  "type": "tuple"
+                }
+              ],
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "address",
+                  "name": "_owner",
+                  "type": "address"
+                }
+              ],
+              "name": "getOffersByOwner",
+              "outputs": [
+                {
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "internalType": "string",
+                          "name": "loanId",
+                          "type": "string"
+                        },
+                        {
+                          "internalType": "contract IERC20",
+                          "name": "token",
+                          "type": "address"
+                        },
+                        {
+                          "internalType": "address payable",
+                          "name": "initiator",
+                          "type": "address"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "principal",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "interest",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "minDuration",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "maxDuration",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "bCreditScore",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "bool",
+                          "name": "isPrivate",
+                          "type": "bool"
+                        }
+                      ],
+                      "internalType": "struct P2PLoans.LoanDetails",
+                      "name": "LD",
+                      "type": "tuple"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "minLoanAmount",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "maxLoanAmount",
+                      "type": "uint256"
+                    }
+                  ],
+                  "internalType": "struct P2PLoans.OfferLoanDetails[]",
+                  "name": "",
+                  "type": "tuple[]"
+                }
+              ],
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "string",
+                  "name": "_loanId",
+                  "type": "string"
+                }
+              ],
+              "name": "getP2PLoanById",
+              "outputs": [
+                {
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "internalType": "string",
+                          "name": "loanId",
+                          "type": "string"
+                        },
+                        {
+                          "internalType": "contract IERC20",
+                          "name": "token",
+                          "type": "address"
+                        },
+                        {
+                          "internalType": "address payable",
+                          "name": "initiator",
+                          "type": "address"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "principal",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "interest",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "minDuration",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "maxDuration",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "bCreditScore",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "bool",
+                          "name": "isPrivate",
+                          "type": "bool"
+                        }
+                      ],
+                      "internalType": "struct P2PLoans.LoanDetails",
+                      "name": "LD",
+                      "type": "tuple"
+                    },
+                    {
+                      "components": [
+                        {
+                          "internalType": "address payable",
+                          "name": "borrower",
+                          "type": "address"
+                        },
+                        {
+                          "internalType": "address payable",
+                          "name": "lender",
+                          "type": "address"
+                        }
+                      ],
+                      "internalType": "struct P2PLoans.LoanParticipants",
+                      "name": "LP",
+                      "type": "tuple"
+                    },
+                    {
+                      "internalType": "enum P2PLoans.LoanState",
+                      "name": "LS",
+                      "type": "uint8"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "currentBalance",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "deadline",
+                      "type": "uint256"
+                    }
+                  ],
+                  "internalType": "struct P2PLoans.P2PLoanDetails",
+                  "name": "",
+                  "type": "tuple"
+                }
+              ],
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "address",
+                  "name": "_owner",
+                  "type": "address"
+                }
+              ],
+              "name": "getP2PLoansByOwner",
+              "outputs": [
+                {
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "internalType": "string",
+                          "name": "loanId",
+                          "type": "string"
+                        },
+                        {
+                          "internalType": "contract IERC20",
+                          "name": "token",
+                          "type": "address"
+                        },
+                        {
+                          "internalType": "address payable",
+                          "name": "initiator",
+                          "type": "address"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "principal",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "interest",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "minDuration",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "maxDuration",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "bCreditScore",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "bool",
+                          "name": "isPrivate",
+                          "type": "bool"
+                        }
+                      ],
+                      "internalType": "struct P2PLoans.LoanDetails",
+                      "name": "LD",
+                      "type": "tuple"
+                    },
+                    {
+                      "components": [
+                        {
+                          "internalType": "address payable",
+                          "name": "borrower",
+                          "type": "address"
+                        },
+                        {
+                          "internalType": "address payable",
+                          "name": "lender",
+                          "type": "address"
+                        }
+                      ],
+                      "internalType": "struct P2PLoans.LoanParticipants",
+                      "name": "LP",
+                      "type": "tuple"
+                    },
+                    {
+                      "internalType": "enum P2PLoans.LoanState",
+                      "name": "LS",
+                      "type": "uint8"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "currentBalance",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "deadline",
+                      "type": "uint256"
+                    }
+                  ],
+                  "internalType": "struct P2PLoans.P2PLoanDetails[]",
+                  "name": "",
+                  "type": "tuple[]"
+                }
+              ],
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "string",
+                  "name": "_loanId",
+                  "type": "string"
+                }
+              ],
+              "name": "getRequestById",
+              "outputs": [
+                {
+                  "components": [
+                    {
+                      "internalType": "string",
+                      "name": "loanId",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "contract IERC20",
+                      "name": "token",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "address payable",
+                      "name": "initiator",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "principal",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "interest",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "minDuration",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "maxDuration",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "bCreditScore",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "bool",
+                      "name": "isPrivate",
+                      "type": "bool"
+                    }
+                  ],
+                  "internalType": "struct P2PLoans.LoanDetails",
+                  "name": "",
+                  "type": "tuple"
+                }
+              ],
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "address",
+                  "name": "_owner",
+                  "type": "address"
+                }
+              ],
+              "name": "getRequestsByOwner",
+              "outputs": [
+                {
+                  "components": [
+                    {
+                      "internalType": "string",
+                      "name": "loanId",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "contract IERC20",
+                      "name": "token",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "address payable",
+                      "name": "initiator",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "principal",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "interest",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "minDuration",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "maxDuration",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "bCreditScore",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "bool",
+                      "name": "isPrivate",
+                      "type": "bool"
+                    }
+                  ],
+                  "internalType": "struct P2PLoans.LoanDetails[]",
+                  "name": "",
+                  "type": "tuple[]"
+                }
+              ],
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "string",
+                  "name": "_loanId",
+                  "type": "string"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "_amount",
+                  "type": "uint256"
+                }
+              ],
+              "name": "repayLoan",
+              "outputs": [],
+              "stateMutability": "payable",
+              "type": "function"
+            }
+          ]
+        },
+        "Personal": {
+          "address": "0x6fF899772D9B84115Ff9778ce1b97802e2E4cE7b",
+          "abi": [
+            {
+              "inputs": [],
+              "stateMutability": "nonpayable",
+              "type": "constructor"
+            },
+            {
+              "anonymous": false,
+              "inputs": [
+                {
+                  "indexed": false,
+                  "internalType": "address",
+                  "name": "owner",
+                  "type": "address"
+                },
+                {
+                  "indexed": false,
+                  "internalType": "string",
+                  "name": "spaceId",
+                  "type": "string"
+                }
+              ],
+              "name": "ClosedPersonalSpace",
+              "type": "event"
+            },
+            {
+              "anonymous": false,
+              "inputs": [
+                {
+                  "indexed": false,
+                  "internalType": "address",
+                  "name": "owner",
+                  "type": "address"
+                },
+                {
+                  "components": [
+                    {
+                      "internalType": "contract IERC20",
+                      "name": "token",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "address payable",
+                      "name": "owner",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "spaceName",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "imgLink",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "spaceId",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "goalAmount",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "deadline",
+                      "type": "uint256"
+                    }
+                  ],
+                  "indexed": false,
+                  "internalType": "struct SpaceDetails",
+                  "name": "SD",
+                  "type": "tuple"
+                }
+              ],
+              "name": "CreatedPersonalSpace",
+              "type": "event"
+            },
+            {
+              "anonymous": false,
+              "inputs": [
+                {
+                  "indexed": false,
+                  "internalType": "address",
+                  "name": "owner",
+                  "type": "address"
+                },
+                {
+                  "indexed": false,
+                  "internalType": "string",
+                  "name": "spaceId",
+                  "type": "string"
+                }
+              ],
+              "name": "DeletedPersonalSpace",
+              "type": "event"
+            },
+            {
+              "anonymous": false,
+              "inputs": [
+                {
+                  "indexed": false,
+                  "internalType": "address",
+                  "name": "funder",
+                  "type": "address"
+                },
+                {
+                  "indexed": false,
+                  "internalType": "string",
+                  "name": "spaceId",
+                  "type": "string"
+                },
+                {
+                  "indexed": false,
+                  "internalType": "uint256",
+                  "name": "amount",
+                  "type": "uint256"
+                }
+              ],
+              "name": "FundedPersonalSpace",
+              "type": "event"
+            },
+            {
+              "anonymous": false,
+              "inputs": [
+                {
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "internalType": "contract IERC20",
+                          "name": "token",
+                          "type": "address"
+                        },
+                        {
+                          "internalType": "address payable",
+                          "name": "owner",
+                          "type": "address"
+                        },
+                        {
+                          "internalType": "string",
+                          "name": "spaceName",
+                          "type": "string"
+                        },
+                        {
+                          "internalType": "string",
+                          "name": "imgLink",
+                          "type": "string"
+                        },
+                        {
+                          "internalType": "string",
+                          "name": "spaceId",
+                          "type": "string"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "goalAmount",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "deadline",
+                          "type": "uint256"
+                        }
+                      ],
+                      "internalType": "struct SpaceDetails",
+                      "name": "SD",
+                      "type": "tuple"
+                    },
+                    {
+                      "components": [
+                        {
+                          "internalType": "enum Personal.FundsState",
+                          "name": "currentFundState",
+                          "type": "uint8"
+                        },
+                        {
+                          "internalType": "enum Personal.ActivityState",
+                          "name": "currentActivityState",
+                          "type": "uint8"
+                        }
+                      ],
+                      "internalType": "struct Personal.SpaceStates",
+                      "name": "SS",
+                      "type": "tuple"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "currentBalance",
+                      "type": "uint256"
+                    }
+                  ],
+                  "indexed": false,
+                  "internalType": "struct Personal.PersonalDetails",
+                  "name": "PD",
+                  "type": "tuple"
+                }
+              ],
+              "name": "UpdatedPersonalSpace",
+              "type": "event"
+            },
+            {
+              "anonymous": false,
+              "inputs": [
+                {
+                  "indexed": false,
+                  "internalType": "address",
+                  "name": "withdrawer",
+                  "type": "address"
+                },
+                {
+                  "indexed": false,
+                  "internalType": "string",
+                  "name": "spaceId",
+                  "type": "string"
+                },
+                {
+                  "indexed": false,
+                  "internalType": "uint256",
+                  "name": "amount",
+                  "type": "uint256"
+                }
+              ],
+              "name": "WithdrawnPersonalSpace",
+              "type": "event"
+            },
+            {
+              "inputs": [
+                {
+                  "components": [
+                    {
+                      "internalType": "contract IERC20",
+                      "name": "token",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "address payable",
+                      "name": "owner",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "spaceName",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "imgLink",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "spaceId",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "goalAmount",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "deadline",
+                      "type": "uint256"
+                    }
+                  ],
+                  "internalType": "struct SpaceDetails",
+                  "name": "_SD",
+                  "type": "tuple"
+                }
+              ],
+              "name": "createPersonalSpace",
+              "outputs": [],
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "address",
+                  "name": "owner",
+                  "type": "address"
+                },
+                {
+                  "internalType": "string",
+                  "name": "_spaceId",
+                  "type": "string"
+                }
+              ],
+              "name": "doesPersonalSpaceExist",
+              "outputs": [
+                {
+                  "internalType": "bool",
+                  "name": "isExistent",
+                  "type": "bool"
+                }
+              ],
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "string",
+                  "name": "_spaceId",
+                  "type": "string"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "_amount",
+                  "type": "uint256"
+                }
+              ],
+              "name": "fundPersonalSpace",
+              "outputs": [],
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "inputs": [],
+              "name": "getAllPersonalSpaces",
+              "outputs": [
+                {
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "internalType": "contract IERC20",
+                          "name": "token",
+                          "type": "address"
+                        },
+                        {
+                          "internalType": "address payable",
+                          "name": "owner",
+                          "type": "address"
+                        },
+                        {
+                          "internalType": "string",
+                          "name": "spaceName",
+                          "type": "string"
+                        },
+                        {
+                          "internalType": "string",
+                          "name": "imgLink",
+                          "type": "string"
+                        },
+                        {
+                          "internalType": "string",
+                          "name": "spaceId",
+                          "type": "string"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "goalAmount",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "deadline",
+                          "type": "uint256"
+                        }
+                      ],
+                      "internalType": "struct SpaceDetails",
+                      "name": "SD",
+                      "type": "tuple"
+                    },
+                    {
+                      "components": [
+                        {
+                          "internalType": "enum Personal.FundsState",
+                          "name": "currentFundState",
+                          "type": "uint8"
+                        },
+                        {
+                          "internalType": "enum Personal.ActivityState",
+                          "name": "currentActivityState",
+                          "type": "uint8"
+                        }
+                      ],
+                      "internalType": "struct Personal.SpaceStates",
+                      "name": "SS",
+                      "type": "tuple"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "currentBalance",
+                      "type": "uint256"
+                    }
+                  ],
+                  "internalType": "struct Personal.PersonalDetails[]",
+                  "name": "",
+                  "type": "tuple[]"
+                }
+              ],
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "inputs": [],
+              "name": "getMyPersonalSpaces",
+              "outputs": [
+                {
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "internalType": "contract IERC20",
+                          "name": "token",
+                          "type": "address"
+                        },
+                        {
+                          "internalType": "address payable",
+                          "name": "owner",
+                          "type": "address"
+                        },
+                        {
+                          "internalType": "string",
+                          "name": "spaceName",
+                          "type": "string"
+                        },
+                        {
+                          "internalType": "string",
+                          "name": "imgLink",
+                          "type": "string"
+                        },
+                        {
+                          "internalType": "string",
+                          "name": "spaceId",
+                          "type": "string"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "goalAmount",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "deadline",
+                          "type": "uint256"
+                        }
+                      ],
+                      "internalType": "struct SpaceDetails",
+                      "name": "SD",
+                      "type": "tuple"
+                    },
+                    {
+                      "components": [
+                        {
+                          "internalType": "enum Personal.FundsState",
+                          "name": "currentFundState",
+                          "type": "uint8"
+                        },
+                        {
+                          "internalType": "enum Personal.ActivityState",
+                          "name": "currentActivityState",
+                          "type": "uint8"
+                        }
+                      ],
+                      "internalType": "struct Personal.SpaceStates",
+                      "name": "SS",
+                      "type": "tuple"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "currentBalance",
+                      "type": "uint256"
+                    }
+                  ],
+                  "internalType": "struct Personal.PersonalDetails[]",
+                  "name": "",
+                  "type": "tuple[]"
+                }
+              ],
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "string",
+                  "name": "_spaceId",
+                  "type": "string"
+                }
+              ],
+              "name": "getPersonalSpaceById",
+              "outputs": [
+                {
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "internalType": "contract IERC20",
+                          "name": "token",
+                          "type": "address"
+                        },
+                        {
+                          "internalType": "address payable",
+                          "name": "owner",
+                          "type": "address"
+                        },
+                        {
+                          "internalType": "string",
+                          "name": "spaceName",
+                          "type": "string"
+                        },
+                        {
+                          "internalType": "string",
+                          "name": "imgLink",
+                          "type": "string"
+                        },
+                        {
+                          "internalType": "string",
+                          "name": "spaceId",
+                          "type": "string"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "goalAmount",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "deadline",
+                          "type": "uint256"
+                        }
+                      ],
+                      "internalType": "struct SpaceDetails",
+                      "name": "SD",
+                      "type": "tuple"
+                    },
+                    {
+                      "components": [
+                        {
+                          "internalType": "enum Personal.FundsState",
+                          "name": "currentFundState",
+                          "type": "uint8"
+                        },
+                        {
+                          "internalType": "enum Personal.ActivityState",
+                          "name": "currentActivityState",
+                          "type": "uint8"
+                        }
+                      ],
+                      "internalType": "struct Personal.SpaceStates",
+                      "name": "SS",
+                      "type": "tuple"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "currentBalance",
+                      "type": "uint256"
+                    }
+                  ],
+                  "internalType": "struct Personal.PersonalDetails",
+                  "name": "",
+                  "type": "tuple"
+                }
+              ],
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "address",
+                  "name": "_owner",
+                  "type": "address"
+                }
+              ],
+              "name": "getPersonalSpacesByOwner",
+              "outputs": [
+                {
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "internalType": "contract IERC20",
+                          "name": "token",
+                          "type": "address"
+                        },
+                        {
+                          "internalType": "address payable",
+                          "name": "owner",
+                          "type": "address"
+                        },
+                        {
+                          "internalType": "string",
+                          "name": "spaceName",
+                          "type": "string"
+                        },
+                        {
+                          "internalType": "string",
+                          "name": "imgLink",
+                          "type": "string"
+                        },
+                        {
+                          "internalType": "string",
+                          "name": "spaceId",
+                          "type": "string"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "goalAmount",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "deadline",
+                          "type": "uint256"
+                        }
+                      ],
+                      "internalType": "struct SpaceDetails",
+                      "name": "SD",
+                      "type": "tuple"
+                    },
+                    {
+                      "components": [
+                        {
+                          "internalType": "enum Personal.FundsState",
+                          "name": "currentFundState",
+                          "type": "uint8"
+                        },
+                        {
+                          "internalType": "enum Personal.ActivityState",
+                          "name": "currentActivityState",
+                          "type": "uint8"
+                        }
+                      ],
+                      "internalType": "struct Personal.SpaceStates",
+                      "name": "SS",
+                      "type": "tuple"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "currentBalance",
+                      "type": "uint256"
+                    }
+                  ],
+                  "internalType": "struct Personal.PersonalDetails[]",
+                  "name": "",
+                  "type": "tuple[]"
+                }
+              ],
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "components": [
+                    {
+                      "internalType": "contract IERC20",
+                      "name": "token",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "address payable",
+                      "name": "owner",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "spaceName",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "imgLink",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "spaceId",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "goalAmount",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "deadline",
+                      "type": "uint256"
+                    }
+                  ],
+                  "internalType": "struct SpaceDetails",
+                  "name": "_SD",
+                  "type": "tuple"
+                }
+              ],
+              "name": "updatePersonalSpace",
+              "outputs": [],
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "string",
+                  "name": "_spaceId",
+                  "type": "string"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "_amount",
+                  "type": "uint256"
+                }
+              ],
+              "name": "withdrawFromPersonalSpace",
+              "outputs": [],
+              "stateMutability": "nonpayable",
+              "type": "function"
+            }
+          ]
+        },
+        "Spaces": {
+          "address": "0x611D756900F28D9a3599D12FE246F7a432108b9D",
+          "abi": [
+            {
+              "anonymous": false,
+              "inputs": [
+                {
+                  "indexed": false,
+                  "internalType": "address",
+                  "name": "roscaAddress",
+                  "type": "address"
+                },
+                {
+                  "indexed": false,
+                  "internalType": "address",
+                  "name": "roscaCreator",
+                  "type": "address"
+                },
+                {
+                  "components": [
+                    {
+                      "internalType": "contract IERC20",
+                      "name": "token",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "roscaName",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "imgLink",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "authCode",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "goalAmount",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "ctbAmount",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "ctbDay",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "ctbOccur",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "disbDay",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "disbOccur",
+                      "type": "string"
+                    }
+                  ],
+                  "indexed": false,
+                  "internalType": "struct RoscaDetails",
+                  "name": "RD",
+                  "type": "tuple"
+                }
+              ],
+              "name": "CreatedRosca",
+              "type": "event"
+            },
+            {
+              "inputs": [
+                {
+                  "components": [
+                    {
+                      "internalType": "contract IERC20",
+                      "name": "token",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "roscaName",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "imgLink",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "authCode",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "goalAmount",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "ctbAmount",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "ctbDay",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "ctbOccur",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "disbDay",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "disbOccur",
+                      "type": "string"
+                    }
+                  ],
+                  "internalType": "struct RoscaDetails",
+                  "name": "rD",
+                  "type": "tuple"
+                }
+              ],
+              "name": "createRosca",
+              "outputs": [],
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "inputs": [],
+              "name": "getMySpaces",
+              "outputs": [
+                {
+                  "components": [
+                    {
+                      "internalType": "address",
+                      "name": "spaceAddress",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "spaceName",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "spaceType",
+                      "type": "string"
+                    }
+                  ],
+                  "internalType": "struct Spaces.ActiveSpace[]",
+                  "name": "",
+                  "type": "tuple[]"
+                }
+              ],
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "inputs": [],
+              "name": "returnSpaces",
+              "outputs": [
+                {
+                  "internalType": "contract Rosca[]",
+                  "name": "",
+                  "type": "address[]"
+                }
+              ],
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "uint256",
+                  "name": "",
+                  "type": "uint256"
+                }
+              ],
+              "name": "roscas",
+              "outputs": [
+                {
+                  "internalType": "contract Rosca",
+                  "name": "",
+                  "type": "address"
+                }
+              ],
+              "stateMutability": "view",
+              "type": "function"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
