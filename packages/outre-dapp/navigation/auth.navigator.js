@@ -6,7 +6,7 @@ import {
   WelcomeScreen,
   DummyScreen,
   UserDetailsScreen,
-  //VerificationScreen,
+  VerificationScreen,
   //SetPasscodeScreen,
   //LoginScreen,
 } from '@dapp/features/essentials';
@@ -43,7 +43,7 @@ export function AuthNavigator() {
         />
         <AuthStack.Screen
           name="verifyPhoneNo"
-          component={DummyScreen}
+          component={VerificationScreen}
           options={{ headerTitle: 'Verification' }}
         />
         <AuthStack.Screen
