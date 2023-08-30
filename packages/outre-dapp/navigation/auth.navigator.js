@@ -7,7 +7,7 @@ import {
   DummyScreen,
   UserDetailsScreen,
   VerificationScreen,
-  //SetPasscodeScreen,
+  SetPasscodeScreen,
   //LoginScreen,
 } from '@dapp/features/essentials';
 import { ImportWalletScreen } from '@dapp/features/wallet';
@@ -48,7 +48,7 @@ export function AuthNavigator() {
         />
         <AuthStack.Screen
           name="setPasscode"
-          component={DummyScreen}
+          component={SetPasscodeScreen}
           options={{ headerTitle: 'Set a Passcode' }}
         />
       </AuthStack.Group>
