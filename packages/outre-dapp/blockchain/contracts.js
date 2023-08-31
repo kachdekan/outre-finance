@@ -1,7 +1,7 @@
 import { Contract, utils } from 'ethers';
 import { Erc20Abi } from './Abis/erc20';
 import { Erc721Abi } from './Abis/erc721';
-import { CeloTokenAbi } from './Abis/celoToken';
+import { MaticTokenAbi } from './Abis/maticToken';
 import { StableTokenAbi } from './Abis/stableToken';
 import { GasPriceMinABI } from './Abis/gasPriceMin';
 import SpacesAbi from './Abis/Jsons/Spaces.json';
@@ -64,11 +64,9 @@ export function getTokenContract(tokenAddress, abi) {
 
 export function getContractAbi(c) {
   switch (c) {
-    case 'GoldToken':
-      return CeloTokenAbi;
+    case 'maticToken':
+      return MaticTokenAbi;
     case 'StableToken':
-    case 'StableTokenEUR':
-    case 'StableTokenBRL':
       return StableTokenAbi;
     case 'Spaces':
       return SpacesAbi;

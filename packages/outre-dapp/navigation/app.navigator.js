@@ -17,7 +17,7 @@ import {
 } from '../features/spaces';
 //import { LoansHomeScreen } from '../features/microloans';
 import RoscaTabsNavigator from './rosca-tabs.navigator';
-//import LoansTabsNavigator from './loan-tabs.navigator';
+import LoansTabsNavigator from './loan-tabs.navigator';
 import SpacesLandingNavigator from './spaces-landing.navigator';
 
 const Tab = createBottomTabNavigator();
@@ -81,7 +81,7 @@ const BottomTabNavigator = () => {
     <Tab.Navigator screenOptions={screenOptions}>
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Spaces" component={SpacesHomeScreen} />
-      <Tab.Screen name="Loans" component={DummyScreen} />
+      <Tab.Screen name="Loans" component={LoansTabsNavigator} />
       <Tab.Screen name="Account" component={AccountNavigator} />
     </Tab.Navigator>
   );
@@ -99,7 +99,7 @@ const screenOptions = ({ route }) => {
   return {
     tabBarIcon: ({ focused }) => (
       <Box bg={focused ? 'primary.200' : '#ffffff'} rounded="2xl" px="5" py="1" mt="1">
-        <Icon name={focused ? iconName[0] : iconName[1]} size={22} color="#0F766E" />
+        <Icon name={focused ? iconName[0] : iconName[1]} size={22} color="#005db4" />
       </Box>
     ),
     tabBarLabel: () => (

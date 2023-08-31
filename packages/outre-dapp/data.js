@@ -67,7 +67,7 @@ export const roundDetails = {
   ctbCount: '5',
 };
 
-export const rates = { cKES: 1, cUSD: 139.05, CELO: 139.05 * 0.485, CELOusd: 0.485, cEUR: 148.58 };
+export const rates = { cKES: 1, USDC: 145.65, MATIC: 145.65 * 0.57, MatciUsd: 0.57 };
 
 export const spareChangeList = [
   {
@@ -139,6 +139,18 @@ export const LoansData = [
         type: 'individual', // or "group
         lendingPool: '10000',
         minAmount: '500',
+        maxAmount: '1000',
+        minDuration: '7', //days
+        maxDuration: '21', //weeks
+        interest: '5', //percent
+      },
+      {
+        id: 'LO002',
+        token: 'cUSD',
+        from: 'Bishi Mishi',
+        type: 'individual', // or "group
+        lendingPool: '1000',
+        minAmount: '50',
         maxAmount: '1000',
         minDuration: '7', //days
         maxDuration: '21', //weeks

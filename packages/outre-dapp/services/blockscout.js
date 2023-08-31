@@ -8,10 +8,11 @@ export const blockscoutApi = createApi({
   endpoints: (builder) => ({
     //Account
     getTxsByAddr: builder.query({
-      query: (addr) => `?module=account&action=txlist&address=${addr}`,
+      query: (addr) => `?module=account&action=txlist&address=${addr}&apikey=${config.polyscan}`,
     }),
     getTokenTransfers: builder.query({
-      query: (addr) => `?module=account&action=tokentx&address=${addr}`,
+      query: (addr) =>
+        `?module=account&action=tokentx&contractaddress=${config.contractAddresses.StableToken}&address=${addr}&apikey=${config.polyscan}`,
     }),
   }),
 });

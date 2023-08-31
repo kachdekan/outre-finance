@@ -41,7 +41,6 @@ export default function SpacesHomeScreen({ navigation }) {
         methodType: 'read',
       });
       const results = await getSpaces();
-      console.log(results);
       setSpaces(results);
       dispatch(setUserSpaces(results));
       const roscas = results.filter((s) => s.type === 'rosca');
@@ -52,7 +51,7 @@ export default function SpacesHomeScreen({ navigation }) {
       setChallenges(challenges);
       for (const idx in mySpaces) {
         if (!results.find((ln) => ln.address === mySpaces[idx][0])) {
-          //console.log(mySpaces[idx])
+          console.log(mySpaces[idx]);
           dispatch(fetchSpaces());
           return;
         }

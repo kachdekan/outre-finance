@@ -52,7 +52,7 @@ export default function LoginScreen({ navigation }) {
                   width: 15,
                   height: 15,
                   borderRadius: 25,
-                  backgroundColor: '#99F6E4',
+                  backgroundColor: '#bae6fd',
                 }}
               ></View>
             }
@@ -62,7 +62,7 @@ export default function LoginScreen({ navigation }) {
                   width: 15,
                   height: 15,
                   borderRadius: 25,
-                  backgroundColor: '#0D9488',
+                  backgroundColor: '#2563eb',
                 }}
               ></View>
             }
