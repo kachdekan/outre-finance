@@ -1,0 +1,52 @@
+{
+  "name": "outre-dapp",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web"
+  },
+  "dependencies": {
+    "@clixpesa/native-base": "^3.5.1",
+    "@expo/vector-icons": "^13.0.0",
+    "@react-native-community/datetimepicker": "7.2.0",
+    "@react-navigation/bottom-tabs": "^6.5.8",
+    "@react-navigation/material-top-tabs": "^6.6.3",
+    "@react-navigation/native": "^6.1.7",
+    "@react-navigation/native-stack": "^6.9.13",
+    "@reduxjs/toolkit": "^1.9.5",
+    "crypto-js": "^4.1.1",
+    "dotenv": "^16.3.1",
+    "ethers": "^5.7.2",
+    "expo": "~49.0.8",
+    "expo-contacts": "~12.2.0",
+    "expo-secure-store": "~12.3.1",
+    "expo-splash-screen": "~0.20.5",
+    "expo-status-bar": "~1.6.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-native": "0.72.4",
+    "react-native-animatable": "^1.3.3",
+    "react-native-dotenv": "^3.4.9",
+    "react-native-gesture-handler": "~2.12.0",
+    "react-native-get-random-values": "~1.9.0",
+    "react-native-pager-view": "6.2.0",
+    "react-native-qrcode-svg": "^6.2.0",
+    "react-native-remix-icon": "^0.4.0",
+    "react-native-safe-area-context": "4.6.3",
+    "react-native-screens": "~3.22.0",
+    "react-native-svg": "^13.13.0",
+    "react-native-tab-view": "^3.5.2",
+    "react-redux": "^8.1.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.0",
+    "@babel/preset-env": "^7.22.10",
+    "@ethersproject/shims": "^5.7.0",
+    "@types/react": "^18.2.21",
+    "prettier": "^3.0.3"
+  },
+  "private": true
+}
