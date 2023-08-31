@@ -8,7 +8,7 @@ import {
   UserDetailsScreen,
   VerificationScreen,
   SetPasscodeScreen,
-  //LoginScreen,
+  LoginScreen,
 } from '@dapp/features/essentials';
 import { ImportWalletScreen } from '@dapp/features/wallet';
 import { useSelector } from 'react-redux';
