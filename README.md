@@ -11,7 +11,7 @@ We know that making and receiving payments is not enough to build financial resi
 #### Key product features
 
 ##### Outre Spaces
-Outre spaces is basically a savings feature within Clixpesa where users can save for personal goals, participate in saving challenges and also save in groups through RoSCAs. 
+Outre spaces is basically a savings feature where users can save for personal goals, participate in saving challenges and also save in groups through RoSCAs. 
 With  Rotating Savings & Credit Associations (RoSCAs) users can come together as a group to help each other stay financially resilient. Users contribute to a pot, and the target amount goes to one of the users in a particular order until everyone has received a pot and the cycle starts over. This utility commonly known in Kenya as Chamas, helps many raise funds for otherwise big financial goals such as business capital or bills. Within the RoSCAs members can also ask for financial support for financial needs outside of the pot allocations.
 Users can create a RoSCA easily by inviting their friends through their phone numbers. Once the RoSCAs is created they can select their admins and around can be started. Funds disbursement happens automatically once a pot deadline is reached. Signatories to the RoSCA funds are randomised by the platform in order to give all members equal control over their funds.
 
