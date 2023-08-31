@@ -13,7 +13,7 @@ module.exports = function (api) {
             '@dapp/features': './features',
             '@dapp/services': './services',
             '@dapp/store': './store',
-            //'@dapp/data': './data.js',
+            '@dapp/data': './data.js',
             '@dapp/consts': './consts.js',
             '@dapp/utils': './utils',
           },
