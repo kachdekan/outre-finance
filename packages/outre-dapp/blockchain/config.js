@@ -1,7 +1,7 @@
 import deployed from './Abis/Jsons/deployed.json';
 
 const configCeloAlfajores = {
-  jsonRpcUrlPrimary: 'https://rpc-mumbai.maticvigil.com',
+  jsonRpcUrlPrimary: 'https://rpc.ankr.com/polygon_mumbai', //'https://rpc-mumbai.maticvigil.com',
   blockscoutUrl: 'https://api-testnet.polygonscan.com',
   discordUrl: 'https://discord.gg/ht885KmG5A',
   name: 'mumbai',

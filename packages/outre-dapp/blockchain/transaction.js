@@ -19,12 +19,14 @@ export async function signTransaction(tx, feeEstimate) {
     // May revisit later
     throw new Error('Fee estimate required to send tx');
   }
-  const { gasLimit } = feeEstimate;
+
+  const { gasPrice, gasLimit } = feeEstimate;
+  console.log('Gas price', gasLimit.toString());
   const signedTx = await signer.signTransaction({
     ...tx,
     // TODO: set gatewayFeeRecipient
     //feeCurrency: feeToken,
-    gasLimit: gasLimit,
+    gasLimit,
     type: 2,
   });
   return signedTx;
@@ -33,7 +35,9 @@ export async function signTransaction(tx, feeEstimate) {
 export async function sendSignedTransaction(signedTx) {
   const provider = getProvider();
   const txResponse = await provider.sendTransaction(signedTx);
+  console.log('txResponse', txResponse);
   const txReceipt = await txResponse.wait();
+  console.log('txReceipt', txReceipt);
   return txReceipt;
 }
 

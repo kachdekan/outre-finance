@@ -123,7 +123,6 @@ export const transfer = async (contractName, args) => {
 export const smartContractCall = async (contractName, args) => {
   const gasstation = await axios.get('https://gasstation-testnet.polygon.technology/v2');
   const provider = getProvider();
-
   let contract = null;
   if (args.contractAddress) {
     contract = getCustomContract(contractName, args.contractAddress);
@@ -145,8 +144,8 @@ export const smartContractCall = async (contractName, args) => {
       maxFeePerGas: utils
         .parseUnits(gasstation.data.fast['maxFee'].toFixed(9).toString(), 'gwei')
         .toString(),
-      gasPrice: utils.parseUnits('1.55', 'gwei').toString(),
-      gasLimit: utils.parseUnits('0.00030', 'gwei').toString(),
+      gasPrice: utils.parseUnits('0.55', 'gwei').toString(),
+      gasLimit: utils.parseUnits('0.035', 'gwei').toString(),
       //feeToken: config.contractAddresses.StableToken,
     };
 
@@ -178,8 +177,11 @@ export const smartContractCall = async (contractName, args) => {
       );
       const limit = args.approvalContract
         ? feeEstimate.gasLimit
-        : utils.parseUnits('0.0035', 'gwei').toString(); //await provider.estimateGas({ ...unsignedTx, chainId: config.chainId, type: 2 })
-      txReceipt = await sendTransaction({ ...unsignedTx, chainId: config.chainId }, limit);
+        : utils.parseUnits('0.035', 'gwei').toString(); //await provider.estimateGas({ ...unsignedTx, chainId: config.chainId, type: 2 });
+      txReceipt = await sendTransaction(
+        { ...unsignedTx, chainId: config.chainId },
+        { ...feeEstimate, gasLimit: limit },
+      );
       console.log('txReceipt', txReceipt);
     } else {
       txReceipt = await contract?.[args.method](overrides);
