@@ -99,7 +99,7 @@ const screenOptions = ({ route }) => {
   return {
     tabBarIcon: ({ focused }) => (
       <Box bg={focused ? 'primary.200' : '#ffffff'} rounded="2xl" px="5" py="1" mt="1">
-        <Icon name={focused ? iconName[0] : iconName[1]} size={22} color="#0F766E" />
+        <Icon name={focused ? iconName[0] : iconName[1]} size={22} color="#005db4" />
       </Box>
     ),
     tabBarLabel: () => (

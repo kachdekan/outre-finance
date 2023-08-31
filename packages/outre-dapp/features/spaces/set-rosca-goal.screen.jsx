@@ -33,7 +33,7 @@ export default function SetRoscaGoalScreen({ navigation, route }) {
   const dispatch = useDispatch();
   const spaceInfo = useSelector((state) => state.spaces.spaceInfo);
   const [newRosca, setNewRosca] = useState({ address: '', authCode: '' });
-  const [token, setToken] = useState('cUSD');
+  const [token, setToken] = useState('USDC');
   const [amount, setAmount] = useState('');
   const { isOpen, onOpen, onClose } = useDisclose();
   const { isOpen: isOpen1, onOpen: onOpen1, onClose: onClose1 } = useDisclose();
@@ -113,7 +113,7 @@ export default function SetRoscaGoalScreen({ navigation, route }) {
           <Box bg="white" roundedTop="xl" roundedBottom="md" borderWidth={1} borderColor="gray.100">
             <HStack m={3} space="xl">
               <Text fontSize="lg" py={3} pl={4} fontWeight="semibold">
-                cUSD
+                USDC
               </Text>
               <Input
                 py={2}
@@ -124,7 +124,7 @@ export default function SetRoscaGoalScreen({ navigation, route }) {
                 keyboardType="numeric"
                 InputRightElement={
                   <Text fontSize="md" fontWeight="medium" pr={3}>
-                    cUSD
+                    USDC
                   </Text>
                 }
                 value={amount}
@@ -136,7 +136,7 @@ export default function SetRoscaGoalScreen({ navigation, route }) {
             <Text px={5} mb={3}>
               Each member contributes:{' '}
               {members.length > 0 ? (amount / (members.length + 1)).toFixed(2).toString() : 'some'}{' '}
-              cUSD
+              USDC
             </Text>
           </Box>
           <HStack

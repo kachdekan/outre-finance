@@ -24,8 +24,8 @@ export async function signTransaction(tx, feeEstimate) {
     ...tx,
     // TODO: set gatewayFeeRecipient
     //feeCurrency: feeToken,
-    //gasLimit: gasLimit,
-    //type: 2,
+    gasLimit: gasLimit,
+    type: 2,
   });
   return signedTx;
 }

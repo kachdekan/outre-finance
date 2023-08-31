@@ -37,7 +37,7 @@ export default function HomeScreen(navigation) {
   }, [isSignerSet]);
 
   if (balances) {
-    totalBalance = balances[tokenAddrs[1]] * 1 + balances[tokenAddrs[0]] * rates.CELOusd;
+    totalBalance = balances[tokenAddrs[1]] * 1 + balances[tokenAddrs[0]] * rates.MatciUsd;
   }
 
   // get data from blockscout
@@ -50,7 +50,8 @@ export default function HomeScreen(navigation) {
     const thisTxs = [];
     const goodTxs = Array.prototype.filter.call(
       txData.result,
-      (txs) => txs.value.toString() * 1 >= utils.parseEther('0.0008').toString() * 1,
+      (txs) =>
+        txs.value.toString() * 1 >= utils.parseUnits('0.0008', txs.tokenDecimal).toString() * 1,
     );
     goodTxs.forEach((tx) => {
       const txDate = new Date(tx.timeStamp * 1000);
@@ -62,7 +63,7 @@ export default function HomeScreen(navigation) {
           ? shortenAddress(tx.from, true)
           : shortenAddress(tx.to, true),
         date: date[0] + ', ' + date[2] + ' ' + date[1] + ', ' + txDate.toTimeString().slice(0, 5),
-        amount: utils.formatUnits(tx.value, 'ether'),
+        amount: utils.formatUnits(tx.value, tx.tokenDecimal),
         token: tx.tokenSymbol,
       };
       thisTxs.push(txItem);
@@ -96,7 +97,7 @@ export default function HomeScreen(navigation) {
               color="warmGray.800"
               bg="white"
               balance={totalBalance.toFixed(4).toString()}
-              apprxBalance={(totalBalance * rates.cUSD).toFixed(2).toString()}
+              apprxBalance={(totalBalance * rates.USDC).toFixed(2).toString()}
               btn1={{
                 icon: <Icon as={Feather} name="plus" size="md" color="primary.600" mr="1" />,
                 name: 'Deposit',

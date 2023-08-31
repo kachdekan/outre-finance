@@ -5,6 +5,7 @@ import * as SplashScreen from 'expo-splash-screen';
 
 import { Navigation } from './navigation';
 import { USER_STORE, WALLETS_STORE } from '@dapp/consts';
+import { theme } from './theme';
 import { getUserDetails } from '@dapp/services/storage';
 import { connectToProvider } from '@dapp/blockchain/provider';
 import { setToken, setIsConnected, setUserDetails } from '@dapp/store/essential/essential.slice';
@@ -63,7 +64,7 @@ export default function App() {
     return null;
   } else {
     return (
-      <NativeBaseProvider>
+      <NativeBaseProvider theme={theme}>
         <Navigation />
         <StatusBar style="auto" />
       </NativeBaseProvider>

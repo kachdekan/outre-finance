@@ -1,47 +1,35 @@
 import { config } from '@dapp/blockchain/config';
 
-export const CELO = {
-  symbol: 'CELO',
-  name: 'Celo Native',
-  address: config.contractAddresses.GoldToken,
+const MATIC = {
+  symbol: 'MATIC',
+  name: 'Matic Token',
+  address: config.contractAddresses.MaticToken,
   decimals: 18,
   chainId: config.chainId,
   sortOrder: 10,
 };
-export const cUSD = {
-  symbol: 'cUSD',
-  name: 'Celo Dollar',
+const USDC = {
+  symbol: 'USDC',
+  name: 'USD Coin',
   address: config.contractAddresses.StableToken,
   decimals: 18,
   chainId: config.chainId,
-  exchangeAddress: config.contractAddresses.Exchange,
+  //exchangeAddress: config.contractAddresses.Exchange,
   sortOrder: 20,
 };
-export const cEUR = {
-  symbol: 'cEUR',
-  name: 'Celo Euro',
-  address: config.contractAddresses.StableTokenEUR,
-  decimals: 18,
-  chainId: config.chainId,
-  exchangeAddress: config.contractAddresses.ExchangeEUR,
-  sortOrder: 30,
-};
-export const cREAL = {
-  symbol: 'cREAL',
-  name: 'Celo Brazilian Real',
-  address: config.contractAddresses.StableTokenBRL,
-  decimals: 18,
-  chainId: config.chainId,
-  exchangeAddress: config.contractAddresses.ExchangeBRL,
-  sortOrder: 40,
+
+const NativeTokens = [MATIC, USDC];
+const StableTokens = [USDC];
+
+const NativeTokensByAddress = {
+  [MATIC.address]: MATIC,
+  [USDC.address]: USDC,
 };
 
-export const NativeTokens = [CELO, cUSD, cEUR, cREAL];
-export const StableTokens = [cUSD, cEUR, cREAL];
-
-export const NativeTokensByAddress = {
-  [CELO.address]: CELO,
-  [cUSD.address]: cUSD,
-  [cEUR.address]: cEUR,
-  [cREAL.address]: cREAL,
+module.exports = {
+  MATIC,
+  USDC,
+  NativeTokens,
+  NativeTokensByAddress,
+  StableTokens,
 };
