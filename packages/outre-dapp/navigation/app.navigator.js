@@ -20,7 +20,7 @@ import { HomeScreen, DepositScreen, DummyScreen } from '@dapp/features/essential
 //import { LoansHomeScreen } from '../features/microloans';
 //import RoscaTabsNavigator from './rosca-tabs.navigator';
 //import LoansTabsNavigator from './loan-tabs.navigator';
-//import SpacesLandingNavigator from './spaces-landing.navigator';
+import SpacesLandingNavigator from './spaces-landing.navigator';
 
 const Tab = createBottomTabNavigator();
 const AppStack = createNativeStackNavigator();
@@ -44,7 +44,7 @@ const BottomTabNavigator = () => {
   return (
     <Tab.Navigator screenOptions={screenOptions}>
       <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Spaces" component={DummyScreen} />
+      <Tab.Screen name="Spaces" component={SpacesLandingNavigator} />
       <Tab.Screen name="Loans" component={DummyScreen} />
       <Tab.Screen name="Account" component={DummyScreen} />
     </Tab.Navigator>
