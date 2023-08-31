@@ -20,7 +20,7 @@ export function AuthNavigator() {
   return (
     <AuthStack.Navigator initialRouteName="Welcome">
       {hasAccount ? (
-        <AuthStack.Screen name="Login" component={DummyScreen} options={{ headerShown: false }} />
+        <AuthStack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
       ) : (
         <AuthStack.Screen
           name="Welcome"
