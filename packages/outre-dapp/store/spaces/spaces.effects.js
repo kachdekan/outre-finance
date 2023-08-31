@@ -19,7 +19,7 @@ export const spacesListeners = (startListening) => {
       const roscaDetails = {
         roscaName: result.roscaName,
         imgLink: result.imgLink,
-        goalAmount: utils.formatUnits(result.goalAmount.toString(), 18),
+        goalAmount: utils.formatUnits(result.goalAmount.toString(), 6),
         ctbDay: result.ctbDay,
         ctbOccur: result.ctbOccur,
         disbDay: result.disbDay,
@@ -28,7 +28,7 @@ export const spacesListeners = (startListening) => {
         activeMembers: utils.formatUnits(result.activeMembers.toString(), 0),
         currentRound: utils.formatUnits(result.currentRound.toString(), 0),
         creator: result.creator,
-        roscaBal: utils.formatUnits(result.roscaBal.toString(), 18),
+        roscaBal: utils.formatUnits(result.roscaBal.toString(), 6),
       };
       console.log(roscaDetails);
       listenerApi.dispatch(setRoscaDetails(roscaDetails));
@@ -52,8 +52,8 @@ export const spacesListeners = (startListening) => {
           address: result[0],
           name: result[1],
           type: result[2],
-          value: utils.formatUnits(results.goalAmount.toString(), 18),
-          repaid: utils.formatUnits(results.roscaBal.toString(), 18),
+          value: utils.formatUnits(results.goalAmount.toString(), 6),
+          repaid: utils.formatUnits(results.roscaBal.toString(), 6),
           dueDate: dueDate.toDateString(),
         };
 
@@ -83,8 +83,8 @@ export const spacesListeners = (startListening) => {
             address: result[0],
             name: result[1],
             type: result[2],
-            value: utils.formatUnits(results.goalAmount.toString(), 18),
-            repaid: utils.formatUnits(results.roscaBal.toString(), 18),
+            value: utils.formatUnits(results.goalAmount.toString(), 6),
+            repaid: utils.formatUnits(results.roscaBal.toString(), 6),
             dueDate: dueDate.toDateString(),
           };
           try {
