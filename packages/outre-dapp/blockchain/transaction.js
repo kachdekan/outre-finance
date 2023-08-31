@@ -35,7 +35,9 @@ export async function signTransaction(tx, feeEstimate) {
 export async function sendSignedTransaction(signedTx) {
   const provider = getProvider();
   const txResponse = await provider.sendTransaction(signedTx);
+  console.log('txResponse', txResponse);
   const txReceipt = await txResponse.wait();
+  console.log('txReceipt', txReceipt);
   return txReceipt;
 }
 
