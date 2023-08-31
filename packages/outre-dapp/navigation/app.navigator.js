@@ -33,6 +33,9 @@ export const AppNavigator = () => {
         component={BottomTabNavigator}
         options={{ headerShown: false }}
       />
+      <AppStack.Group screenOptions={{ presentation: 'modal' }}>
+        <AppStack.Screen name="depositFunds" component={DepositScreen} />
+      </AppStack.Group>
     </AppStack.Navigator>
   );
 };
