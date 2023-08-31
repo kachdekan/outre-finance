@@ -3,6 +3,7 @@ import { rootReducer } from './root-reducer';
 
 import { essentialListeners } from './essential/essential.effects';
 import { walletListeners } from './wallet/wallet.effects';
+import { spacesListeners } from './spaces/spaces.effects';
 
 import { blockscoutApi } from '@dapp/services/blockscout';
 
@@ -14,5 +15,5 @@ export const store = configureStore({
     getDefaultMiddleware().prepend(listenerMiddleware.middleware, blockscoutApi.middleware),
 });
 
-const listeners = [essentialListeners, walletListeners];
+const listeners = [essentialListeners, walletListeners, spacesListeners];
 listeners.forEach((listener) => listener(listenerMiddleware.startListening));
