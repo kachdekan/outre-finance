@@ -17,7 +17,7 @@ import {
 } from '../features/spaces';
 //import { LoansHomeScreen } from '../features/microloans';
 import RoscaTabsNavigator from './rosca-tabs.navigator';
-//import LoansTabsNavigator from './loan-tabs.navigator';
+import LoansTabsNavigator from './loan-tabs.navigator';
 import SpacesLandingNavigator from './spaces-landing.navigator';
 
 const Tab = createBottomTabNavigator();
@@ -81,7 +81,7 @@ const BottomTabNavigator = () => {
     <Tab.Navigator screenOptions={screenOptions}>
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Spaces" component={SpacesHomeScreen} />
-      <Tab.Screen name="Loans" component={DummyScreen} />
+      <Tab.Screen name="Loans" component={LoansTabsNavigator} />
       <Tab.Screen name="Account" component={AccountNavigator} />
     </Tab.Navigator>
   );

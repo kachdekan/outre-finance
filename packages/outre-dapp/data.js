@@ -144,6 +144,18 @@ export const LoansData = [
         maxDuration: '21', //weeks
         interest: '5', //percent
       },
+      {
+        id: 'LO002',
+        token: 'cUSD',
+        from: 'Bishi Mishi',
+        type: 'individual', // or "group
+        lendingPool: '1000',
+        minAmount: '50',
+        maxAmount: '1000',
+        minDuration: '7', //days
+        maxDuration: '21', //weeks
+        interest: '5', //percent
+      },
     ],
   },
   {
