@@ -1,0 +1,42 @@
+{
+  "name": "@outrefi/contracts",
+  "version": "1.0.0",
+  "description": "outre finance contracts",
+  "license": "Apache-2.0",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test-net": "hardhat test",
+    "test-local": "hardhat test --network hardhat",
+    "deploy": "hardhat deploy --export-all ../outre-dapp/blockchain/Abis/Jsons/deployed.json"
+  },
+  "devDependencies": {
+    "@ethersproject/abi": "^5.4.7",
+    "@ethersproject/bytes": "^5.0.0",
+    "@ethersproject/providers": "^5.4.7",
+    "@nomicfoundation/hardhat-chai-matchers": "^1.0.0",
+    "@nomicfoundation/hardhat-network-helpers": "^1.0.0",
+    "@nomicfoundation/hardhat-toolbox": "^2.0.2",
+    "@nomiclabs/hardhat-ethers": "^2.2.0",
+    "@nomiclabs/hardhat-etherscan": "^3.0.0",
+    "@openzeppelin/contracts": "^4.8.3",
+    "@typechain/ethers-v5": "^10.2.0",
+    "@typechain/hardhat": "^6.1.5",
+    "@types/chai": "^4.2.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "^18.16.0",
+    "chai": "^4.3.7",
+    "ethers": "^5.4.7",
+    "hardhat": "^2.14.0",
+    "hardhat-abi-exporter": "^2.10.1",
+    "hardhat-deploy": "^0.11.26",
+    "hardhat-gas-reporter": "^1.0.9",
+    "solidity-coverage": "^0.8.2",
+    "ts-node": "^10.9.1",
+    "typechain": "^8.1.1",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "nanoid": "3"
+  }
+}

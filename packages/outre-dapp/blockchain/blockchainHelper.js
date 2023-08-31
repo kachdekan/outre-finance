@@ -149,6 +149,8 @@ export const smartContractCall = async (contractName, args) => {
       gasLimit: utils.parseUnits('0.00030', 'gwei').toString(),
       //feeToken: config.contractAddresses.StableToken,
     };
+
+    console.log('feeEstimate', feeEstimate);
     const currentNonce = await getCurrentNonce();
 
     if (args.methodType === 'read') {
@@ -178,6 +180,7 @@ export const smartContractCall = async (contractName, args) => {
         ? feeEstimate.gasLimit
         : utils.parseUnits('0.0035', 'gwei').toString(); //await provider.estimateGas({ ...unsignedTx, chainId: config.chainId, type: 2 })
       txReceipt = await sendTransaction({ ...unsignedTx, chainId: config.chainId }, limit);
+      console.log('txReceipt', txReceipt);
     } else {
       txReceipt = await contract?.[args.method](overrides);
     }

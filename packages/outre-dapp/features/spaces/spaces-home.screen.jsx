@@ -41,7 +41,6 @@ export default function SpacesHomeScreen({ navigation }) {
         methodType: 'read',
       });
       const results = await getSpaces();
-      console.log(results);
       setSpaces(results);
       dispatch(setUserSpaces(results));
       const roscas = results.filter((s) => s.type === 'rosca');
