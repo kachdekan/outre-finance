@@ -5,8 +5,8 @@ const AccountStack = createNativeStackNavigator();
 
 const AccountScreen = () => {
   return (
-    <Box flex={1} bg="$primary100" alignItems="center" justifyContent="center">
-      <Text size="xl">Account Screen!</Text>
+    <Box flex={1} bg="muted.100" alignItems="center" justifyContent="center">
+      <Text>Account Screen</Text>
     </Box>
   );
 };

@@ -5,20 +5,18 @@ import { Box, Text, Avatar, Pressable, HStack } from '@clixpesa/native-base';
 import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 
-//import { SpacesNavigator } from './spaces.navigator';
-//import { LoansNavigator } from './loans.navigator';
 import { AccountNavigator } from './account.navigator';
 
 import { HomeScreen, DepositScreen, DummyScreen } from '@dapp/features/essentials';
-//import {
-//SpacesHomeScreen,
-//CreateSpaceScreen,
-//SelectContactsScreen,
-//SetRoscaGoalScreen,
-//FundRoscaRoundScreen,
-//} from '../features/spaces';
+import {
+  SpacesHomeScreen,
+  CreateSpaceScreen,
+  SelectContactsScreen,
+  SetRoscaGoalScreen,
+  FundRoscaRoundScreen,
+} from '../features/spaces';
 //import { LoansHomeScreen } from '../features/microloans';
-//import RoscaTabsNavigator from './rosca-tabs.navigator';
+import RoscaTabsNavigator from './rosca-tabs.navigator';
 //import LoansTabsNavigator from './loan-tabs.navigator';
 import SpacesLandingNavigator from './spaces-landing.navigator';
 
@@ -36,6 +34,44 @@ export const AppNavigator = () => {
       <AppStack.Group screenOptions={{ presentation: 'modal' }}>
         <AppStack.Screen name="depositFunds" component={DepositScreen} />
       </AppStack.Group>
+      <AppStack.Group screenOptions={{ presentation: 'modal' }}>
+        <AppStack.Screen
+          name="SpacesLanding"
+          component={SpacesLandingNavigator}
+          options={{
+            headerTitle: 'My Spaces',
+          }}
+        />
+        <AppStack.Screen name="RoscaHome" component={RoscaTabsNavigator} />
+        <AppStack.Screen
+          name="createSpace"
+          component={CreateSpaceScreen}
+          options={{
+            headerTitle: 'Create a Space',
+          }}
+        />
+        <AppStack.Screen
+          name="selectContacts"
+          component={SelectContactsScreen}
+          options={{
+            headerTitle: 'Invite Friends',
+          }}
+        />
+        <AppStack.Screen
+          name="setRoscaGoal"
+          component={SetRoscaGoalScreen}
+          options={{
+            headerTitle: 'Set Pot Amount',
+          }}
+        />
+        <AppStack.Screen
+          name="fundRoscaRound"
+          component={FundRoscaRoundScreen}
+          options={{
+            headerTitle: 'Fund Round',
+          }}
+        />
+      </AppStack.Group>
     </AppStack.Navigator>
   );
 };
@@ -44,9 +80,9 @@ const BottomTabNavigator = () => {
   return (
     <Tab.Navigator screenOptions={screenOptions}>
       <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Spaces" component={SpacesLandingNavigator} />
+      <Tab.Screen name="Spaces" component={SpacesHomeScreen} />
       <Tab.Screen name="Loans" component={DummyScreen} />
-      <Tab.Screen name="Account" component={DummyScreen} />
+      <Tab.Screen name="Account" component={AccountNavigator} />
     </Tab.Navigator>
   );
 };
