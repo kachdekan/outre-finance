@@ -14,11 +14,18 @@
     "logs": "firebase functions:log"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "express-async-handler": "^1.2.0",
     "firebase": "^10.3.1",
     "firebase-admin": "^11.10.1",
     "firebase-functions": "^4.4.1",
-    "firebase-tools": "^12.5.2"
-  },"private": true
+    "firebase-tools": "^12.5.2",
+    "jsonwebtoken": "^9.0.2",
+    "nanoid": "3.0.0"
+  },
+  "private": true
 }
