@@ -1,6 +1,6 @@
 const express = require('express');
 const {
-  //authUser,
+  authUser,
   registerUser,
   //logoutUser,
   //getUserProfile,
@@ -11,7 +11,7 @@ const {
 const router = express.Router();
 
 router.post('/register', registerUser);
-//router.post('/auth', authUser);
+router.post('/auth', authUser);
 //router.post('/logout', logoutUser);
 /*router
   .route('/profile')

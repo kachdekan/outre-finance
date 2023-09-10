@@ -2,29 +2,27 @@ const asyncHandler = require('express-async-handler');
 const { db } = require('../fbconfig');
 const { generateUID } = require('../utils/generateUID');
 const { generateToken } = require('../utils/generateToken');
-//const generateToken = require('../utils/generateToken');
 
-/* @desc    Auth user & get token
+//@desc    Auth user & get token
 // @route   POST /api/users/auth
 // @access  Public
 const authUser = asyncHandler(async (req, res) => {
   const { phone, password } = req.body;
 
-  const user = true//await User.findOne({ email });
-
-  if (user) {
-    generateToken(res, user._id);
-
+  const user = await db.collection('users').where('phone', '==', phone).get()
+  const matchPassword = user.docs[0].data().password === password;
+  if (!user.empty && matchPassword) {
+    generateToken(res, user.docs[0].id);
+    
     res.json({
-      _id: user._id,
-      name: user.name,
-      email: user.email,
+      _id: user.docs[0].id,
+      phone: user.docs[0].data().phone,
     });
   } else {
     res.status(401);
-    throw new Error('Invalid email or password');
+    throw new Error('Invalid phone or pin');
   }
-});*/
+});
 
 // @desc    Register a new user
 // @route   POST /api/users
@@ -115,4 +113,4 @@ export {
 
 */
 
-module.exports = { registerUser };
+module.exports = { registerUser, authUser};
