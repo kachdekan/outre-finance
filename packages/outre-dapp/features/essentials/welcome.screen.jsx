@@ -1,9 +1,9 @@
-import { Box, VStack, Button, Heading, Spacer } from '@clixpesa/native-base';
+import { Box, VStack, Button, Heading, Spacer } from 'native-base';
 export default function WelcomeScreen({ navigation }) {
   return (
     <Box flex={1} bg="#fff" alignItems="center" justifyContent="flex-end">
       <Box width="75%" mt="3/4">
-        <Heading textAlign="center" color="blueGray.700">
+        <Heading textAlign="center" color="coolGray.700">
           Step into the future of money with Outre Finance
         </Heading>
       </Box>
@@ -13,7 +13,7 @@ export default function WelcomeScreen({ navigation }) {
           rounded="3xl"
           pr="4"
           minW="75%"
-          _text={{ color: 'primary.100', fontWeight: 'semibold', mb: '0.5' }}
+          _text={{ fontWeight: 'semibold', mb: '0.5' }}
           onPress={() => console.log('Create New Account')}
         >
           Create New Account
@@ -23,7 +23,7 @@ export default function WelcomeScreen({ navigation }) {
           rounded="3xl"
           pr="4"
           minW="75%"
-          _text={{ color: 'primary.600', fontWeight: 'semibold', mb: '0.5' }}
+          _text={{ color: 'primary.700', fontWeight: 'semibold', mb: '0.5' }}
           onPress={() => navigation.navigate('importWallet')}
         >
           Use Existing Account

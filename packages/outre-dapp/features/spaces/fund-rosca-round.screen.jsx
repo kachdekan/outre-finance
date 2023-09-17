@@ -10,7 +10,7 @@ import {
   Spacer,
   Icon,
   useDisclose,
-} from '@clixpesa/native-base';
+} from 'native-base';
 import { Feather } from '@expo/vector-icons';
 import { useState, useRef } from 'react';
 import { useSelector } from 'react-redux';

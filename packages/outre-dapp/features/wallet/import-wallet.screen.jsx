@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Box, Text, VStack, Button, Spacer, FormControl, Input } from '@clixpesa/native-base';
+import { Box, Text, VStack, Button, Spacer, FormControl, Input } from 'native-base';
 import { isValidMnemonic } from '@dapp/utils/mnemonic';
 import { setPendingWallet } from './pending-wallet';
 import { useDispatch } from 'react-redux';

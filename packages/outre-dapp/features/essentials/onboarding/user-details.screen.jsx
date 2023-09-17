@@ -12,7 +12,7 @@ import {
   Checkbox,
   Spacer,
   Button,
-} from '@clixpesa/native-base';
+} from 'native-base';
 import { useDispatch } from 'react-redux';
 import { setUserDetails } from '@dapp/store/essential/essential.slice';
 

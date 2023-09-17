@@ -1,4 +1,4 @@
-import { Box, Text, HStack, VStack, Pressable, Avatar } from '@clixpesa/native-base';
+import { Box, Text, HStack, VStack, Pressable, Avatar } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 import { setThisRosca } from '@dapp/store/spaces/spaces.slice';

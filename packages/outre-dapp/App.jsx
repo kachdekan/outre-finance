@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { NativeBaseProvider } from '@clixpesa/native-base';
+import { NativeBaseProvider } from 'native-base';
 import { useState, useEffect } from 'react';
 import * as SplashScreen from 'expo-splash-screen';
 

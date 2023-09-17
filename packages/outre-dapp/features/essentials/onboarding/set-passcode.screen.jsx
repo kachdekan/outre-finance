@@ -1,4 +1,4 @@
-import { Box, VStack, Spinner, Text } from '@clixpesa/native-base';
+import { Box, VStack, Spinner, Text } from 'native-base';
 import { useState } from 'react';
 
 import { CodeInput } from '@dapp/components';

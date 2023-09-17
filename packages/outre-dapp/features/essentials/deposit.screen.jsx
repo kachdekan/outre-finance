@@ -1,14 +1,4 @@
-import {
-  Box,
-  Text,
-  VStack,
-  Divider,
-  HStack,
-  Icon,
-  Pressable,
-  Spacer,
-  Button,
-} from '@clixpesa/native-base';
+import { Box, Text, VStack, Divider, HStack, Icon, Pressable, Spacer, Button } from 'native-base';
 import QRCode from 'react-native-qrcode-svg';
 import { useSelector } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';

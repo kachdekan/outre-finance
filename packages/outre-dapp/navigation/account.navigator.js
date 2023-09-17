@@ -1,4 +1,4 @@
-import { Box, Text } from '@clixpesa/native-base';
+import { Box, Text } from 'native-base';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const AccountStack = createNativeStackNavigator();

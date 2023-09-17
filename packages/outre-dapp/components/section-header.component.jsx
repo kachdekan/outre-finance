@@ -1,4 +1,4 @@
-import { HStack, Text, Spacer, Pressable } from '@clixpesa/native-base';
+import { HStack, Text, Spacer, Pressable } from 'native-base';
 
 const SectionHeader = ({ title, action, actionText }) => (
   <HStack mx={4} mt={3} mb={2}>

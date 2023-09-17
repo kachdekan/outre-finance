@@ -1,4 +1,4 @@
-import { Actionsheet, HStack, Box, Text, Button, FlatList } from '@clixpesa/native-base';
+import { Actionsheet, HStack, Box, Text, Button, FlatList } from 'native-base';
 import { TouchableOpacity } from 'react-native';
 import { useDispatch } from 'react-redux';
 
