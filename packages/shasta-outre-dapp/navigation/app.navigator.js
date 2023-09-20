@@ -11,7 +11,7 @@ const AppStack = createNativeStackNavigator();
 
 export function AppNavigator() {
   return (
-    <AppStack.Navigator initialRouteName="Welcome">
+    <AppStack.Navigator initialRouteName="Home">
         <AppStack.Screen
           name="Home"
           component={HomeScreen}

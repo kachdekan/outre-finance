@@ -7,7 +7,7 @@ import { AuthNavigator } from './auth.navigator';
 
 const Stack = createNativeStackNavigator();
 export const Navigation = () => {
-  const isLoggedIn = true//useSelector((s) => s.essential.isLoggedIn);
+  const isLoggedIn = false//useSelector((s) => s.essential.isLoggedIn);
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>

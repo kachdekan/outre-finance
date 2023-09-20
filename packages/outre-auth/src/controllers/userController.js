@@ -36,11 +36,15 @@ const registerUser = asyncHandler(async (req, res) => {
         return res.status(400).send('User already exists')
       }else{
         await db.collection('users').doc('/' + userId + '/').create({
-          password: req.body.password,
+          names: req.body.names,
+          initials: req.body.initials,
           phone: req.body.phone,
+          country: req.body.country,
+          token: req.body.token,
+          
         })
-        generateTokens(res, userId, req.body.password);
-        return res.status(201).json({ _id: userId, phone: req.body.phone });
+        generateTokens(res, userId, req.body.token);
+        return res.status(201).json({ _id: userId, names: req.body.names, phone: req.body.phone, });
       } 
     } catch (error) {
       console.log(error);

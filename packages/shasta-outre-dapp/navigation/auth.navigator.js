@@ -5,14 +5,17 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {
   WelcomeScreen,
   DummyScreen,
+  UserDetailsScreen,
   LoginScreen,
+  VerificationScreen,
+  SetPasscodeScreen,
 } from '@dapp/features/essentials';
 import { useSelector } from 'react-redux';
 
 const AuthStack = createNativeStackNavigator();
 
 export function AuthNavigator() {
-  const hasAccount = true//useSelector((s) => s.essential.userDetails.userToken);
+  const hasAccount = false//useSelector((s) => s.essential.userDetails.userToken);
   return (
     <AuthStack.Navigator initialRouteName="Welcome">
       {hasAccount ? (
@@ -24,6 +27,30 @@ export function AuthNavigator() {
           options={{ headerShown: false }}
         />
       )}
+      <AuthStack.Group screenOptions={{ presentation: 'modal' }}>
+        <AuthStack.Screen name="DummyModal" component={DummyScreen} />
+        <AuthStack.Screen
+          name="getUserDetails"
+          component={UserDetailsScreen}
+          options={{ headerTitle: 'Your Details' }}
+        />
+        <AuthStack.Screen
+          name="verifyPhoneNo"
+          component={VerificationScreen}
+          options={{ headerTitle: 'Verification' }}
+        />
+        <AuthStack.Screen
+          name="setPasscode"
+          component={SetPasscodeScreen}
+          options={{ headerTitle: 'Set a Passcode' }}
+        />
+        {/*
+        <AuthStack.Screen
+          name="importWallet"
+          component={ImportWalletScreen}
+          options={{ headerTitle: 'Restore Account' }}
+        />*/}
+      </AuthStack.Group>
     </AuthStack.Navigator>
   );
 }
