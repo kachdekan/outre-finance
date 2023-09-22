@@ -3,16 +3,14 @@ import { useState } from 'react';
 import { CodeInput } from '@dapp/components';
 import { PIN_BLOCKLIST } from '@dapp/config';
 import { useDispatch, useSelector } from 'react-redux';
-import { setUserToken, userToken } from '../index';
+import { setUserToken } from '../user.token';
 //import { createWallet, importWallet } from '@dapp/store/wallet/wallet.slice';
-//import { createAccount } from '@dapp/store/essential/essential.slice';
+import { createAccount } from '@dapp/store/essential/essential.slice';
 import { pendingWallet } from '@dapp/features/wallet';
-import { useRegisterUserMutation } from '@dapp/services';
+
 
 export default function SetPasscodeScreen({ navigation }) {
   const dispatch = useDispatch();
-  const userDetails = useSelector((s) => s.essential.userDetails)
-  const [registerUser, response ] = useRegisterUserMutation()
   const [code1, setCode1] = useState('');
   const [code2, setCode2] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -25,15 +23,12 @@ export default function SetPasscodeScreen({ navigation }) {
       //dispatch(importWallet(code));
     } else {
       console.log('creating wallet');
-      const userData = {...userDetails, token: userToken}
-      registerUser(userData)
-      if(response.isSuccess){
-        dispatch(createAccount());
-      }else{
-        console.log("Something went wrong")
-      }
+      dispatch(createAccount())
+      navigation.navigate("Staging")
     }
   };
+
+
   const onFullCode1 = (code) => {
     if (isPinValid(code)) {
       setIsVerifying(true);
@@ -59,14 +54,7 @@ export default function SetPasscodeScreen({ navigation }) {
 
   return (
     <Box flex={1} bg="muted.50" justifyContent="center">
-      {isLoading ? (
-        <VStack mx="20" space={3} alignItems="center">
-          <Spinner size="lg" />
-          <Text fontSize="md">Loading Account...</Text>
-        </VStack>
-      ) : (
-        <>
-          {isVerifying ? (
+    {isVerifying ? (
             <Box>
               <Box mx="10">
                 <Text fontSize="md" mb="3">
@@ -107,8 +95,6 @@ export default function SetPasscodeScreen({ navigation }) {
               </Box>
             </Box>
           )}
-        </>
-      )}
     </Box>
   );
 }

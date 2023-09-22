@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 export default function VerificationScreen({ navigation }) {
-  const phoneNumber = useSelector((s) => s.essential.userDetails.phoneNo);
+  const phoneNumber = useSelector((s) => s.essential.userDetails.phone);
   const [code, setCode] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isAutoFill, setIsAutoFill] = useState(false);

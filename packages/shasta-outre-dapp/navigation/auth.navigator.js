@@ -9,13 +9,13 @@ import {
   LoginScreen,
   VerificationScreen,
   SetPasscodeScreen,
+  StagingScreen
 } from '@dapp/features/essentials';
 import { useSelector } from 'react-redux';
-
 const AuthStack = createNativeStackNavigator();
 
 export function AuthNavigator() {
-  const hasAccount = false//useSelector((s) => s.essential.userDetails.userToken);
+  const hasAccount = useSelector((s) => s.essential.hasAccount);
   return (
     <AuthStack.Navigator initialRouteName="Welcome">
       {hasAccount ? (
@@ -43,6 +43,11 @@ export function AuthNavigator() {
           name="setPasscode"
           component={SetPasscodeScreen}
           options={{ headerTitle: 'Set a Passcode' }}
+        />
+        <AuthStack.Screen
+          name="Staging"
+          component={StagingScreen}
+          options={{ headerShown: false }}
         />
         {/*
         <AuthStack.Screen

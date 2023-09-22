@@ -4,6 +4,7 @@ const initialState = {
   isLoggedIn: false,
   isConnected: false,
   isImporting: false,
+  hasAccount: false,
   userDetails: {
     names: null,
     initials: null,
@@ -33,6 +34,9 @@ const essentialSlice = createSlice({
     setIsConnected: (state, action) => {
       state.isConnected = action.payload;
     },
+    setHasAccount: (state, action) => {
+      state.hasAccount = action.payload;
+    },
     setIsImporting: (state, action) => {
       state.status.isImporting = action.payload;
     },
@@ -47,6 +51,7 @@ const essentialSlice = createSlice({
 export const {
   setLoggedIn,
   setIsConnected,
+  setHasAccount,
   setIsImporting,
   setUserDetails,
   resetUserDetails,

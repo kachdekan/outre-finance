@@ -1,4 +1,4 @@
-import {PIN_SALT} from "app-env"
+import {PIN_SALT, WALLETS_STORE, USER_STORE} from "app-env"
 
 module.exports = {
   NULL_ADDRESS: '0x0000000000000000000000000000000000000000',
@@ -17,4 +17,6 @@ module.exports = {
     '123456',
     '654321',
   ],
+  WALLETS_STORE: WALLETS_STORE,
+  USER_STORE: USER_STORE,
 }
