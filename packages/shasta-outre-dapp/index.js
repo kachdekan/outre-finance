@@ -1,7 +1,9 @@
 import { registerRootComponent } from 'expo';
 import { Provider } from 'react-redux';
 import 'react-native-get-random-values';
-//import '@ethersproject/shims';
+import '@ethersproject/shims'
+import { Buffer } from 'buffer';
+global.Buffer = Buffer;
 
 import App from './App';
 import { store } from './redux';

@@ -3,7 +3,6 @@ import Crypto from 'crypto-js'
 import { SALT } from '@dapp/config'
 
 export async function encryptData(data, passcode) {
-  console.log('encrypting data')
   const saltedPasscode = saltyPasscode(passcode)
   return Crypto.AES.encrypt(data, saltedPasscode).toString()
 }

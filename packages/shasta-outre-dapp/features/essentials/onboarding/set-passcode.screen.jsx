@@ -4,7 +4,7 @@ import { CodeInput } from '@dapp/components';
 import { PIN_BLOCKLIST } from '@dapp/config';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserToken } from '../user.token';
-//import { createWallet, importWallet } from '@dapp/store/wallet/wallet.slice';
+import { createWallet, importWallet } from '@dapp/store/wallet/wallet.slice';
 import { createAccount } from '@dapp/store/essential/essential.slice';
 import { pendingWallet } from '@dapp/features/wallet';
 
@@ -24,6 +24,7 @@ export default function SetPasscodeScreen({ navigation }) {
     } else {
       console.log('creating wallet');
       dispatch(createAccount())
+      dispatch(createWallet(code));
       navigation.navigate("Staging")
     }
   };
