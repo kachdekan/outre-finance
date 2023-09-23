@@ -16,10 +16,9 @@ export const walletListeners = (startListening) => {
         console.log('Creating and Storing Wallet');
         const passcode = action.payload;
         const wallet = await createRandom();
-        console.log('wallet', wallet);
         await storeWallet(passcode, wallet);
         listenerApi.dispatch(updateWalletAddress(wallet.address));
-        listenerApi.dispatch(setLoggedIn(true));
+        //listenerApi.dispatch(setLoggedIn(true));
       }
     },
   });
@@ -29,11 +28,11 @@ export const walletListeners = (startListening) => {
       console.log('Importing wallet from Mnemonic');
       const passcode = action.payload;
       const { importedWallet } = getPendingWallet();
-      await addWallet(passcode, importedWallet);
+      await storeWallet(passcode, importedWallet);
       const currentAddr = listenerApi.getState().wallet.walletInfo.address;
       if (!currentAddr) {
         listenerApi.dispatch(updateWalletAddress(importedWallet.address));
-        listenerApi.dispatch(setLoggedIn(true));
+        //listenerApi.dispatch(setLoggedIn(true));
       }
     },
   });

@@ -33,9 +33,21 @@ export const outreAuthApi = createApi({
         },
       }),
     }),
+
+    //Wallets
+    addWallet: builder.mutation({
+      query: ({ address, enMnemonic, enPrivateKey, publicKey }) => ({
+        url: '/addWallet',
+        method: 'POST',
+        body: { address, enMnemonic, enPrivateKey, publicKey },
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+      }),
+    }),
   }),
 });
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useRegisterUserMutation, useAuthUserMutation, useGetUserProfileQuery} = outreAuthApi;
+export const { useRegisterUserMutation, useAuthUserMutation, useGetUserProfileQuery, useAddWalletMutation} = outreAuthApi;

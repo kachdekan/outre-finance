@@ -1,33 +1,49 @@
 import { Box, Text } from 'native-base';
 import { useDispatch, useSelector } from 'react-redux';
 import { userToken } from '../user.token';
-import { useRegisterUserMutation } from '@dapp/services';
+import { useRegisterUserMutation, useAddWalletMutation } from '@dapp/services';
 import { useEffect } from 'react';
 import { setLoggedIn, setHasAccount} from '@dapp/store/essential/essential.slice';
+import { walletsListCache } from '@dapp/features/wallet';
 
 export default function StagingScreen() {
   const userDetails = useSelector((s) => s.essential.userDetails)
    const dispatch = useDispatch();
-  const [ registerUser, response ] = useRegisterUserMutation()
+  const [ registerUser, resRegisterUser ] = useRegisterUserMutation()
+  const [ addWallet, resAddWallet] = useAddWalletMutation()
   const userData = {...userDetails, token: userToken}
-
+  
   useEffect(() => {
     registerUser(userData)
   }, [])
 
-  
   useEffect(() => {
-      if (response.isSuccess) {
+    if (resRegisterUser.isSuccess) {
+      console.log("Backing up wallet")
+      const wallet = Object.values(walletsListCache).find((w) => w.walletName === "Wallet 1")
+      addWallet({
+        address: wallet.address,
+        enMnemonic: wallet.enMnemonic,
+        enPrivateKey: wallet.enPrivateKey,
+        publicKey: wallet.publicKey,
+      })
+    }
+  }, [resRegisterUser.isSuccess])
+
+  console.log("resAddWallet", resAddWallet.isSuccess)
+  useEffect(() => {
+      if (resAddWallet.isSuccess) {
         dispatch(setLoggedIn(true))
       }
-  }, [response])
+  }, [resAddWallet.isSuccess])
+
   
   return (
     <Box flex={1} bg="muted.100" alignItems="center" justifyContent="center">
-      { response.isSuccess ? <Text>Account Created successfully</Text> : 
+      { resAddWallet.isSuccess ? <Text>Account Created successfully</Text> : 
         <> 
-          {response.isError && response.status === "rejected" ? 
-            <Text>{response.error.data}</Text> : 
+          {resAddWallet.isError && resAddWallet.status === "rejected" ? 
+            <Text>{resAddWallet.error.data}</Text> : 
             <Text>Loading Account...</Text>}
         </>
       }

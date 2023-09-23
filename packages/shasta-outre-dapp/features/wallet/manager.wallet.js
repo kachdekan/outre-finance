@@ -39,7 +39,6 @@ export async function storeWallet(passcode, wallet) {
     enMnemonic: enMnemonic,
     publicKey: wallet.publicKey,
   };
-  console.log('newWallet', newWallet);
   await storeUserWallet(WALLETS_STORE, newWallet);
   Object.assign(walletsListCache, { [wallet.address]: newWallet });
 }

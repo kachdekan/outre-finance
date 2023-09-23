@@ -10,9 +10,9 @@ const authUser = asyncHandler(async (req, res) => {
   const { phone, password } = req.body;
 
   const user = await db.collection('users').where('phone', '==', phone).get()
-  const matchPassword = user.docs[0].data().password === password;
+  const matchPassword = user.docs[0].data().token === password;
   if (!user.empty && matchPassword) {
-    generateTokens(res, user.docs[0].id, user.docs[0].data().password); 
+    generateTokens(res, user.docs[0].id, user.docs[0].data().token); 
     
     res.json({
       _id: user.docs[0].id,
