@@ -1,8 +1,29 @@
-import { Box, Text, HStack, Stack, Button, Heading, Icon, Spinner, Divider, Progress} from 'native-base';
+import {
+  Box,
+  Text,
+  HStack,
+  Stack,
+  Button,
+  Heading,
+  Icon,
+  Spinner,
+  Divider,
+  Progress,
+} from 'native-base';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
-const FeatureHomeCard = ({ color, bg, btn1, btn2, btn3, btn4, itemBottom, apprxBalance, balance }) => {
+const FeatureHomeCard = ({
+  color,
+  bg,
+  btn1,
+  btn2,
+  btn3,
+  btn4,
+  itemBottom,
+  apprxBalance,
+  balance,
+}) => {
   const navigation = useNavigation();
   const bal = balance.split('.');
   return (
@@ -23,21 +44,29 @@ const FeatureHomeCard = ({ color, bg, btn1, btn2, btn3, btn4, itemBottom, apprxB
           <Text _light={{ color }} lineHeight="sm">
             ≈ {apprxBalance} KES
           </Text>
-          <Divider my="2"  minW="full"/>
+          <Divider my="2" minW="full" />
           <HStack justifyContent="space-between">
             <Box minW="40%">
-              <HStack justifyContent="space-between" >
-              <Text color="gray.600" fontSize="sm" lineHeight="sm">Energy</Text>
-              <Text color="gray.600" fontSize="sm" lineHeight="sm">88K/88K</Text>
+              <HStack justifyContent="space-between">
+                <Text color="gray.600" fontSize="sm" lineHeight="sm">
+                  Energy
+                </Text>
+                <Text color="gray.600" fontSize="sm" lineHeight="sm">
+                  88K/88K
+                </Text>
               </HStack>
-              <Progress size="xs" value={45} mt={2} colorScheme="warning" bg="warning.100"/>
+              <Progress size="xs" value={45} mt={2} colorScheme="warning" bg="warning.100" />
             </Box>
             <Box minW="40%">
               <HStack justifyContent="space-between">
-              <Text color="gray.600" fontSize="sm" lineHeight="sm">Bandwidth</Text>
-              <Text color="gray.600" fontSize="sm" lineHeight="sm">88K/88K</Text>
-              </HStack> 
-              <Progress size="xs" value={45} mt={2} colorScheme="emerald" bg="emerald.100"/>
+                <Text color="gray.600" fontSize="sm" lineHeight="sm">
+                  Bandwidth
+                </Text>
+                <Text color="gray.600" fontSize="sm" lineHeight="sm">
+                  88K/88K
+                </Text>
+              </HStack>
+              <Progress size="xs" value={45} mt={2} colorScheme="emerald" bg="emerald.100" />
             </Box>
           </HStack>
         </Stack>
@@ -74,7 +103,9 @@ const FeatureHomeCard = ({ color, bg, btn1, btn2, btn3, btn4, itemBottom, apprxB
           size="sm"
           _text={{ color: 'primary.600', fontWeight: 'semibold', mb: '0.5' }}
           onPress={() => navigation.navigate(btn3.screen)}
-        >{btn3.name}</Button>
+        >
+          {btn3.name}
+        </Button>
         <Button
           leftIcon={btn4.icon}
           rounded="3xl"
@@ -83,7 +114,7 @@ const FeatureHomeCard = ({ color, bg, btn1, btn2, btn3, btn4, itemBottom, apprxB
           size="sm"
           _text={{ color: 'primary.600', fontWeight: 'semibold', mb: '0.5' }}
           onPress={() => navigation.navigate(btn4.screen)}
-          />
+        />
       </HStack>
     </Box>
   );
