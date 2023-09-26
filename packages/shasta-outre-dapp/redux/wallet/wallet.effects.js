@@ -5,7 +5,11 @@ import {
 } from './wallet.slice';
 //import { getPendingWallet } from '@dapp/features/wallet';
 import { setLoggedIn } from '@dapp/store/essential/essential.slice';
+import { setPrivateKey } from '@dapp/config';
+import { getWallets } from '@dapp/features/wallet';
+import { decryptDataWtoken } from '@dapp/utils';
 import { storeWallet } from '@dapp/features/wallet';
+import { userToken } from '@dapp/features/essentials/user.token';
 import { createRandom } from "tronweb"
 
 export const walletListeners = (startListening) => {
@@ -18,7 +22,8 @@ export const walletListeners = (startListening) => {
         const wallet = await createRandom();
         await storeWallet(passcode, wallet);
         listenerApi.dispatch(updateWalletAddress(wallet.address));
-        //listenerApi.dispatch(setLoggedIn(true));
+        //Activate the wallet
+        
       }
     },
   });
@@ -36,4 +41,13 @@ export const walletListeners = (startListening) => {
       }
     },
   });
+  startListening({
+    actionCreator: setLoggedIn,
+    effect: async (action, listenerApi) => {
+      console.log('Setting Key In'); 
+      const wallets = await getWallets();
+      const key = await decryptDataWtoken(wallets[0].enPrivateKey, userToken);
+      setPrivateKey(key);
+    }
+  }); 
 };
