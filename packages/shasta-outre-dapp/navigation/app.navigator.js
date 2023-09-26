@@ -7,7 +7,9 @@ import { useNavigation } from '@react-navigation/native';
 
 //Screens
 import { HomeScreen, DummyScreen } from '@dapp/features/essentials';
-import { AccountScreen } from '../features/account';
+import { AccountScreen } from '@dapp/features/account';
+import { SpacesHomeScreen } from '@dapp/features/spaces';
+import { LoansHomeScreen } from '@dapp/features/microloans';
 
 import { useSelector } from 'react-redux';
 
@@ -16,11 +18,26 @@ const AppStack = createNativeStackNavigator();
 
 export function AppNavigator() {
   return (
-    <AppStack.Navigator initialRouteName="Home">
-      <AppStack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
+    <AppStack.Navigator>
+      <AppStack.Screen
+        name="Main"
+        component={BottomTabNavigator}
+        options={{ headerShown: false }}
+      />
     </AppStack.Navigator>
   );
 }
+
+const BottomTabNavigator = () => {
+  return (
+    <Tab.Navigator screenOptions={screenOptions}>
+      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Spaces" component={SpacesHomeScreen} />
+      <Tab.Screen name="Loans" component={LoansHomeScreen} />
+      <Tab.Screen name="Account" component={AccountScreen} />
+    </Tab.Navigator>
+  );
+};
 
 const TAB_ICON = {
   Home: ['home-3-fill', 'home-3-line'],
@@ -34,14 +51,15 @@ const screenOptions = ({ route }) => {
   return {
     tabBarIcon: ({ focused }) => (
       <Box bg={focused ? 'primary.200' : '#ffffff'} rounded="2xl" px="5" py="1" mt="1">
-        <Icon name={focused ? iconName[0] : iconName[1]} size={22} color="#0F766E" />
+        <Icon name={focused ? iconName[0] : iconName[1]} size={22} color="#5852ff" />
       </Box>
     ),
     tabBarLabel: () => (
-      <Text _light={{ color: 'primary.900' }} fontSize="2xs" mb="0.5">
+      <Text _light={{ color: 'primary.900' }} fontSize="xs" mb="0.5">
         {route.name}
       </Text>
     ),
+    tabBarStyle: { height: 60 },
     tabBarHideOnKeyboard: true,
     headerLeft: () => <AccPressable />,
     headerRight: () => <HeaderRightIcons />,
@@ -82,7 +100,7 @@ function HeaderRightIcons() {
 
 function AccPressable() {
   //const { initials } = useSelector((s) => s.essential.userDetails)
-  const initials = 'AK';
+  const initials = 'DK';
   const navigation = useNavigation();
   return (
     // fix avatar text color to primary.700
@@ -92,7 +110,7 @@ function AccPressable() {
         opacity: pressed ? 0.5 : 1,
       })}
     >
-      <Avatar bg="primary.200" ml="2" size="sm" _text={{ color: 'warmGray.800' }}>
+      <Avatar bg="primary.200" ml="2" size="sm" _text={{ color: 'primary.800' }}>
         {initials}
       </Avatar>
     </Pressable>
