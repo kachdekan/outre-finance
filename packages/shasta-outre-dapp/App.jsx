@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { NativeBaseProvider } from 'native-base';
 import * as SplashScreen from 'expo-splash-screen';
-import { useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import { theme } from './theme';
 import { LogBox } from 'react-native';
 import { useDispatch } from 'react-redux';
@@ -15,18 +15,17 @@ export default function App() {
   const [isReady, setIsReady] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
-    LogBox.ignoreLogs(['In React 18, SSRProvider is not necessary and is a noop. ...'])
     //LogBox.ignoreAllLogs();
   }, []);
-   // Load resources during splash screen
+  // Load resources during splash screen
   useEffect(() => {
     async function loadResourcesAndDataAsync() {
       try {
-         SplashScreen.preventAutoHideAsync();
-         const userDetails = await getUserDetails(USER_STORE);
-          if (userDetails.token) {
+        SplashScreen.preventAutoHideAsync();
+        const userDetails = await getUserDetails(USER_STORE);
+        if (userDetails.token) {
           setUserTokenFrom(userDetails.token);
-          dispatch(setHasAccount(true)) //Evaluate for stability
+          dispatch(setHasAccount(true)); //Evaluate for stability
           dispatch(
             setUserDetails({ userNames: userDetails.names, phoneNumber: userDetails.phone }),
           );
@@ -44,11 +43,11 @@ export default function App() {
   if (!isReady) {
     return null;
   } else {
-  return (
-    <NativeBaseProvider theme={theme}>
-      <Navigation/>
-      <StatusBar style="auto" />
-    </NativeBaseProvider>
-  );
-}
+    return (
+      <NativeBaseProvider theme={theme}>
+        <Navigation />
+        <StatusBar style="auto" />
+      </NativeBaseProvider>
+    );
+  }
 }
