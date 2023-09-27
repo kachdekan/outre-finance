@@ -3,15 +3,38 @@ import { Box, Text, Button, Icon, FlatList, Spinner } from 'native-base';
 import { Feather } from '@expo/vector-icons';
 import { RefreshControl } from 'react-native';
 import { FeatureHomeCard, TransactionItem, SectionHeader, FeaturedAssets } from '@dapp/components';
-
+import { tronWeb } from '@dapp/config';
 import { transactions, rates } from '../../data';
+import { useSelector } from 'react-redux';
+import { useGetAccountInfoQuery } from '@dapp/services';
+import { getWalletBalances } from '../wallet/manager.wallet';
 
 export default function HomeScreen() {
+  const thisAddress = useSelector((s) => s.wallet.walletInfo.address);
+  const [balance, setBalance] = useState({
+    trxBal: 0,
+    usddBal: 0,
+    balUSD: 0,
+  });
+  console.log(balance);
   const [refreshing, setRefreshing] = useState(false);
   const onRefresh = useCallback(() => {
     setRefreshing(true);
+    refetch();
     setTimeout(() => setRefreshing(false), 2000);
   }, []);
+  const { data: walletInfo, refetch } = useGetAccountInfoQuery(thisAddress);
+
+  useEffect(() => {
+    const thisBalances = getWalletBalances(walletInfo);
+    if (thisBalances !== null) {
+      const { trxAvaibleBal, trxFrozenBand, trxFrozenEnergy, usddBal } = thisBalances;
+      const trxBal = trxAvaibleBal + trxFrozenBand + trxFrozenEnergy;
+      setBalance({ trxBal, usddBal, balUSD: trxBal * rates.TRXusd + usddBal });
+    }
+  }, [walletInfo]);
+
+  //console.log(walletInfo);
 
   return (
     <Box flex={1} bg="muted.100" alignItems="center">
@@ -26,8 +49,8 @@ export default function HomeScreen() {
             <FeatureHomeCard
               color="warmGray.800"
               bg="white"
-              balance="10,000.000"
-              apprxBalance="1,000,000"
+              balance={balance.balUSD.toFixed(2)}
+              apprxBalance={(balance.balUSD * rates.USDD).toFixed(2)}
               btn1={{
                 icon: <Icon as={Feather} name="plus" size="md" color="primary.600" mr="1" />,
                 name: 'Deposit',
@@ -50,12 +73,8 @@ export default function HomeScreen() {
               }}
               itemBottom={false}
             />
-            <SectionHeader
-              title="Assets"
-              actionText="See all"
-              action={() => console.log('See all')}
-            />
-            <FeaturedAssets trxBal={100} usddBal={1000} />
+            <SectionHeader title="Assets" actionText="See all" action={() => handleOnPress()} />
+            <FeaturedAssets trxBal={balance.trxBal} usddBal={balance.usddBal} />
             {transactions.length > 0 ? (
               <SectionHeader
                 title="Transactions"

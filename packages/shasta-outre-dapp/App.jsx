@@ -9,7 +9,11 @@ import { Navigation } from './navigation';
 import { USER_STORE, WALLETS_STORE } from '@dapp/config';
 import { getUserDetails } from './services';
 import { setHasAccount, setUserDetails } from './redux/essential/essential.slice';
+import { updateWalletAddress } from '@dapp/store/wallet/wallet.slice';
 import { setUserTokenFrom } from './features/essentials/user.token';
+import { setPrivateKey } from '@dapp/config';
+import { getWallets } from '@dapp/features/wallet';
+import { decryptDataWtoken } from '@dapp/utils';
 
 export default function App() {
   const [isReady, setIsReady] = useState(false);
@@ -23,12 +27,16 @@ export default function App() {
       try {
         SplashScreen.preventAutoHideAsync();
         const userDetails = await getUserDetails(USER_STORE);
-        if (userDetails.token) {
+        const wallets = await getWallets();
+        if (userDetails.token && wallets.length > 0) {
           setUserTokenFrom(userDetails.token);
+          const key = await decryptDataWtoken(wallets[0].enPrivateKey, userDetails.token);
+          setPrivateKey(key);
           dispatch(setHasAccount(true)); //Evaluate for stability
           dispatch(
             setUserDetails({ userNames: userDetails.names, phoneNumber: userDetails.phone }),
           );
+          dispatch(updateWalletAddress(wallets[0].address));
         }
       } catch (e) {
         console.warn(e);
