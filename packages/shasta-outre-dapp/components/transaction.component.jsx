@@ -6,7 +6,8 @@ const TransactionItem = (props) => {
   const title = props.trTitle.split(' ');
   const initials =
     title.length > 1
-      ? title[0].slice(0, 1) + title[1].slice(0, 1).toUpperCase()
+      ? title[0].slice(0, 1) +
+        (title[1].slice(0, 1).toUpperCase() === 'U' ? '$' : title[1].slice(0, 1).toUpperCase())
       : title[0].slice(0, 2).toUpperCase();
   return (
     <Pressable onPress={() => navigation.navigate(props.screen)}>

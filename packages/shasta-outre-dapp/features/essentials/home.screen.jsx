@@ -4,26 +4,37 @@ import { Feather } from '@expo/vector-icons';
 import { RefreshControl } from 'react-native';
 import { FeatureHomeCard, TransactionItem, SectionHeader, FeaturedAssets } from '@dapp/components';
 import { tronWeb } from '@dapp/config';
-import { transactions, rates } from '../../data';
+import { rates } from '../../data';
 import { useSelector } from 'react-redux';
-import { useGetAccountInfoQuery } from '@dapp/services';
-import { getWalletBalances } from '../wallet/manager.wallet';
+import {
+  useGetAccountInfoQuery,
+  useGetAccountTransactionsQuery,
+  useGetAccountTrc20TransactionsQuery,
+} from '@dapp/services';
+import { getWalletBalances, getWalletTxs } from '../wallet/manager.wallet';
+import { utils } from 'ethers';
 
 export default function HomeScreen() {
   const thisAddress = useSelector((s) => s.wallet.walletInfo.address);
+  console.log(thisAddress);
+  const { data: walletInfo, refetch: refetchInfo } = useGetAccountInfoQuery(thisAddress);
+  const { data: accountTxs, refetch: refetchTxs } = useGetAccountTransactionsQuery(thisAddress);
+  const { data: trc20Txs, refetch: refetchTrc20Txs } =
+    useGetAccountTrc20TransactionsQuery(thisAddress);
   const [balance, setBalance] = useState({
     trxBal: 0,
     usddBal: 0,
     balUSD: 0,
   });
-  console.log(balance);
+  const [transactions, setTransactions] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
   const onRefresh = useCallback(() => {
     setRefreshing(true);
-    refetch();
+    refetchInfo();
+    refetchTxs();
+    refetchTrc20Txs();
     setTimeout(() => setRefreshing(false), 2000);
   }, []);
-  const { data: walletInfo, refetch } = useGetAccountInfoQuery(thisAddress);
 
   useEffect(() => {
     const thisBalances = getWalletBalances(walletInfo);
@@ -34,7 +45,10 @@ export default function HomeScreen() {
     }
   }, [walletInfo]);
 
-  //console.log(walletInfo);
+  useEffect(() => {
+    const thisTxs = getWalletTxs(accountTxs, trc20Txs, thisAddress);
+    setTransactions(thisTxs);
+  }, [accountTxs, trc20Txs]);
 
   return (
     <Box flex={1} bg="muted.100" alignItems="center">
