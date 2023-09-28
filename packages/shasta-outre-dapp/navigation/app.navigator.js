@@ -1,6 +1,7 @@
 import React from 'react';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
 import Icon from 'react-native-remix-icon';
 import { Box, Text, Avatar, Pressable, HStack } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
@@ -9,7 +10,7 @@ import { useNavigation } from '@react-navigation/native';
 import { HomeScreen, DummyScreen } from '@dapp/features/essentials';
 import { AccountScreen } from '@dapp/features/account';
 import { SpacesHomeScreen } from '@dapp/features/spaces';
-import { LoansHomeScreen } from '@dapp/features/microloans';
+import LoansTabsNavigator from './loan-tabs.navigator';
 
 import { useSelector } from 'react-redux';
 
@@ -33,7 +34,7 @@ const BottomTabNavigator = () => {
     <Tab.Navigator screenOptions={screenOptions}>
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Spaces" component={SpacesHomeScreen} />
-      <Tab.Screen name="Loans" component={LoansHomeScreen} />
+      <Tab.Screen name="Loans" component={LoansTabsNavigator} />
       <Tab.Screen name="Account" component={AccountScreen} />
     </Tab.Navigator>
   );
