@@ -39,7 +39,7 @@ const LoansOfferItem = (props) => {
           <HStack alignItems="flex-end" justifyContent="flex-end">
             <Heading size="md">{(props.principal * 1).toFixed(0)}</Heading>
             <Text fontWeight="medium" mb={0.5} ml={1}>
-              cUSD
+              USDD
             </Text>
           </HStack>
           <Text textAlign="right" color="muted.700">

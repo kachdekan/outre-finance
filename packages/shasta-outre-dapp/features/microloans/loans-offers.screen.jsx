@@ -5,7 +5,7 @@ import { RefreshControl } from 'react-native';
 import { LoansOfferItem } from '@dapp/components';
 import { LoansData } from '../../data';
 
-export default function LoanOffersScreen() {
+export default function LoanOffersScreen({ navigation }) {
   const [refreshing, setRefreshing] = useState(false);
   const wait = (timeout) => {
     return new Promise((resolve) => setTimeout(resolve, timeout));

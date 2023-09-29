@@ -86,7 +86,10 @@ export const LoansData = [
         minDuration: '7', //days
         maxDuration: '21', //weeks
         interest: '5', //percent
-        creditScore: '5',
+        creditScore: {
+          value: '5',
+          status: 'good',
+        },
       },
     ],
   },

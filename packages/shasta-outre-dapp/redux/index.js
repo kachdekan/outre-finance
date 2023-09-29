@@ -4,6 +4,7 @@ import { rootReducer } from './root-reducer';
 import { outreAuthApi, shastaApi } from '@dapp/services';
 import { essentialListeners } from './essential/essential.effects';
 import { walletListeners } from './wallet/wallet.effects';
+import { loansListeners } from './microloans/loans.effects';
 
 const listenerMiddleware = createListenerMiddleware();
 
@@ -17,5 +18,5 @@ export const store = configureStore({
     ),
 });
 
-const listeners = [essentialListeners, walletListeners]; //spacesListeners];
+const listeners = [essentialListeners, walletListeners, loansListeners]; //spacesListeners];
 listeners.forEach((listener) => listener(listenerMiddleware.startListening));

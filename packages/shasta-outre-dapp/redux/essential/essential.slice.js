@@ -10,8 +10,9 @@ const initialState = {
     initials: null,
     phone: '',
     country: null,
+    address: null,
   },
-}
+};
 
 const essentialSlice = createSlice({
   name: 'essential',
@@ -46,7 +47,6 @@ const essentialSlice = createSlice({
     resetUserDetails: () => initialState,
   },
 });
-
 
 export const {
   setLoggedIn,

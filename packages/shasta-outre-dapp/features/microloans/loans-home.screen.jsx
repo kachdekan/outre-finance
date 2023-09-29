@@ -36,12 +36,12 @@ export default function SpacesHomeScreen() {
               btn1={{
                 icon: <Icon as={Feather} name="plus" size="md" color="primary.600" mr="1" />,
                 name: 'Borrow',
-                screen: 'depositFunds',
+                screen: 'borrowLoan',
               }}
               btn2={{
                 icon: <Icon as={Feather} name="arrow-right" size="md" color="primary.600" mr="1" />,
                 name: 'Repay',
-                screen: 'sendFunds',
+                screen: 'fundLoan',
               }}
               btn3={{
                 icon: <Icon as={Feather} name="more-horizontal" size="lg" color="primary.600" />,

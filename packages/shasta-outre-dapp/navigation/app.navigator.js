@@ -13,6 +13,12 @@ import { SpacesHomeScreen } from '@dapp/features/spaces';
 import LoansTabsNavigator from './loan-tabs.navigator';
 
 import { useSelector } from 'react-redux';
+import {
+  LoanInfoScreen,
+  BorrowLoanScreen,
+  CreateOfferScreen,
+  FundLoanScreen,
+} from '@dapp/features/microloans';
 
 const Tab = createBottomTabNavigator();
 const AppStack = createNativeStackNavigator();
@@ -25,6 +31,13 @@ export function AppNavigator() {
         component={BottomTabNavigator}
         options={{ headerShown: false }}
       />
+      <AppStack.Group screenOptions={{ presentation: 'modal' }}>
+        <AppStack.Screen name="DummyModal" component={DummyScreen} />
+        <AppStack.Screen name="LoanHome" component={LoanInfoScreen} />
+        <AppStack.Screen name="borrowLoan" component={BorrowLoanScreen} />
+        <AppStack.Screen name="createOffer" component={CreateOfferScreen} />
+        <AppStack.Screen name="fundLoan" component={FundLoanScreen} />
+      </AppStack.Group>
     </AppStack.Navigator>
   );
 }
