@@ -5,7 +5,6 @@ import { RefreshControl } from 'react-native';
 
 import { SectionHeader, LoansFeatureItem, FeaturesCard } from '@dapp/components';
 import { rates, LoansData } from '../../data';
-import { getAllOffers } from '@dapp/contracts';
 
 export default function SpacesHomeScreen() {
   const [refreshing, setRefreshing] = useState(false);
@@ -16,10 +15,6 @@ export default function SpacesHomeScreen() {
   const loans = LoansData[0].data;
   let totalBalance = 0;
 
-  const handleTest = async () => {
-    const address = await getAllOffers();
-    console.log(address);
-  };
   return (
     <Box flex={1} bg="muted.100" alignItems="center">
       <FlatList
