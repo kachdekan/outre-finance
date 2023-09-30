@@ -5,7 +5,7 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "hardhat/console.sol";
 
 /**
-@title Clixpesa P2PLoans Contract
+@title Outre Finance P2PLoans Contract
 @author Dekan Kachi - @kachdekan
 @notice Allow users to borrow and lend funds to each other in a P2P fashion.
 */

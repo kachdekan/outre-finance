@@ -17,26 +17,36 @@ import { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getDaysBetween } from '@dapp/utils';
+import { utils } from 'ethers';
+import { borrowLoan } from '@dapp/contracts';
 
-export default function BorrowLoanScreen() {
+export default function BorrowLoanScreen({ navigation, route }) {
+  const loanParams = route.params ? route.params.loanParams : null;
+  const thisUser = useSelector((state) => state.essential.userDetails);
   const dispatch = useDispatch();
   const [amount, setAmount] = useState('');
   const [deadline, setDeadline] = useState(new Date());
   const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
   const [isOkValue, setOkValue] = useState(true);
   const [isOkDeadline, setOkDeadline] = useState(true);
   const { isOpen, onOpen, onClose } = useDisclose();
   const date = deadline.toDateString().split(' ');
 
-  const loanParams = {
-    loanId: 'LO32TGSTYIU',
-    lender: true,
-    lenderName: 'John Doe',
-    minLimit: 10,
-    maxLimit: 100,
-    interest: 5,
-    minDuration: 14,
-    maxDuration: 21,
+  const loanData = {
+    id: loanParams.id,
+    token: loanParams.token,
+    lender: loanParams.lenderAddr,
+    lenderName: loanParams.lenderName,
+    borrower: thisUser.address,
+    borrowerName: thisUser.names,
+    principal: utils.parseEther(amount ? amount : '0').toString(),
+    interest: loanParams.interest * 100,
+    balance: utils.parseEther('0').toString(),
+    paid: utils.parseEther('0').toString(),
+    minDuration: loanParams.minDuration,
+    maxDuration: loanParams.maxDuration,
+    deadline: Date.parse(deadline),
   };
 
   const onChange = (event, selectedDate) => {
@@ -53,34 +63,48 @@ export default function BorrowLoanScreen() {
     });
   };
 
-  const validate = (loanData) => {
-    const minDays = loanParams.minDuration;
-    const maxDays = loanParams.maxDuration;
-
+  const validate = () => {
     const days = getDaysBetween(Date.now(), deadline);
-    if (days < minDays || days > maxDays) {
+    if (days < loanParams.minDuration || days > loanParams.maxDuration) {
       setOkDeadline(false);
     } else {
       setOkDeadline(true);
     }
-    if (loanParams.minLimit > amount * 1 || amount * 1 > loanParams.maxLimit) {
+    if (loanParams.minAmount > amount * 1 || amount * 1 > loanParams.maxAmount) {
       console.log(amount);
       setOkValue(false);
     } else {
       setOkValue(true);
     }
     return (
-      days >= minDays &&
-      days <= maxDays &&
-      amount * 1 >= loanParams.minLimit &&
-      amount * 1 <= loanParams.maxLimit
+      days >= loanParams.minDuration &&
+      days <= loanParams.maxDuration &&
+      amount * 1 >= loanParams.minAmount &&
+      amount * 1 <= loanParams.maxAmount
     );
     //return false
   };
 
-  const handleLoanData = () => {
-    console.log('handleLoanData');
-    onOpen();
+  const handleLoanData = async () => {
+    if (validate()) {
+      setIsLoading(true);
+      const result = await borrowLoan(loanData);
+      if (result) {
+        if (result.length > 0) {
+          setIsSuccess(true);
+          setIsLoading(false);
+          onOpen();
+        } else {
+          setIsSuccess(false);
+          setIsLoading(false);
+          onOpen();
+        }
+      } else {
+        setIsSuccess(false);
+        setIsLoading(false);
+        onOpen();
+      }
+    } else console.log('Loan Data is not valid');
   };
 
   return (
@@ -98,7 +122,7 @@ export default function BorrowLoanScreen() {
           )}
         </Stack>
         <Stack space={1}>
-          {loanParams.lender ? (
+          {loanParams.lenderAddr ? (
             <Box bg="white" roundedTop="xl" roundedBottom="md">
               <HStack m={3} space="xl">
                 <Text fontSize="lg" py={3} pl={4} fontWeight="semibold">
@@ -121,7 +145,7 @@ export default function BorrowLoanScreen() {
                 />
               </HStack>
               <Text px={5} mb={3}>
-                Max Borrowable: {(loanParams.maxLimit * 1).toFixed(2)} USDD
+                Max Borrowable: {(loanParams.maxAmount * 1).toFixed(2)} USDD
               </Text>
             </Box>
           ) : null}
@@ -219,14 +243,28 @@ export default function BorrowLoanScreen() {
       <Modal isOpen={isOpen} onClose={onClose} animationPreset="slide">
         <Modal.Content width="65%" maxWidth="400px">
           <Modal.Body alignItems="center">
-            <Icon as={Ionicons} name="md-checkmark-circle" size="6xl" color="success.600" />
-            <Text textAlign="center" mt={3}>
-              You have initiated a loan of
-            </Text>
-            <Text textAlign="center" fontWeight="semibold">
-              {(amount * 1).toFixed(2)} USDD
-            </Text>
-            <Text textAlign="center">from {loanParams.lenderName}</Text>
+            <Icon
+              as={Ionicons}
+              name={isSuccess ? 'md-checkmark-circle' : 'close-circle'}
+              size="6xl"
+              color={isSuccess ? 'success.600' : 'danger.600'}
+            />
+            {isSuccess ? (
+              <>
+                <Text textAlign="center" mt={3}>
+                  You have initiated a loan of
+                </Text>
+                <Text textAlign="center" fontWeight="semibold">
+                  {(amount * 1).toFixed(2)} USDD
+                </Text>
+                <Text textAlign="center">from {loanParams.lenderName}</Text>
+              </>
+            ) : (
+              <Text textAlign="center" mt={3}>
+                Something went wrong. Please try again.{' '}
+              </Text>
+            )}
+
             <Button
               variant="subtle"
               rounded="3xl"
@@ -234,7 +272,7 @@ export default function BorrowLoanScreen() {
               mt={3}
               _text={{ color: 'primary.600', fontWeight: 'semibold' }}
               onPress={() => {
-                onClose(), dispatch(fetchOffers()), navigation.navigate('LoanHome', newLoan);
+                onClose(); //navigation.navigate('LoanHome', newLoan);
               }}
             >
               OK

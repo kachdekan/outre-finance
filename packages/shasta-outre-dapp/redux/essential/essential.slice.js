@@ -22,7 +22,7 @@ const essentialSlice = createSlice({
       state.isLoggedIn = action.payload;
     },
     setUserDetails: (state, { payload }) => {
-      const { userNames, phoneNumber } = payload;
+      const { userNames, phoneNumber, address } = payload;
       state.userDetails.names = userNames;
       state.userDetails.phone = phoneNumber;
 
@@ -31,6 +31,7 @@ const essentialSlice = createSlice({
 
       const names = userNames.split(' ');
       state.userDetails.initials = names[0].slice(0, 1) + names[1].slice(0, 1);
+      if (address) state.userDetails.address = address;
     },
     setIsConnected: (state, action) => {
       state.isConnected = action.payload;

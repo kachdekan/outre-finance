@@ -1,5 +1,6 @@
 import { Avatar, HStack, Text, VStack, Heading, Button, Pressable } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
+import { rates } from '../data';
 
 const LoansOfferItem = (props) => {
   const navigation = useNavigation();
@@ -9,12 +10,12 @@ const LoansOfferItem = (props) => {
       ? title[0].slice(0, 1) + title[1].slice(0, 1)
       : title[0].slice(0, 2).toUpperCase();
   const fees = 0.0;
-  const apprxAmt = (props.principal * 120.75).toFixed(2);
+  const apprxAmt = (props.principal * rates.USDD).toFixed(2);
   const repayment = (props.principal * ((100 + props.interest * 1) / 100)).toFixed(2);
   const minDuration = (props.duration.min / 7).toFixed(0);
   const maxDuration = (props.duration.max / 7).toFixed(0);
-  const minAmount = props.isOffer ? (props.limit.min * 120.75).toFixed(2) : 0.0;
-  const maxAmount = props.isOffer ? (props.limit.max * 120.75).toFixed(2) : 0.0;
+  const minAmount = props.isOffer ? (props.limit.min * rates.USDD).toFixed(2) : 0.0;
+  const maxAmount = props.isOffer ? (props.limit.max * rates.USDD).toFixed(2) : 0.0;
   const minAPR = (
     ((props.interest + fees / (props.isOffer ? props.limit.max : props.principal)) /
       props.duration.max) *
@@ -46,7 +47,7 @@ const LoansOfferItem = (props) => {
             apprx: {apprxAmt} KES
           </Text>
           <Text textAlign="right" color="muted.700">
-            {(props.isOffer ? 'repay: ' : 'receive: ') + repayment} cUSD
+            {(props.isOffer ? 'repay: ' : 'receive: ') + repayment} USDD
           </Text>
           <Button
             maxW="80%"

@@ -1,23 +1,32 @@
 import { Box, VStack, Stack, FlatList, Button } from 'native-base';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { RefreshControl } from 'react-native';
 
 import { LoansOfferItem } from '@dapp/components';
 import { LoansData } from '../../data';
+import { getAllOffers } from '@dapp/contracts';
 
 export default function LoanOffersScreen({ navigation }) {
+  const [offers, setOffers] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
-  const wait = (timeout) => {
-    return new Promise((resolve) => setTimeout(resolve, timeout));
-  };
   const onRefresh = useCallback(async () => {
     setRefreshing(true);
-    wait(2000).then(async () => {
-      setRefreshing(false);
-    });
+    setTimeout(() => setRefreshing(false), 3000);
   }, []);
-  const offers = LoansData[1].data;
-  let totalBalance = 0;
+
+  useEffect(() => {
+    const getOffers = async () => {
+      const offers = await getAllOffers();
+      setOffers(offers);
+    };
+    if (refreshing) getOffers();
+    const unsubscribe = navigation.addListener('focus', () => {
+      getOffers();
+    });
+
+    return unsubscribe;
+  }, [navigation, refreshing]);
+
   return (
     <Box flex={1} bg="$muted100" alignItems="center">
       <VStack width="95%" space={2} mt={2}>
@@ -35,9 +44,9 @@ export default function LoanOffersScreen({ navigation }) {
             >
               <LoansOfferItem
                 isOffer={true}
-                itemTitle={item.from}
-                type={item.type === 'individual' ? 'Member' : 'Group'}
-                principal={item.lendingPool}
+                itemTitle={item.lenderName}
+                type="individual"
+                principal={item.poolsize}
                 interest={item.interest}
                 duration={{
                   min: item.minDuration,
@@ -47,7 +56,7 @@ export default function LoanOffersScreen({ navigation }) {
                   min: item.minAmount,
                   max: item.maxAmount,
                 }}
-                screen="applyLoan"
+                screen="borrowLoan"
                 scrnParams={item}
               />
             </Box>

@@ -38,15 +38,9 @@ library utils {
         _days = uint(__days);
     }
 
-    function _daysToDate(uint _days)
-        internal
-        pure
-        returns (
-            uint year,
-            uint month,
-            uint day
-        )
-    {
+    function _daysToDate(
+        uint _days
+    ) internal pure returns (uint year, uint month, uint day) {
         int __days = int(_days);
 
         int L = __days + 68569 + OFFSET19700101;

@@ -16,7 +16,7 @@ import { utils } from 'ethers';
 
 export default function HomeScreen() {
   const thisAddress = useSelector((s) => s.wallet.walletInfo.address);
-  console.log(thisAddress);
+
   const { data: walletInfo, refetch: refetchInfo } = useGetAccountInfoQuery(thisAddress);
   const { data: accountTxs, refetch: refetchTxs } = useGetAccountTransactionsQuery(thisAddress);
   const { data: trc20Txs, refetch: refetchTrc20Txs } =
@@ -37,6 +37,7 @@ export default function HomeScreen() {
   }, []);
 
   useEffect(() => {
+    console.log(thisAddress);
     const thisBalances = getWalletBalances(walletInfo);
     if (thisBalances !== null) {
       const { trxAvaibleBal, trxFrozenBand, trxFrozenEnergy, usddBal } = thisBalances;

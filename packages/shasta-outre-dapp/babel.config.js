@@ -9,7 +9,7 @@ module.exports = function (api) {
           alias: {
             '@dapp/assets': './assets',
             '@dapp/config': './config',
-            //'@dapp/blockchain': './blockchain',
+            '@dapp/contracts': './contracts',
             '@dapp/components': './components',
             '@dapp/features': './features',
             '@dapp/services': './services',

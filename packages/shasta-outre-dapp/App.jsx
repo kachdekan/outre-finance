@@ -34,7 +34,11 @@ export default function App() {
           setPrivateKey(key);
           dispatch(setHasAccount(true)); //Evaluate for stability
           dispatch(
-            setUserDetails({ userNames: userDetails.names, phoneNumber: userDetails.phone }),
+            setUserDetails({
+              userNames: userDetails.names,
+              phoneNumber: userDetails.phone,
+              address: wallets[0].address,
+            }),
           );
           dispatch(updateWalletAddress(wallets[0].address));
         }
