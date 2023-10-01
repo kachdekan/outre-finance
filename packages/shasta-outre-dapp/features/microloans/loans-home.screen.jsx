@@ -1,19 +1,39 @@
 import { Box, Text, HStack, Icon, FlatList } from 'native-base';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { Feather } from '@expo/vector-icons';
 import { RefreshControl } from 'react-native';
 
 import { SectionHeader, LoansFeatureItem, FeaturesCard } from '@dapp/components';
 import { rates, LoansData } from '../../data';
+import { getMyLoans } from '@dapp/contracts';
 
-export default function SpacesHomeScreen() {
+export default function LoansHomeScreen({ navigation }) {
   const [refreshing, setRefreshing] = useState(false);
   const onRefresh = useCallback(async () => {
     setRefreshing(true);
     setTimeout(() => setRefreshing(false), 2000);
   }, []);
-  const loans = LoansData[0].data;
+  const [loans, setLoans] = useState([]);
   let totalBalance = 0;
+
+  useEffect(() => {
+    const getLoans = async () => {
+      const loans = await getMyLoans();
+      if (loans.length > 0) {
+        setLoans(loans);
+        loans.forEach((loan) => {
+          totalBalance += loan.currentBal * rates[loan.token];
+        });
+      }
+      //setLoans(loans);
+    };
+    if (refreshing) getLoans();
+    const unsubscribe = navigation.addListener('focus', () => {
+      getLoans();
+    });
+
+    return unsubscribe;
+  }, [navigation, refreshing]);
 
   return (
     <Box flex={1} bg="muted.100" alignItems="center">

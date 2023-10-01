@@ -32,6 +32,7 @@ export default function BorrowLoanScreen({ navigation, route }) {
   const [isOkDeadline, setOkDeadline] = useState(true);
   const { isOpen, onOpen, onClose } = useDisclose();
   const date = deadline.toDateString().split(' ');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const loanData = {
     id: loanParams.id,
@@ -90,13 +91,14 @@ export default function BorrowLoanScreen({ navigation, route }) {
       setIsLoading(true);
       const result = await borrowLoan(loanData);
       if (result) {
-        if (result.length > 0) {
+        if (Array.isArray(result)) {
           setIsSuccess(true);
           setIsLoading(false);
           onOpen();
         } else {
           setIsSuccess(false);
           setIsLoading(false);
+          setErrorMessage(result);
           onOpen();
         }
       } else {
@@ -260,9 +262,14 @@ export default function BorrowLoanScreen({ navigation, route }) {
                 <Text textAlign="center">from {loanParams.lenderName}</Text>
               </>
             ) : (
-              <Text textAlign="center" mt={3}>
-                Something went wrong. Please try again.{' '}
-              </Text>
+              <>
+                <Text textAlign="center" mt={3}>
+                  Something went wrong. Please try again.{' '}
+                </Text>
+                <Text textAlign="center" fontWeight="semibold">
+                  {errorMessage}
+                </Text>
+              </>
             )}
 
             <Button

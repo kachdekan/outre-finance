@@ -17,8 +17,8 @@ const LoansFeatureItem = (props) => {
     >
       <HStack space={3} my={2} mx={3} alignItems="center">
         <Avatar
-          bg={props.isLender ? 'primary.100' : 'primary.500'}
-          _text={{ color: props.initiated ? 'primary.600' : 'primary.100' }}
+          bg={props.isLender ? 'primary.200' : 'primary.500'}
+          _text={{ color: props.isLender ? 'primary.600' : 'primary.100' }}
         >
           {initials}
         </Avatar>

@@ -52,14 +52,17 @@ export const createAnOffer = async (offer) => {
           offer.maxDuration,
         ])
         .send({
-          feeLimit: 400000000,
+          feeLimit: 600000000,
           callValue: 0,
         }),
   );
+  setTimeout(() => {
+    console.log('Waiting for transaction...');
+  }, 3000);
   const info = await tronWeb.trx.getTransaction(result);
   if (info.ret[0].contractRet === 'SUCCESS') {
-    return result;
+    return [result];
   } else {
-    throw new Error('Transaction failed: ', info.ret[0].contractRet);
+    return info.ret[0].contractRet;
   }
 };

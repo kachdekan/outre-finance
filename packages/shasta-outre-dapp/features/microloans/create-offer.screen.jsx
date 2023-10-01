@@ -31,6 +31,7 @@ export default function CreateOfferScreen({ navigation }) {
   const [isOkValue, setOkValue] = useState(true);
   const [isOkDuration, setOkDuration] = useState(true);
   const [isSucess, setIsSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const balances = {
     USDD: 1000,
     TRX: 1000,
@@ -76,13 +77,14 @@ export default function CreateOfferScreen({ navigation }) {
       console.log('Offer Data', offerData);
       const result = await createAnOffer(offerData);
       if (result) {
-        if (result.length > 0) {
+        if (Array.isArray(result)) {
           setIsSuccess(true);
           setIsLoading(false);
           onOpen();
         } else {
           setIsSuccess(false);
           setIsLoading(false);
+          setErrorMessage(result);
           onOpen();
         }
       } else {
@@ -232,6 +234,11 @@ export default function CreateOfferScreen({ navigation }) {
                 Offer number {offerID.toUpperCase()}{' '}
                 {isSucess ? 'created successfully!' : 'creation failed!'}
               </Text>
+              {isSucess ? null : (
+                <Text textAlign="center" fontWeight="semibold">
+                  {errorMessage}
+                </Text>
+              )}
               <Button
                 variant="subtle"
                 rounded="3xl"
