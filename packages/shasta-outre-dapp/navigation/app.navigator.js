@@ -18,6 +18,7 @@ import {
   BorrowLoanScreen,
   CreateOfferScreen,
   FundLoanScreen,
+  SelectLoanScreen,
 } from '@dapp/features/microloans';
 
 import { CreateSpaceScreen, SelectContactsScreen } from '@dapp/features/spaces';
@@ -39,6 +40,7 @@ export function AppNavigator() {
         <AppStack.Screen name="borrowLoan" component={BorrowLoanScreen} />
         <AppStack.Screen name="createOffer" component={CreateOfferScreen} />
         <AppStack.Screen name="fundLoan" component={FundLoanScreen} />
+        <AppStack.Screen name="selectLoan" component={SelectLoanScreen} />
 
         <AppStack.Screen name="createSpace" component={CreateSpaceScreen} />
         <AppStack.Screen name="selectContacts" component={SelectContactsScreen} />

@@ -86,7 +86,8 @@ export function getWalletTxs(accountTxs, trc20Txs, address) {
       timestamp: item.raw_data.timestamp,
     };
   });
-  const thisTrc20Txs = trc20Txs.data.map((item) => {
+  const thisTrc20TransferTxs = trc20Txs.data.filter((item) => item.type === 'Transfer');
+  const thisTrc20Txs = thisTrc20TransferTxs.map((item) => {
     const txDate = new Date(item.block_timestamp);
     const date = txDate.toDateString().split(' ');
     return {

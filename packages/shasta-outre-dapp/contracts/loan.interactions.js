@@ -2,6 +2,7 @@ import { tronWeb } from '@dapp/config';
 import loanAbi from '@dapp/config/abis/P2PLoan.abi.json';
 import { utils } from 'ethers';
 import { LoansData } from '../data';
+import { approveFunds } from './token.interactions';
 
 const handleTransaction = async (transaction, addr) => {
   try {
@@ -21,6 +22,7 @@ export const getLoanDetails = async (addr) => {
   const balance = utils.formatUnits(results.balance, 18);
   const loan = {
     id: results.id,
+    address: addr,
     token: tronWeb.address.fromHex(results.token),
     lenderName: results.lenderName,
     lender: tronWeb.address.fromHex(results.lender),
@@ -34,4 +36,50 @@ export const getLoanDetails = async (addr) => {
   };
 
   return loan;
+};
+
+export const repayLoan = async (addr, amount) => {
+  // Approve the funds
+  const res = await approveFunds(addr, amount);
+  if (res.error) {
+    return res;
+  }
+  // Repay the loan
+  const amountInWei = utils.parseUnits(amount, 18);
+  const result = await handleTransaction(
+    async (contract) => await contract.RepayLoan(amountInWei).send(),
+    addr,
+  );
+  setTimeout(() => {
+    console.log('Waiting for transaction...');
+  }, 3000);
+  const info = await tronWeb.trx.getTransaction(result);
+  if (info.ret[0].contractRet === 'SUCCESS') {
+    return [result];
+  } else {
+    return info.ret[0].contractRet;
+  }
+};
+
+export const fundLoan = async (addr, amount) => {
+  // Approve the funds
+  const res = await approveFunds(addr, amount);
+  if (res.error) {
+    return res;
+  }
+  // Repay the loan
+  const amountInWei = utils.parseUnits(amount, 18);
+  const result = await handleTransaction(
+    async (contract) => await contract.FundLoan(amountInWei).send(),
+    addr,
+  );
+  setTimeout(() => {
+    console.log('Waiting for transaction...');
+  }, 3000);
+  const info = await tronWeb.trx.getTransaction(result);
+  if (info.ret[0].contractRet === 'SUCCESS') {
+    return [result];
+  } else {
+    return info.ret[0].contractRet;
+  }
 };

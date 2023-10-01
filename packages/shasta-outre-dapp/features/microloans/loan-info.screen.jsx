@@ -4,22 +4,55 @@ import { RefreshControl } from 'react-native';
 import { FeaturesCard } from '@dapp/components';
 import { Feather } from '@expo/vector-icons';
 import { SectionHeader, TransactionItem } from '@dapp/components';
+import { getLoanDetails } from '@dapp/contracts';
+import { getDaysBetween } from '@dapp/utils';
+import { getLoanTxs } from './loans.manager';
+import { useGetContractTransactionsQuery } from '@dapp/services';
+import { useSelector } from 'react-redux';
+import { rates } from '../../data';
 
-import { LoansData, transactions } from '../../data';
-
-const loan = LoansData[0].data[0];
-
-export default function LoanInfoScreen() {
+export default function LoanInfoScreen({ navigation, route }) {
+  const thisAddress = useSelector((s) => s.wallet.walletInfo.address);
   const [refreshing, setRefreshing] = useState(false);
   const [prog, setProg] = useState(0);
   const [daysTo, setDaysTo] = useState(0);
+  const [loan, setLoan] = useState(route.params);
+  const [transactions, setTransactions] = useState([]);
+  const isLender = route.params.isLender;
+
+  const { data: contractTxs, refetch: refetchTxs } = useGetContractTransactionsQuery(
+    route.params.address,
+  );
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
-    //dispatch(updateLoans());
-    //refetch();
     setTimeout(() => setRefreshing(false), 2000);
   }, []);
+  useEffect(() => {
+    const getLoan = async () => {
+      const loan = await getLoanDetails(route.params.address);
+      setLoan(loan);
+      setProg((loan.paid / loan.principal) * 100);
+      const daysTo = getDaysBetween(Date.now(), Date.parse(loan.dueDate));
+      setDaysTo(daysTo);
+    };
+    getLoan();
+    refetchTxs();
+    const unsubscribe = navigation.addListener('focus', () => {
+      getLoan();
+      refetchTxs();
+    });
+
+    return unsubscribe;
+  }, [navigation, refreshing]);
+
+  useEffect(() => {
+    const getTxs = async () => {
+      const thisTxs = await getLoanTxs(contractTxs, thisAddress);
+      setTransactions(thisTxs);
+    };
+    getTxs();
+  }, [contractTxs]);
 
   return (
     <Box flex={1} bg="muted.100" alignItems="center">
@@ -34,13 +67,13 @@ export default function LoanInfoScreen() {
               color="warmGray.800"
               bg="white"
               balance={(loan.currentBal * 1).toFixed(4).toString()}
-              apprxBalance={(loan.currentBal * 120.75).toFixed(2).toString()}
+              apprxBalance={(loan.currentBal * rates.USDD).toFixed(2).toString()}
               expScreen="DummyModal"
               btn1={{
                 icon: (
                   <Icon as={Feather} name="arrow-up-right" size="md" color="primary.600" mr="1" />
                 ),
-                name: loan.initiated ? 'Fund' : 'Repay',
+                name: isLender ? 'Fund' : 'Repay',
                 screen: 'fundLoan',
                 screenParams: loan,
               }}
@@ -92,7 +125,7 @@ export default function LoanInfoScreen() {
               </Text>
             </HStack>
             <Text color="primary.800">
-              {loan.initiated
+              {isLender
                 ? 'Please fund the Loan. Loanee is eagerly waiting for the chums!'
                 : 'Your Keep calm. Loan will be credited once your lender releases the funds!'}
             </Text>
@@ -107,13 +140,13 @@ export default function LoanInfoScreen() {
             mt={1}
           >
             <TransactionItem
-              credited={item.credited}
+              credited={!item.credited}
               trTitle={item.title}
               trDate={item.date}
               spAmount={
-                (item.credited ? '-' : '+') + (item.amount * 1).toFixed(2) + ' ' + item.token
+                (item.credited ? '+' : '-') + (item.amount * 1).toFixed(2) + ' ' + item.token
               }
-              eqAmount={(item.amount * 120.75).toFixed(2) + ' KES'}
+              eqAmount={(item.amount * rates.USDD).toFixed(2) + ' KES'}
               screen="DummyModal"
             />
           </Box>

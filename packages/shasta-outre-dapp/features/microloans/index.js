@@ -5,3 +5,4 @@ export { default as LoanInfoScreen } from './loan-info.screen';
 export { default as BorrowLoanScreen } from './borrow-loan.screen';
 export { default as FundLoanScreen } from './fund-loan.screen';
 export { default as CreateOfferScreen } from './create-offer.screen';
+export { default as SelectLoanScreen } from './select-loan.screen';

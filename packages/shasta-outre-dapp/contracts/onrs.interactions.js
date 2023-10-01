@@ -6,11 +6,9 @@ const handleTransaction = async (transaction) => {
   try {
     const contract = await tronWeb.contract(onrsAbi, ONRAddr);
     const result = await transaction(contract);
-    console.log(result);
     // https://shasta.tronscan.org/#/transaction/739e6769c07c501dda144c8e90ea093d73ec858a031ec2bb4dc9bdd68ff427ff
     return result;
   } catch (error) {
-    console.log(error);
     throw error;
   }
 };

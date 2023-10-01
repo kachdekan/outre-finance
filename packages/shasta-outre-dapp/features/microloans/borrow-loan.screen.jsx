@@ -279,7 +279,8 @@ export default function BorrowLoanScreen({ navigation, route }) {
               mt={3}
               _text={{ color: 'primary.600', fontWeight: 'semibold' }}
               onPress={() => {
-                onClose(); //navigation.navigate('LoanHome', newLoan);
+                onClose();
+                navigation.navigate('Loans');
               }}
             >
               OK

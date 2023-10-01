@@ -15,6 +15,7 @@ export default function LoanOffersScreen({ navigation }) {
   }, []);
 
   useEffect(() => {
+    setRefreshing(true);
     const getOffers = async () => {
       const offers = await getAllOffers();
       setOffers(offers);
@@ -23,7 +24,7 @@ export default function LoanOffersScreen({ navigation }) {
     const unsubscribe = navigation.addListener('focus', () => {
       getOffers();
     });
-
+    setRefreshing(false);
     return unsubscribe;
   }, [navigation, refreshing]);
 
