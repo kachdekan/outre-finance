@@ -14,7 +14,7 @@ import {
 import { useEffect, useState } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { useSelector, useDispatch } from 'react-redux';
-import { getUSDDBalance, fundRosca } from '@dapp/contracts';
+import { getUSDDBalance, fundSpace } from '@dapp/contracts';
 
 export default function FundSpaceScreen({ navigation, route }) {
   const thisAddress = useSelector((s) => s.wallet.walletInfo.address);
@@ -27,7 +27,7 @@ export default function FundSpaceScreen({ navigation, route }) {
   const handleFundSpace = async () => {
     console.log('Funding Rosca...');
     setIsLoading(true);
-    const result = await fundSpace(route.params.address, amount);
+    const result = await fundSpace(route.params.roscaAddress, amount);
     if (result) {
       if (Array.isArray(result)) {
         setIsSuccess(true);

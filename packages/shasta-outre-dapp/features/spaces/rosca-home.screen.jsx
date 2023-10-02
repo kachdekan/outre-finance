@@ -20,6 +20,8 @@ import { TransactionItem, FeaturesCard, SectionHeader } from '@dapp/components';
 import { useGetContractTransactionsQuery } from '@dapp/services';
 import { utils } from 'ethers';
 import { rates } from '../../data';
+import { getSpaceDetails } from '@dapp/contracts';
+import { getSpaceTxs } from './spaces.manager';
 
 export default function RoscaHomeScreen({ navigation, route }) {
   const thisAddress = useSelector((s) => s.wallet.walletInfo.address);
@@ -29,7 +31,6 @@ export default function RoscaHomeScreen({ navigation, route }) {
   const [dueAmount, setDueAmount] = useState(0);
   const [rosca, setRosca] = useState(route.params);
   const [transactions, setTransactions] = useState([]);
-  const isLender = route.params.isLender;
 
   const { data: contractTxs, refetch: refetchTxs } = useGetContractTransactionsQuery(roscaAddress);
 
@@ -39,17 +40,7 @@ export default function RoscaHomeScreen({ navigation, route }) {
   }, []);
   useEffect(() => {
     const getRosca = async () => {
-      //const roscaDetails = await getRoscaDetails(route.params.address);
-      const roscaDetails = {
-        imgLink: 'https://bit.ly/3vJ1yQq',
-        roscaBal: 0,
-        goalAmount: 100,
-        currentRound: 1,
-        activeMembers: 5,
-        creator: '0x123456789',
-        dueDate: '2021-10-10',
-      };
-
+      const roscaDetails = await getSpaceDetails(route.params.address);
       setRosca(roscaDetails);
       setProg((roscaDetails.roscaBal / roscaDetails.goalAmount) * 100);
       setDueAmount((roscaDetails.goalAmount * 1) / (roscaDetails.activeMembers * 1));
@@ -66,7 +57,7 @@ export default function RoscaHomeScreen({ navigation, route }) {
 
   useEffect(() => {
     const getTxs = async () => {
-      const thisTxs = await getRoscaTxs(contractTxs, thisAddress);
+      const thisTxs = await getSpaceTxs(contractTxs, thisAddress);
       setTransactions(thisTxs);
     };
     getTxs();
@@ -175,7 +166,7 @@ export default function RoscaHomeScreen({ navigation, route }) {
               trTitle={item.title}
               trDate={item.date}
               spAmount={
-                (item.credited ? '+' : '-') + (item.amount * 1).toFixed(2) + ' ' + item.token
+                (item.credited ? '-' : '+') + (item.amount * 1).toFixed(2) + ' ' + item.token
               }
               eqAmount={(item.amount * rates.USDD).toFixed(2) + ' KES'}
               screen="DummyModal"

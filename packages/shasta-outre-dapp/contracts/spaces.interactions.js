@@ -1,6 +1,6 @@
 import { spacesAddr, tronWeb } from '@dapp/config';
 import spacesAbi from '@dapp/config/abis/spaces.abi.json';
-//import { getRoscaDetails } from './rosca.interactions';
+import { getSpaceDetails } from './rosca.interactions';
 
 const handleTransaction = async (transaction) => {
   try {
@@ -16,18 +16,39 @@ export const createARosca = async (rosca) => {
   const result = await handleTransaction(
     async (contract) =>
       await contract.createRosca(Object.values(rosca)).send({
-        feeLimit: 600000000,
+        feeLimit: 1000000000,
         callValue: 0,
       }),
   );
-  console.log(result);
+
   setTimeout(() => {
     console.log('Waiting for transaction...');
   }, 3000);
+  console.log(result);
   const info = await tronWeb.trx.getTransaction(result);
   if (info.ret[0].contractRet === 'SUCCESS') {
     return [result];
   } else {
     return info.ret[0].contractRet;
   }
+};
+
+export const getMySpaces = async () => {
+  const results = await handleTransaction(async (contract) => await contract.getMySpaces().call());
+  const spaces = await Promise.all(
+    results.map(async (result, idx) => {
+      const space = await getSpaceDetails(result[0]);
+      return {
+        id: idx,
+        name: space.roscaName,
+        address: tronWeb.address.fromHex(result[0]),
+        creator: space.creator,
+        goalAmount: space.goalAmount,
+        dueDate: space.dueDate,
+        roscaBal: space.roscaBal,
+        token: 'USDD',
+      };
+    }),
+  );
+  return spaces;
 };

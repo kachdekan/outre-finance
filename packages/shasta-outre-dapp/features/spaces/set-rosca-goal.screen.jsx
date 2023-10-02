@@ -83,6 +83,9 @@ export default function SetRoscaGoalScreen({ navigation, route }) {
         setIsLoading(false);
         onOpen1();
       }
+      setTimeout(() => {
+        setIsLoading(false), navigation.navigate('Spaces');
+      }, 3000);
     } catch (e) {
       console.log(e);
     }
@@ -202,7 +205,7 @@ export default function SetRoscaGoalScreen({ navigation, route }) {
               : `Rosca creation Failed! \n${errorMessage}`
           }
           screen="Spaces"
-          scrnOptions={{ isSuccess }}
+          scrnOptions={isSuccess}
         />
         <Spacer />
         <Stack alignItems="center" space={3} mb={16}>

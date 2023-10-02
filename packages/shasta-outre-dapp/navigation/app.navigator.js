@@ -26,6 +26,7 @@ import {
   SetRoscaGoalScreen,
   RoscaHomeScreen,
   FundSpaceScreen,
+  SelectSpaceScreen,
 } from '@dapp/features/spaces';
 
 import { DepositScreen, TransferFundsScreen } from '@dapp/features/wallet';
@@ -57,6 +58,7 @@ export function AppNavigator() {
         <AppStack.Screen name="setRoscaGoal" component={SetRoscaGoalScreen} />
         <AppStack.Screen name="RoscaHome" component={RoscaHomeScreen} />
         <AppStack.Screen name="fundSpace" component={FundSpaceScreen} />
+        <AppStack.Screen name="selectSpace" component={SelectSpaceScreen} />
       </AppStack.Group>
     </AppStack.Navigator>
   );
