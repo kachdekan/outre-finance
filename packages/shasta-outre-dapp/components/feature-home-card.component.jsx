@@ -90,8 +90,9 @@ const FeatureHomeCard = ({
           variant="subtle"
           pr="4"
           size="sm"
+          c
           _text={{ color: 'primary.600', fontWeight: 'semibold', mb: '0.5' }}
-          onPress={() => navigation.navigate(btn2.screen)}
+          onPress={() => navigation.navigate(btn2.screen, btn2.params ? { ...btn2.params } : null)}
         >
           {btn2.name}
         </Button>

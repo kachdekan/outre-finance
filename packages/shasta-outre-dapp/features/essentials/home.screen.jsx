@@ -35,7 +35,6 @@ export default function HomeScreen() {
     refetchTrc20Txs();
     setTimeout(() => setRefreshing(false), 2000);
   }, []);
-
   useEffect(() => {
     console.log(thisAddress);
     const thisBalances = getWalletBalances(walletInfo);
@@ -74,7 +73,8 @@ export default function HomeScreen() {
               btn2={{
                 icon: <Icon as={Feather} name="arrow-right" size="md" color="primary.600" mr="1" />,
                 name: 'Transfer',
-                screen: 'sendFunds',
+                screen: 'transferFunds',
+                params: balance,
               }}
               btn3={{
                 icon: <Icon as={Feather} name="refresh-ccw" size="md" color="primary.600" mr="1" />,

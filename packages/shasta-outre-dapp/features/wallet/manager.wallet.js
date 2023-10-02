@@ -3,7 +3,6 @@ import { getUserWallets, storeUserWallet } from '@dapp/services';
 import { encryptData } from '@dapp/utils';
 import { tronWeb } from '@dapp/config';
 import { utils } from 'ethers';
-
 export const walletsListCache = {};
 
 export async function hasWallets() {
@@ -45,19 +44,28 @@ export async function storeWallet(passcode, wallet) {
 }
 
 export function getWalletBalances(data) {
-  if (!data) return null;
-  return {
-    trxAvaibleBal: tronWeb.fromSun(data.data[0].balance) * 1,
-    trxFrozenBand: data.data[0].frozenV2[0].amount
-      ? tronWeb.fromSun(data.data[0].frozenV2[0].amount) * 1
-      : 0,
-    trxFrozenEnergy: data.data[0].frozenV2[1].amount
-      ? tronWeb.fromSun(data.data[0].frozenV2[0].amount) * 1
-      : 0,
-    usddBal: data.data[0].trc20[0]
-      ? utils.formatUnits(Object.values(data.data[0].trc20[0])[0], 18).toString() * 1
-      : 0,
-  };
+  if (!data) {
+    return null;
+  }
+  return data.data[0]
+    ? {
+        trxAvaibleBal: tronWeb.fromSun(data.data[0].balance) * 1,
+        trxFrozenBand: data.data[0].frozenV2[0].amount
+          ? tronWeb.fromSun(data.data[0].frozenV2[0].amount) * 1
+          : 0,
+        trxFrozenEnergy: data.data[0].frozenV2[1].amount
+          ? tronWeb.fromSun(data.data[0].frozenV2[0].amount) * 1
+          : 0,
+        usddBal: data.data[0].trc20[0]
+          ? utils.formatUnits(Object.values(data.data[0].trc20[0])[0], 18).toString() * 1
+          : 0,
+      }
+    : {
+        trxAvaibleBal: 0,
+        trxFrozenBand: 0,
+        trxFrozenEnergy: 0,
+        usddBal: 0,
+      };
 }
 
 export function getWalletTxs(accountTxs, trc20Txs, address) {

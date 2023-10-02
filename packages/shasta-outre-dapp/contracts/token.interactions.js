@@ -29,6 +29,14 @@ export const tranferFunds = async (to, amount) => {
   return results;
 };
 
+export const tranferTRX = async (to, amount) => {
+  console.log('tranferTRX', to, amount);
+  const amountInSun = tronWeb.toSun(amount);
+  const hexAddress = tronWeb.address.toHex(to);
+  const results = await tronWeb.trx.sendTransaction(hexAddress, amountInSun);
+  return results;
+};
+
 export const getUSDDBalance = async (address) => {
   const balance = await handleTransaction(
     async (contract) => await contract.balanceOf(address).call(),
