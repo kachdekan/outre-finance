@@ -97,7 +97,7 @@ export default function SelectContactsScreen({ navigation }) {
         w="60%"
         _text={{ color: 'primary.100', fontWeight: 'semibold', mb: '0.5' }}
         onPress={() => {
-          //dispatch(setSelectedMembers(selectedContacts));
+          dispatch(setSelectedMembers(selectedContacts));
           navigation.navigate('setRoscaGoal');
         }}
       >

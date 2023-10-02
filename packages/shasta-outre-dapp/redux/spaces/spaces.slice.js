@@ -37,12 +37,12 @@ const spacesSlice = createSlice({
       state.spaceInfo.members = action.payload;
     },
     setSpaceInfo: (state, { payload }) => {
-      const { spaceName, spaceType, walletAddress, defaultImg } = payload;
+      const { spaceName, spaceType, thisAddress, defaultImg } = payload;
 
       state.spaceInfo.members = state.selectedMembers;
       state.spaceInfo.name = spaceName;
       state.spaceInfo.type = spaceType;
-      state.spaceInfo.creator = walletAddress;
+      state.spaceInfo.creator = thisAddress;
       state.spaceInfo.imgLink = defaultImg;
     },
     setCtbSchedule: (state, { payload }) => {

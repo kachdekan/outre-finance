@@ -2,10 +2,9 @@ import { Box, Text, Image, FormControl, Stack, Input, Button, HStack, Select } f
 import { CheckIcon } from 'native-base';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
-import { setSpaceInfo } from '@dapp/store';
-
+import { setSpaceInfo } from '@dapp/store/spaces/spaces.slice';
 export default function CreateSpaceScreen({ navigation }) {
-  const walletAddress = '0x1234567890';
+  const thisAddress = useSelector((state) => state.wallet.walletInfo.address);
   const suggestions = ['Savings', 'Vacation', 'Chama', 'Gift', 'Sherehe', 'Emergency', 'Masomo'];
   const dispatch = useDispatch();
   const [spaceName, setSpaceName] = useState('');
@@ -83,7 +82,7 @@ export default function CreateSpaceScreen({ navigation }) {
             w="60%"
             _text={{ color: 'primary.100', fontWeight: 'semibold', mb: '0.5' }}
             onPress={() => {
-              //dispatch(setSpaceInfo({ spaceName, spaceType, walletAddress, defaultImg }));
+              dispatch(setSpaceInfo({ spaceName, spaceType, thisAddress, defaultImg }));
               navigation.navigate(nextScreen);
             }}
           >

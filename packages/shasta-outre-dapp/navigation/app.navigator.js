@@ -20,8 +20,14 @@ import {
   FundLoanScreen,
   SelectLoanScreen,
 } from '@dapp/features/microloans';
+import {
+  CreateSpaceScreen,
+  SelectContactsScreen,
+  SetRoscaGoalScreen,
+  RoscaHomeScreen,
+  FundSpaceScreen,
+} from '@dapp/features/spaces';
 
-import { CreateSpaceScreen, SelectContactsScreen } from '@dapp/features/spaces';
 import { DepositScreen, TransferFundsScreen } from '@dapp/features/wallet';
 
 const Tab = createBottomTabNavigator();
@@ -48,6 +54,9 @@ export function AppNavigator() {
 
         <AppStack.Screen name="createSpace" component={CreateSpaceScreen} />
         <AppStack.Screen name="selectContacts" component={SelectContactsScreen} />
+        <AppStack.Screen name="setRoscaGoal" component={SetRoscaGoalScreen} />
+        <AppStack.Screen name="RoscaHome" component={RoscaHomeScreen} />
+        <AppStack.Screen name="fundSpace" component={FundSpaceScreen} />
       </AppStack.Group>
     </AppStack.Navigator>
   );
@@ -124,8 +133,7 @@ function HeaderRightIcons() {
 }
 
 function AccPressable() {
-  //const { initials } = useSelector((s) => s.essential.userDetails)
-  const initials = 'DK';
+  const { initials } = useSelector((s) => s.essential.userDetails);
   const navigation = useNavigation();
   return (
     // fix avatar text color to primary.700

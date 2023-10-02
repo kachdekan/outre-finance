@@ -70,7 +70,7 @@ export default function SpacesHomeScreen() {
               }
               value={(item.currentBal * 1).toFixed(2).toString() + ' ' + item.token}
               dueDate={'Due: ' + item.dueDate}
-              screen="SpaceHome"
+              screen="RoscaHome"
               itemParams={item}
             />
           </Box>
