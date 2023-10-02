@@ -25,6 +25,7 @@ import { utils } from 'ethers';
 import { ScheduleActSheet, SuccessModal } from '@dapp/components';
 import { stableToken } from '@dapp/config';
 import { generateId } from '@dapp/utils';
+import { createARosca } from '@dapp/contracts';
 
 export default function SetRoscaGoalScreen({ navigation, route }) {
   const dispatch = useDispatch();
@@ -34,6 +35,8 @@ export default function SetRoscaGoalScreen({ navigation, route }) {
   const { isOpen, onOpen, onClose } = useDisclose();
   const { isOpen: isOpen1, onOpen: onOpen1, onClose: onClose1 } = useDisclose();
   const [isSetCtb, setIsSetCtb] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [isSuccess, setIsSuccess] = useState(false);
   const [schedule, setSchedule] = useState({
     day: spaceInfo.ctbDay,
     occurrence: spaceInfo.ctbOccurence,
@@ -63,9 +66,23 @@ export default function SetRoscaGoalScreen({ navigation, route }) {
         disbDay: spaceInfo.disbDay,
         disbOccur: spaceInfo.disbOccurence,
       };
-      console.log(txData);
-      setIsLoading(false);
-      onOpen1();
+      const result = await createARosca(txData);
+      if (result) {
+        if (Array.isArray(result)) {
+          setIsSuccess(true);
+          setIsLoading(false);
+          onOpen1();
+        } else {
+          setIsSuccess(false);
+          setIsLoading(false);
+          setErrorMessage(result);
+          onOpen1();
+        }
+      } else {
+        setIsSuccess(false);
+        setIsLoading(false);
+        onOpen1();
+      }
     } catch (e) {
       console.log(e);
     }
@@ -179,9 +196,13 @@ export default function SetRoscaGoalScreen({ navigation, route }) {
         <SuccessModal
           isOpen={isOpen1}
           onClose={onClose1}
-          message={`Rosca created successfully! \nInvite Code: ${authCode}`}
+          message={
+            isSuccess
+              ? `Rosca created successfully! \nInvite Code: ${authCode}`
+              : `Rosca creation Failed! \n${errorMessage}`
+          }
           screen="Spaces"
-          scrnOptions={{}}
+          scrnOptions={{ isSuccess }}
         />
         <Spacer />
         <Stack alignItems="center" space={3} mb={16}>

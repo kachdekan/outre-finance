@@ -1,7 +1,6 @@
 import { tronWeb } from '@dapp/config';
 import loanAbi from '@dapp/config/abis/P2PLoan.abi.json';
 import { utils } from 'ethers';
-import { LoansData } from '../data';
 import { approveFunds } from './token.interactions';
 
 const handleTransaction = async (transaction, addr) => {
