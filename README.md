@@ -19,8 +19,8 @@ This product greatly reduces the cost of loans as it democratises lending and al
 
 #### Demo
 
-- Watch the [Live Demo](https://youtu.be/_sBZ6Gn0-1I).
-- Try it yourself. [Outre Finance Android App](https://github.com/kachdekan/outre-finance/blob/main/packages/outre-dapp/assets/OutreDapp.apk)
+- Watch the [Live Demo](https://youtu.be/TQ7HioaWxwU).
+- Try it yourself. [Scan the QR Code in Expo GO](https://github.com/kachdekan/outre-finance/assets/17332607/b3ebc2a2-27e9-445c-8c01-e38226734e38)
 
 #### Positive outcomes
 
