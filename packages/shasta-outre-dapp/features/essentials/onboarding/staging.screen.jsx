@@ -5,6 +5,7 @@ import { useRegisterUserMutation, useAddWalletMutation } from '@dapp/services';
 import { useEffect } from 'react';
 import { setLoggedIn, setHasAccount } from '@dapp/store/essential/essential.slice';
 import { walletsListCache } from '@dapp/features/wallet';
+import { updateWalletAddress } from '@dapp/store/wallet/wallet.slice';
 
 export default function StagingScreen() {
   const userDetails = useSelector((s) => s.essential.userDetails);

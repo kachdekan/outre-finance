@@ -1,15 +1,11 @@
 import { createWallet, importWallet, updateWalletAddress } from './wallet.slice';
 //import { getPendingWallet } from '@dapp/features/wallet';
-import { setLoggedIn } from '@dapp/store/essential/essential.slice';
+
 import { setPrivateKey } from '@dapp/config';
-import { getWallets } from '@dapp/features/wallet';
-import { decryptDataWtoken } from '@dapp/utils';
+
 import { storeWallet } from '@dapp/features/wallet';
-import { userToken } from '@dapp/features/essentials/user.token';
+
 import { createRandom } from 'tronweb';
-import { tronWeb } from '@dapp/config';
-import { getWalletInfo } from '@dapp/features/wallet';
-import { shastaApi } from '@dapp/services';
 
 export const walletListeners = (startListening) => {
   startListening({
@@ -21,6 +17,7 @@ export const walletListeners = (startListening) => {
         const wallet = await createRandom();
         await storeWallet(passcode, wallet);
         listenerApi.dispatch(updateWalletAddress(wallet.address));
+        setPrivateKey(wallet.privateKey);
         //Activate the wallet
       }
     },

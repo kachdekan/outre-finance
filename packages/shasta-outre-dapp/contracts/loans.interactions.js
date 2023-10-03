@@ -2,6 +2,10 @@ import { loansAddr, tronWeb } from '@dapp/config';
 import loansAbi from '@dapp/config/abis/loans.abi.json';
 import { getLoanDetails } from './loan.interactions';
 
+const delay = function (ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+};
+
 const handleTransaction = async (transaction) => {
   try {
     const contract = await tronWeb.contract(loansAbi, loansAddr);
@@ -40,7 +44,6 @@ export const getMyLoans = async () => {
 };
 
 export const borrowLoan = async (loanData) => {
-  console.log(loanData);
   const result = await handleTransaction(
     async (contract) =>
       await contract.BorrowLoan(Object.values(loanData)).send({
@@ -48,9 +51,8 @@ export const borrowLoan = async (loanData) => {
         callValue: 0,
       }),
   );
-  setTimeout(() => {
-    console.log('Waiting for transaction...');
-  }, 3000);
+  delay(5000);
+  console.log('Transaction result:', result);
   const info = await tronWeb.trx.getTransaction(result);
   if (info.ret[0].contractRet === 'SUCCESS') {
     return [result];

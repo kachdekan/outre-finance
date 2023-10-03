@@ -3,6 +3,10 @@ import loanAbi from '@dapp/config/abis/P2PLoan.abi.json';
 import { utils } from 'ethers';
 import { approveFunds } from './token.interactions';
 
+const delay = function (ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+};
+
 const handleTransaction = async (transaction, addr) => {
   try {
     const contract = await tronWeb.contract(loanAbi, addr);
@@ -49,9 +53,7 @@ export const repayLoan = async (addr, amount) => {
     async (contract) => await contract.RepayLoan(amountInWei).send(),
     addr,
   );
-  setTimeout(() => {
-    console.log('Waiting for transaction...');
-  }, 3000);
+  delay(3000);
   const info = await tronWeb.trx.getTransaction(result);
   if (info.ret[0].contractRet === 'SUCCESS') {
     return [result];
@@ -72,9 +74,7 @@ export const fundLoan = async (addr, amount) => {
     async (contract) => await contract.FundLoan(amountInWei).send(),
     addr,
   );
-  setTimeout(() => {
-    console.log('Waiting for transaction...');
-  }, 3000);
+  delay(3000);
   const info = await tronWeb.trx.getTransaction(result);
   if (info.ret[0].contractRet === 'SUCCESS') {
     return [result];

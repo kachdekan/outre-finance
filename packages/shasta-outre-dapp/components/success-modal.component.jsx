@@ -10,9 +10,9 @@ const SuccessModal = ({ isOpen, onClose, message, screen, scrnOptions }) => {
         <Modal.Body alignItems="center">
           <Icon
             as={Ionicons}
-            name={scrnOptions.isSucess ? 'md-checkmark-circle' : 'close-circle'}
+            name={scrnOptions.isSuccess ? 'md-checkmark-circle' : 'close-circle'}
             size="6xl"
-            color={scrnOptions.isSucess ? 'success.600' : 'danger.600'}
+            color={scrnOptions.isSuccess ? 'success.600' : 'danger.600'}
           />
           <Text textAlign="center" mt={3}>
             {message}
@@ -26,7 +26,7 @@ const SuccessModal = ({ isOpen, onClose, message, screen, scrnOptions }) => {
             _text={{ color: 'text.900', fontWeight: 'semibold', mb: '0.5' }}
             onPress={() => {
               onClose();
-              scrnOptions.isSucess ? navigation.navigate(screen, scrnOptions) : null;
+              scrnOptions.isSuccess ? navigation.navigate(screen, scrnOptions) : null;
             }}
           >
             OK

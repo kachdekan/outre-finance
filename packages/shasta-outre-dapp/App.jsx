@@ -9,7 +9,7 @@ import { Navigation } from './navigation';
 import { USER_STORE, WALLETS_STORE } from '@dapp/config';
 import { getUserDetails } from './services';
 import { setHasAccount, setUserDetails } from './redux/essential/essential.slice';
-import { updateWalletAddress } from '@dapp/store/wallet/wallet.slice';
+import { updateWalletAddress } from './redux/wallet/wallet.slice';
 import { setUserTokenFrom } from './features/essentials/user.token';
 import { setPrivateKey } from '@dapp/config';
 import { getWallets } from '@dapp/features/wallet';

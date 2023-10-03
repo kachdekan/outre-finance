@@ -49,7 +49,7 @@ export function getWalletBalances(data) {
   }
   return data.data[0]
     ? {
-        trxAvaibleBal: tronWeb.fromSun(data.data[0].balance) * 1,
+        trxAvaibleBal: data.data[0].balance ? tronWeb.fromSun(data.data[0].balance) * 1 : 0,
         trxFrozenBand: data.data[0].frozenV2[0].amount
           ? tronWeb.fromSun(data.data[0].frozenV2[0].amount) * 1
           : 0,
@@ -69,7 +69,7 @@ export function getWalletBalances(data) {
 }
 
 export function getWalletTxs(accountTxs, trc20Txs, address) {
-  if (!accountTxs || !trc20Txs) return [];
+  if (!accountTxs || !trc20Txs || typeof address === 'null') return [];
   const txs = accountTxs.data.filter(
     (item) =>
       item.raw_data.contract[0].type === 'TransferContract' ||

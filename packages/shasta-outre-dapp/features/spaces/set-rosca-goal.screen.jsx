@@ -205,7 +205,7 @@ export default function SetRoscaGoalScreen({ navigation, route }) {
               : `Rosca creation Failed! \n${errorMessage}`
           }
           screen="Spaces"
-          scrnOptions={isSuccess}
+          scrnOptions={{ isSuccess }}
         />
         <Spacer />
         <Stack alignItems="center" space={3} mb={16}>

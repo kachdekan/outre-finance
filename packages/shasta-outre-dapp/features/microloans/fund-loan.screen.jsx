@@ -14,7 +14,7 @@ import {
 import { useEffect, useState } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { useSelector, useDispatch } from 'react-redux';
-import { getUSDDBalance, repayLoan } from '@dapp/contracts';
+import { getUSDDBalance, repayLoan, fundLoan } from '@dapp/contracts';
 
 export default function FundLoanScreen({ navigation, route }) {
   const thisAddress = useSelector((s) => s.wallet.walletInfo.address);
@@ -28,7 +28,9 @@ export default function FundLoanScreen({ navigation, route }) {
   const handleFundLoan = async () => {
     console.log('Funding loan...');
     setIsLoading(true);
-    const result = await repayLoan(route.params.address, amount);
+    const result = isLender
+      ? await fundLoan(route.params.address, amount)
+      : await repayLoan(route.params.address, amount);
     if (result) {
       if (Array.isArray(result)) {
         setIsSuccess(true);

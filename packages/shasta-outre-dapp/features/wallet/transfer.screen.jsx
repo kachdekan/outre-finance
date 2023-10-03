@@ -26,7 +26,7 @@ export default function TransferFundsScreen({ navigation, route }) {
   const [token, setToken] = useState('USDD');
   const { isOpen, onOpen, onClose } = useDisclose();
   const [isLoading, setIsLoading] = useState(false);
-  const [isSucess, setIsSucess] = useState(true);
+  const [isSuccess, setIsSuccess] = useState(true);
   const approxAmount =
     token === 'USDD' ? (amount * rates.USDD).toFixed(2) : (amount * rates.TRX).toFixed(2);
   let textSize = '5xl';
@@ -149,7 +149,7 @@ export default function TransferFundsScreen({ navigation, route }) {
           token === 'USDD' ? 'USDD' : 'TRX'
         } \nsuccessfully sent to \n${recipient}`}
         screen="Main"
-        scrnOptions={isSucess}
+        scrnOptions={{ isSuccess }}
       />
     </Box>
   );

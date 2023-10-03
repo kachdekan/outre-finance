@@ -2,6 +2,10 @@ import { spacesAddr, tronWeb } from '@dapp/config';
 import spacesAbi from '@dapp/config/abis/spaces.abi.json';
 import { getSpaceDetails } from './rosca.interactions';
 
+const delay = function (ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+};
+
 const handleTransaction = async (transaction) => {
   try {
     const contract = await tronWeb.contract(spacesAbi, spacesAddr);
@@ -20,11 +24,8 @@ export const createARosca = async (rosca) => {
         callValue: 0,
       }),
   );
-
-  setTimeout(() => {
-    console.log('Waiting for transaction...');
-  }, 3000);
-  console.log(result);
+  delay(5000);
+  console.log('Transaction result:', result);
   const info = await tronWeb.trx.getTransaction(result);
   if (info.ret[0].contractRet === 'SUCCESS') {
     return [result];

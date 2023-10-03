@@ -1,4 +1,5 @@
 import { Box, VStack, Button, Heading, Spacer } from 'native-base';
+import { decryptDataWtoken } from '../../utils/encryption';
 
 export default function WelcomeScreen({ navigation }) {
   return (
@@ -25,7 +26,7 @@ export default function WelcomeScreen({ navigation }) {
           pr="4"
           minW="75%"
           _text={{ color: 'primary.700', fontWeight: 'semibold', mb: '0.5' }}
-          onPress={() => navigation.navigate('importWallet')}
+          onPress={() => console.log('comming soon')}
         >
           Use Existing Account
         </Button>

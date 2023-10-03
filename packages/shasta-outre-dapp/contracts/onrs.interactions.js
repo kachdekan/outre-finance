@@ -2,6 +2,10 @@ import { ONRAddr, tronWeb, stableToken } from '@dapp/config';
 import onrsAbi from '@dapp/config/abis/onrs.abi.json';
 import { utils } from 'ethers';
 
+const delay = function (ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+};
+
 const handleTransaction = async (transaction) => {
   try {
     const contract = await tronWeb.contract(onrsAbi, ONRAddr);
@@ -54,9 +58,7 @@ export const createAnOffer = async (offer) => {
           callValue: 0,
         }),
   );
-  setTimeout(() => {
-    console.log('Waiting for transaction...');
-  }, 3000);
+  delay(3000);
   const info = await tronWeb.trx.getTransaction(result);
   if (info.ret[0].contractRet === 'SUCCESS') {
     return [result];

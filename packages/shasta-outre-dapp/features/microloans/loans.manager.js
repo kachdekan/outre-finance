@@ -8,24 +8,29 @@ export async function getLoanTxs(loanTxs, address) {
   const txs = loanTxs.data.filter(
     (item) => 'raw_data' in item && item.raw_data.contract[0].type === 'TriggerSmartContract',
   );
-  const thisTxs = await Promise.all(
-    txs.map(async (item) => {
+  let thisTxs = [];
+  const thisTxs_ = await Promise.all(
+    txs.map(async (item, idx) => {
       const res = await tronWeb.getEventByTransactionID(item.txID);
-      const thisRes = res.filter((item) => item.name === 'Transfer')[0].result;
-      const txDate = new Date(item.block_timestamp * 1);
-      const date = txDate.toDateString().split(' ');
-      const thisAddress = tronWeb.address.fromHex(thisRes.from);
-      return {
-        id: item.txID,
-        title: thisAddress !== address ? 'Received USDD' : 'Repaid USDD',
-        date: date[0] + ', ' + date[2] + ' ' + date[1] + ', ' + txDate.toTimeString().slice(0, 5),
-        token: 'USDD',
-        amount: utils.formatUnits(thisRes.value, 18),
-        credited: thisAddress !== address,
-        timestamp: item.block_timestamp,
-      };
+      if (typeof res !== 'undefined' && res.length > 0) {
+        if (typeof res[1].result !== 'undefined') {
+          const txDate = new Date(item.block_timestamp * 1);
+          const date = txDate.toDateString().split(' ');
+          const thisAddress = tronWeb.address.fromHex(res[1].result.from);
+          return {
+            id: item.txID,
+            title: thisAddress !== address ? 'Received USDD' : 'Repaid USDD',
+            date:
+              date[0] + ', ' + date[2] + ' ' + date[1] + ', ' + txDate.toTimeString().slice(0, 5),
+            token: 'USDD',
+            amount: utils.formatUnits(res[1].result.value, 18),
+            credited: thisAddress !== address,
+            timestamp: item.block_timestamp,
+          };
+        }
+      }
     }),
   );
-  //console.log(thisTxs);
+  thisTxs = thisTxs_.filter((item) => typeof item !== 'undefined');
   return thisTxs;
 }
