@@ -1,0 +1,143 @@
+[
+  {
+    "outputs": [{ "type": "trcToken" }],
+    "constant": true,
+    "name": "usddTokenId",
+    "stateMutability": "View",
+    "type": "Function"
+  },
+  {
+    "outputs": [{ "type": "string" }],
+    "constant": true,
+    "name": "name",
+    "stateMutability": "View",
+    "type": "Function"
+  },
+  {
+    "outputs": [{ "type": "bool" }],
+    "inputs": [
+      { "name": "guy", "type": "address" },
+      { "name": "sad", "type": "uint256" }
+    ],
+    "name": "approve",
+    "stateMutability": "Nonpayable",
+    "type": "Function"
+  },
+  {
+    "outputs": [{ "type": "uint256" }],
+    "constant": true,
+    "name": "totalSupply",
+    "stateMutability": "View",
+    "type": "Function"
+  },
+  {
+    "outputs": [{ "type": "bool" }],
+    "inputs": [
+      { "name": "src", "type": "address" },
+      { "name": "dst", "type": "address" },
+      { "name": "sad", "type": "uint256" }
+    ],
+    "name": "transferFrom",
+    "stateMutability": "Nonpayable",
+    "type": "Function"
+  },
+  {
+    "inputs": [{ "name": "underlyingAmount", "type": "uint256" }],
+    "name": "withdraw",
+    "stateMutability": "Nonpayable",
+    "type": "Function"
+  },
+  {
+    "outputs": [{ "type": "uint8" }],
+    "constant": true,
+    "name": "decimals",
+    "stateMutability": "View",
+    "type": "Function"
+  },
+  {
+    "outputs": [{ "type": "uint256" }],
+    "constant": true,
+    "name": "MUL",
+    "stateMutability": "View",
+    "type": "Function"
+  },
+  {
+    "outputs": [{ "type": "uint256" }],
+    "constant": true,
+    "inputs": [{ "name": "guy", "type": "address" }],
+    "name": "balanceOf",
+    "stateMutability": "View",
+    "type": "Function"
+  },
+  {
+    "outputs": [{ "type": "string" }],
+    "constant": true,
+    "name": "symbol",
+    "stateMutability": "View",
+    "type": "Function"
+  },
+  {
+    "outputs": [{ "type": "bool" }],
+    "inputs": [
+      { "name": "dst", "type": "address" },
+      { "name": "sad", "type": "uint256" }
+    ],
+    "name": "transfer",
+    "stateMutability": "Nonpayable",
+    "type": "Function"
+  },
+  { "payable": true, "name": "deposit", "stateMutability": "Payable", "type": "Function" },
+  {
+    "outputs": [{ "type": "bool" }],
+    "inputs": [{ "name": "guy", "type": "address" }],
+    "name": "approve",
+    "stateMutability": "Nonpayable",
+    "type": "Function"
+  },
+  {
+    "outputs": [{ "type": "uint256" }],
+    "constant": true,
+    "inputs": [
+      { "name": "src", "type": "address" },
+      { "name": "guy", "type": "address" }
+    ],
+    "name": "allowance",
+    "stateMutability": "View",
+    "type": "Function"
+  },
+  { "payable": true, "stateMutability": "Payable", "type": "Fallback" },
+  {
+    "inputs": [
+      { "indexed": true, "name": "dst", "type": "address" },
+      { "name": "sad", "type": "uint256" }
+    ],
+    "name": "Deposit",
+    "type": "Event"
+  },
+  {
+    "inputs": [
+      { "indexed": true, "name": "src", "type": "address" },
+      { "name": "sad", "type": "uint256" }
+    ],
+    "name": "Withdrawal",
+    "type": "Event"
+  },
+  {
+    "inputs": [
+      { "indexed": true, "name": "from", "type": "address" },
+      { "indexed": true, "name": "to", "type": "address" },
+      { "name": "value", "type": "uint256" }
+    ],
+    "name": "Transfer",
+    "type": "Event"
+  },
+  {
+    "inputs": [
+      { "indexed": true, "name": "owner", "type": "address" },
+      { "indexed": true, "name": "spender", "type": "address" },
+      { "name": "value", "type": "uint256" }
+    ],
+    "name": "Approval",
+    "type": "Event"
+  }
+]

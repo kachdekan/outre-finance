@@ -10,7 +10,7 @@ import {
   Pressable,
   Avatar,
   useDisclose,
-} from '@clixpesa/native-base';
+} from 'native-base';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';

@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from 'react';
-import { Box, Icon, FlatList, Spinner } from '@clixpesa/native-base';
+import { Box, Icon, FlatList, Spinner } from 'native-base';
 import { Feather } from '@expo/vector-icons';
 import { RefreshControl } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';

@@ -1,4 +1,4 @@
-import { Text, Box, HStack, VStack, Avatar, Pressable, Spacer } from '@clixpesa/native-base';
+import { Text, Box, HStack, VStack, Avatar, Pressable, Spacer } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
 
 const TransactionItem = (props) => {

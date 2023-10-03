@@ -1,4 +1,4 @@
-import { Box, Text, HStack, Stack, Button, Heading, Icon, Spinner } from '@clixpesa/native-base';
+import { Box, Text, HStack, Stack, Button, Heading, Icon, Spinner } from 'native-base';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 

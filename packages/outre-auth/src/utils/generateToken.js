@@ -3,7 +3,7 @@ const { db } = require('../fbconfig');
 
 const generateTokens = (res, userId, userPassword) => {
   const token = jwt.sign({ userId }, process.env.JWT_SECRET, {
-    expiresIn: "1m",
+    expiresIn: "5m",
   });
 
   const refreshToken = jwt.sign({ userId }, process.env.JWT_SECRET_TWO + userPassword, {
@@ -14,7 +14,7 @@ const generateTokens = (res, userId, userPassword) => {
     httpOnly: true,
     secure: false, // Use secure cookies in production
     sameSite: 'strict', // Prevent CSRF attacks
-    maxAge:   60 * 1000, // 1 minute
+    maxAge:   5 * 60 * 1000, // 5 minutes
   });
   
   res.cookie('x-refresh-token', refreshToken, {
@@ -33,13 +33,13 @@ const refreshTokens = async (res, refreshToken) => {
     const verified = jwt.verify(refreshToken, process.env.JWT_SECRET_TWO + userPassword);
     const userId = verified.userId;
     const token = jwt.sign({ userId }, process.env.JWT_SECRET, {
-      expiresIn: "1m",
+      expiresIn: "5m",
     });
     res.cookie('x-token', token, {
       httpOnly: true,
       secure: false, // Use secure cookies in production
       sameSite: 'strict', // Prevent CSRF attacks
-      maxAge:   60 * 1000, // 1 minute
+      maxAge:   5 * 60 * 1000, // 5 minutes
     });
     return {userId};  
   }else {

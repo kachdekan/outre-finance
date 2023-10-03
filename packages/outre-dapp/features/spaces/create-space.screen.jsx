@@ -9,7 +9,7 @@ import {
   HStack,
   Select,
   CheckIcon,
-} from '@clixpesa/native-base';
+} from 'native-base';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { setSpaceInfo } from '@dapp/store/spaces/spaces.slice';

@@ -1,4 +1,4 @@
-import { Box, Text, VStack, Stack, Icon, FlatList, Spacer, Button } from '@clixpesa/native-base';
+import { Box, Text, VStack, Stack, Icon, FlatList, Spacer, Button } from 'native-base';
 import { useState, useCallback } from 'react';
 import { Feather } from '@expo/vector-icons';
 import { RefreshControl } from 'react-native';

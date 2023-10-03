@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, HStack, Text, Avatar, VStack, FlatList, Button } from '@clixpesa/native-base';
+import { Box, HStack, Text, Avatar, VStack, FlatList, Button } from 'native-base';
 import { useDispatch } from 'react-redux';
 import * as Contacts from 'expo-contacts';
 import { TouchableOpacity } from 'react-native';

@@ -1,4 +1,4 @@
-import { Box, VStack, HStack, Progress, Text, Spacer } from '@clixpesa/native-base';
+import { Box, VStack, HStack, Progress, Text, Spacer } from 'native-base';
 
 const PotProgressCard = ({
   roundBal,

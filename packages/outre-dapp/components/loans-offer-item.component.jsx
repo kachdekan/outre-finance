@@ -1,4 +1,4 @@
-import { Avatar, HStack, Text, VStack, Heading, Button, Pressable } from '@clixpesa/native-base';
+import { Avatar, HStack, Text, VStack, Heading, Button, Pressable } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
 
 const LoansOfferItem = (props) => {

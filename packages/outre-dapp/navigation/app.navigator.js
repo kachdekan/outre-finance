@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Icon from 'react-native-remix-icon';
-import { Box, Text, Avatar, Pressable, HStack } from '@clixpesa/native-base';
+import { Box, Text, Avatar, Pressable, HStack } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 

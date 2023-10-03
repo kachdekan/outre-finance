@@ -1,4 +1,4 @@
-import { Modal, Icon, Text, Button } from '@clixpesa/native-base';
+import { Modal, Icon, Text, Button } from 'native-base';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 

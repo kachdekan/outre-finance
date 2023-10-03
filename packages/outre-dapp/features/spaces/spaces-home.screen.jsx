@@ -1,14 +1,4 @@
-import {
-  Box,
-  Text,
-  Icon,
-  HStack,
-  VStack,
-  Avatar,
-  Stack,
-  Pressable,
-  ScrollView,
-} from '@clixpesa/native-base';
+import { Box, Text, Icon, HStack, VStack, Avatar, Stack, Pressable, ScrollView } from 'native-base';
 import { Feather, MaterialIcons } from '@expo/vector-icons';
 import { useState, useEffect, useCallback } from 'react';
 import { RefreshControl } from 'react-native';

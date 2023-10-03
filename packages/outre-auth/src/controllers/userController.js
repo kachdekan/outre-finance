@@ -10,9 +10,9 @@ const authUser = asyncHandler(async (req, res) => {
   const { phone, password } = req.body;
 
   const user = await db.collection('users').where('phone', '==', phone).get()
-  const matchPassword = user.docs[0].data().password === password;
+  const matchPassword = user.docs[0].data().token === password;
   if (!user.empty && matchPassword) {
-    generateTokens(res, user.docs[0].id, user.docs[0].data().password); 
+    generateTokens(res, user.docs[0].id, user.docs[0].data().token); 
     
     res.json({
       _id: user.docs[0].id,
@@ -36,11 +36,15 @@ const registerUser = asyncHandler(async (req, res) => {
         return res.status(400).send('User already exists')
       }else{
         await db.collection('users').doc('/' + userId + '/').create({
-          password: req.body.password,
+          names: req.body.names,
+          initials: req.body.initials,
           phone: req.body.phone,
+          country: req.body.country,
+          token: req.body.token,
+          
         })
-        generateTokens(res, userId, req.body.password);
-        return res.status(201).json({ _id: userId, phone: req.body.phone });
+        generateTokens(res, userId, req.body.token);
+        return res.status(201).json({ _id: userId, names: req.body.names, phone: req.body.phone, });
       } 
     } catch (error) {
       console.log(error);

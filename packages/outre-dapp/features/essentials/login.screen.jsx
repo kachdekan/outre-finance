@@ -1,4 +1,4 @@
-import { Box, Text, VStack, Avatar, Spinner } from '@clixpesa/native-base';
+import { Box, Text, VStack, Avatar, Spinner } from 'native-base';
 import { View } from 'react-native';
 import { CodeInput } from '@dapp/components';
 import { useDispatch, useSelector } from 'react-redux';
