@@ -19,7 +19,7 @@ export default function App() {
   const [isReady, setIsReady] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
-    //LogBox.ignoreAllLogs();
+    LogBox.ignoreAllLogs();
   }, []);
   // Load resources during splash screen
   useEffect(() => {
