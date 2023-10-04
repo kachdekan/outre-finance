@@ -1,0 +1,23 @@
+import { PIN_SALT, WALLETS_STORE, USER_STORE } from 'app-env';
+
+module.exports = {
+  NULL_ADDRESS: '0x0000000000000000000000000000000000000000',
+  SALT: PIN_SALT,
+  PIN_BLOCKLIST: [
+    '000000',
+    '111111',
+    '222222',
+    '333333',
+    '444444',
+    '555555',
+    '666666',
+    '777777',
+    '888888',
+    '999999',
+    '123456',
+    '654321',
+  ],
+  STALE_BLOCK_TIME: 20000, // 20 seconds
+  WALLETS_STORE: WALLETS_STORE,
+  USER_STORE: USER_STORE,
+};
