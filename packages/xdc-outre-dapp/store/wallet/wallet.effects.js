@@ -1,5 +1,5 @@
 import { createWallet, importWallet, updateWalletAddress } from './wallet.slice';
-//import { getPendingWallet } from '@dapp/features/wallet';
+import { getPendingWallet } from '@dapp/features/wallet';
 
 import { setPrivateKey } from '@dapp/config/signer';
 
@@ -30,7 +30,7 @@ export const walletListeners = (startListening) => {
       const currentAddr = listenerApi.getState().wallet.walletInfo.address;
       if (!currentAddr) {
         listenerApi.dispatch(updateWalletAddress(importedWallet.address));
-        //listenerApi.dispatch(setLoggedIn(true));
+        setPrivateKey(importWallet.privateKey);
       }
     },
   });

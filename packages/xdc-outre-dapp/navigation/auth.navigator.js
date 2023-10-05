@@ -10,6 +10,7 @@ import {
   VerificationScreen,
   SetPasscodeScreen,
   StagingScreen,
+  ImportWalletScreen,
 } from '@dapp/features/essentials';
 import { useSelector } from 'react-redux';
 const AuthStack = createNativeStackNavigator();
@@ -49,12 +50,11 @@ export function AuthNavigator() {
           component={StagingScreen}
           options={{ headerShown: false }}
         />
-        {/*
         <AuthStack.Screen
           name="importWallet"
           component={ImportWalletScreen}
           options={{ headerTitle: 'Restore Account' }}
-        />*/}
+        />
       </AuthStack.Group>
     </AuthStack.Navigator>
   );

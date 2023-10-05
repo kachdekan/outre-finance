@@ -25,7 +25,7 @@ export default function WelcomeScreen({ navigation }) {
           pr="4"
           minW="75%"
           _text={{ color: 'primary.700', fontWeight: 'semibold', mb: '0.5' }}
-          onPress={() => console.log('comming soon')}
+          onPress={() => navigation.navigate('importWallet')}
         >
           Use Existing Account
         </Button>

@@ -19,7 +19,9 @@ export default function SetPasscodeScreen({ navigation }) {
     setUserToken(code);
     if (pendingWallet) {
       console.log('Is Pending Wallet');
-      //dispatch(importWallet(code));
+      dispatch(createAccount());
+      dispatch(importWallet(code));
+      navigation.navigate('Staging');
     } else {
       console.log('creating wallet');
       dispatch(createAccount());
