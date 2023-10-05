@@ -36,10 +36,10 @@ export const outreAuthApi = createApi({
 
     //Wallets
     addWallet: builder.mutation({
-      query: ({ address, enMnemonic, enPrivateKey, publicKey }) => ({
+      query: ({ address, enMnemonic, enPrivateKey }) => ({
         url: '/addWallet',
         method: 'POST',
-        body: { address, enMnemonic, enPrivateKey, publicKey },
+        body: { address, enMnemonic, enPrivateKey, publicKey: 'no key' },
         headers: {
           'Content-type': 'application/json; charset=UTF-8',
         },

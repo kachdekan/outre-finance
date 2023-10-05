@@ -53,6 +53,7 @@ const essentialSlice = createSlice({
 export const {
   setLoggedIn,
   setIsConnected,
+  setIsSignered,
   setHasAccount,
   setIsImporting,
   setUserDetails,

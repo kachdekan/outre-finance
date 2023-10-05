@@ -10,6 +10,10 @@ export function setPrivateKey(key) {
   privateKey = key;
 }
 
+export function isKeySet() {
+  return !!privateKey;
+}
+
 export function isSignerSet() {
   return !!signer;
 }

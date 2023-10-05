@@ -4,12 +4,12 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 //Screens
 import {
   WelcomeScreen,
-  //DummyScreen,
-  //UserDetailsScreen,
+  DummyScreen,
+  UserDetailsScreen,
   LoginScreen,
-  //VerificationScreen,
-  //SetPasscodeScreen,
-  //StagingScreen
+  VerificationScreen,
+  SetPasscodeScreen,
+  StagingScreen,
 } from '@dapp/features/essentials';
 import { useSelector } from 'react-redux';
 const AuthStack = createNativeStackNavigator();
@@ -27,7 +27,6 @@ export function AuthNavigator() {
           options={{ headerShown: false }}
         />
       )}
-      {/*
       <AuthStack.Group screenOptions={{ presentation: 'modal' }}>
         <AuthStack.Screen name="DummyModal" component={DummyScreen} />
         <AuthStack.Screen
@@ -55,8 +54,8 @@ export function AuthNavigator() {
           name="importWallet"
           component={ImportWalletScreen}
           options={{ headerTitle: 'Restore Account' }}
-        />
-      </AuthStack.Group>*/}
+        />*/}
+      </AuthStack.Group>
     </AuthStack.Navigator>
   );
 }
