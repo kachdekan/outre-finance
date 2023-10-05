@@ -1,38 +1,45 @@
-import { isProviderSet } from './provider'
+import { Wallet } from 'ethers';
+import { isProviderSet, getProvider } from './provider';
 
 // Note this is the wallet's local signer, not to be confused with
 // vote signers in the Accounts contract
-let signer = {}
+let privateKey = null;
+let signer = {};
+
+export function setPrivateKey(key) {
+  privateKey = key;
+}
 
 export function isSignerSet() {
-  return !!signer
+  return !!signer;
 }
 
 export function getSigner() {
   if (!signer) {
-    console.log('Signer is not yet initialized')
-    throw new Error('Attempting to use signer before initialized')
+    console.log('Signer is not yet initialized');
+    throw new Error('Attempting to use signer before initialized');
   }
-  return signer
+  return signer;
 }
 
-export function setSigner(_signer) {
-  if (!_signer) {
-    throw new Error('Signer is invalid')
+export function setSigner() {
+  if (!privateKey) {
+    throw new Error('invalid Key');
   }
 
   if (!isProviderSet()) {
-    throw new Error('Provider must be set before signer')
+    throw new Error('Provider must be set before signer');
   }
 
   if (signer) {
-    console.log('Signer is being overridden')
+    console.log('Signer is being overridden');
   }
 
-  signer = _signer
-  console.log('Signer is set')
+  const provider = getProvider();
+  signer = new Wallet(privateKey, provider);
+  console.log('Signer is set');
 }
 
 export function clearSigner() {
-  signer = undefined
+  signer = undefined;
 }

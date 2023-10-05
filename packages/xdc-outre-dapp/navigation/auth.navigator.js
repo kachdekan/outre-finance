@@ -15,7 +15,7 @@ import { useSelector } from 'react-redux';
 const AuthStack = createNativeStackNavigator();
 
 export function AuthNavigator() {
-  const hasAccount = false//useSelector((s) => s.essential.hasAccount);
+  const hasAccount = useSelector((s) => s.essential.hasAccount);
   return (
     <AuthStack.Navigator initialRouteName="Welcome">
       {hasAccount ? (
@@ -26,7 +26,8 @@ export function AuthNavigator() {
           component={WelcomeScreen}
           options={{ headerShown: false }}
         />
-      )}{/*
+      )}
+      {/*
       <AuthStack.Group screenOptions={{ presentation: 'modal' }}>
         <AuthStack.Screen name="DummyModal" component={DummyScreen} />
         <AuthStack.Screen

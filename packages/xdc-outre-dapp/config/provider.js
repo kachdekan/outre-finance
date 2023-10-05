@@ -1,6 +1,6 @@
 import { providers } from 'ethers';
-import { jsonRpcUrlPrimary, jsonRpcUrlSecondary } from './appconfig';
-import { STALE_BLOCK_TIME } from './constsants';
+import { jsonRpcUrlPrimary, jsonRpcUrlSecondary, chainData } from './appconfig';
+import { STALE_BLOCK_TIME } from './constants';
 import { promiseTimeout, sleep, isStale } from '@dapp/utils';
 
 let provider = undefined;
@@ -49,7 +49,7 @@ function isProviderSynced(block, network) {
     block.timestamp &&
     !isStale(block.timestamp * 1000, STALE_BLOCK_TIME * 6) &&
     network &&
-    network.chainId === config.chainId
+    network.chainId === chainData.chainId
   );
 }
 export function getProvider() {

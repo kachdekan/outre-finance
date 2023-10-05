@@ -1,7 +1,8 @@
-import { WALLETS_STORE } from '@dapp/config/constants';
+import { DERIVATION_PATH, WALLETS_STORE } from '@dapp/config/constants';
 import { getUserWallets, storeUserWallet } from '@dapp/services';
 import { encryptData } from '@dapp/utils';
-import { utils } from 'ethers';
+import { Wallet, utils } from 'ethers';
+
 export const walletsListCache = {};
 
 export async function hasWallets() {
@@ -26,6 +27,28 @@ export async function getWallets() {
   return Object.values(walletsListCache); //Always return a list
 }
 
+export async function generateWallet(derivationPath) {
+  const path = derivationPath || DERIVATION_PATH;
+  const entropy = utils.randomBytes(32);
+  const mnemonic = utils.entropyToMnemonic(entropy);
+  const wallet = Wallet.fromMnemonic(mnemonic, path);
+  return {
+    address: wallet.address,
+    privateKey: wallet.privateKey,
+    mnemonic: wallet.mnemonic.phrase,
+  };
+}
+
+export async function generateWalletFromMnemonic(mnemonic, derivationPath) {
+  const path = derivationPath || DERIVATION_PATH;
+  const wallet = Wallet.fromMnemonic(mnemonic, path);
+  return {
+    address: wallet.address,
+    privateKey: wallet.privateKey,
+    mnemonic: wallet.mnemonic.phrase,
+  };
+}
+
 export async function storeWallet(passcode, wallet) {
   console.log('Adding wallet to store');
   const enPrivateKey = await encryptData(wallet.privateKey, passcode);
@@ -36,7 +59,6 @@ export async function storeWallet(passcode, wallet) {
     address: wallet.address,
     enPrivateKey: enPrivateKey,
     enMnemonic: enMnemonic,
-    publicKey: wallet.publicKey,
   };
   await storeUserWallet(WALLETS_STORE, newWallet);
   Object.assign(walletsListCache, { [wallet.address]: newWallet });

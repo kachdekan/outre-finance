@@ -3,6 +3,7 @@ import { createSlice, createAction } from '@reduxjs/toolkit';
 const initialState = {
   isLoggedIn: false,
   isConnected: false,
+  isSignerSet: false,
   isImporting: false,
   hasAccount: false,
   userDetails: {
