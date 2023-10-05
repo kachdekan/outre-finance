@@ -4,8 +4,8 @@ import { CodeInput } from '@dapp/components';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { setLoggedIn } from '@dapp/store/essential/essential.slice';
-import { userToken } from '@dapp/config';
-import { saltyPasscode } from '@dapp/utils/encryption';
+import { userToken } from '@dapp/config/usertoken';
+import { saltyPasscode } from '@dapp/utils';
 
 export default function LoginScreen({ navigation }) {
   const dispatch = useDispatch();

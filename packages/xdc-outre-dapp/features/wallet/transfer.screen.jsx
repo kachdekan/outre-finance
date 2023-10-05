@@ -15,7 +15,7 @@ import {
 } from 'native-base';
 import { useState, useRef } from 'react';
 import { utils } from 'ethers';
-import { SuccessModal } from '@dapp/components/';
+import { SuccessModal } from '@dapp/components';
 //import { tranferFunds, tranferTRX } from '@dapp/contracts';
 import { rates } from '@dapp/utils';
 
@@ -28,7 +28,7 @@ export default function TransferFundsScreen({ navigation, route }) {
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(true);
   const approxAmount =
-    token === 'USxD' ? (amount * rates.USDD).toFixed(2) : (amount * rates.TRX).toFixed(2);
+    token === 'USXD' ? (amount * rates.USDD).toFixed(2) : (amount * rates.TRX).toFixed(2);
   let textSize = '5xl';
   if (amount.length > 6 && amount.length <= 8) {
     textSize = '4xl';

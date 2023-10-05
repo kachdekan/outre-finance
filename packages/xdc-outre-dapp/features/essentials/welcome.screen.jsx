@@ -1,5 +1,4 @@
 import { Box, VStack, Button, Heading, Spacer } from 'native-base';
-import { decryptDataWtoken } from '../../utils/encryption';
 
 export default function WelcomeScreen({ navigation }) {
   return (

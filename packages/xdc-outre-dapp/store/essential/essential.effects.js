@@ -1,13 +1,8 @@
-import {
-  setIsConnected,
-  setLoggedIn,
-  createAccount,
-} from '@dapp/store/essential/essential.slice';
- 
-import { userToken } from '@dapp/features/essentials/user.token';
-import { storeUserDetails } from '@dapp/services';
-import { USER_STORE } from '@dapp/config';
+import { setIsConnected, setLoggedIn, createAccount } from '@dapp/store/essential/essential.slice';
 
+import { userToken } from '@dapp/config/usertoken';
+import { storeUserDetails } from '@dapp/services';
+import { USER_STORE } from '@dapp/config/constants';
 
 export const essentialListeners = (startListening) => {
   startListening({

@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { authURL, SALT } from "@dapp/config" 
+import { authURL, SALT } from '@dapp/config/appconfig';
 
 // Define a service using a base URL and expected endpoints
 export const outreAuthApi = createApi({
@@ -19,7 +19,7 @@ export const outreAuthApi = createApi({
     }),
 
     getUserProfile: builder.query({
-      query: () => '/profile'
+      query: () => '/profile',
     }),
 
     //Auth
@@ -50,4 +50,9 @@ export const outreAuthApi = createApi({
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useRegisterUserMutation, useAuthUserMutation, useGetUserProfileQuery, useAddWalletMutation} = outreAuthApi;
+export const {
+  useRegisterUserMutation,
+  useAuthUserMutation,
+  useGetUserProfileQuery,
+  useAddWalletMutation,
+} = outreAuthApi;

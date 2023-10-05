@@ -10,7 +10,7 @@ export default function DepositScreen() {
       <Pressable>
         <HStack alignItems="center" m={2}>
           <Text fontWeight="medium" fontSize="lg" mr={1}>
-            Deposit TRX/USDD
+            Deposit XDC/USXD
           </Text>
           <Icon as={Ionicons} name="caret-down-outline" size="sm" color="text.400" />
         </HStack>
@@ -35,7 +35,7 @@ export default function DepositScreen() {
         <HStack p={3} justifyContent="space-between" justifyItems="center">
           <Box width="70%">
             <Text color="text.600">Network</Text>
-            <Text fontWeight="medium">SHASTA Testnet (TRX & TRC20)</Text>
+            <Text fontWeight="medium">APOTHEM Testnet (XDC & XRC20)</Text>
           </Box>
           <Pressable p={3}>
             <Icon as={Ionicons} name="md-swap-horizontal" size="lg" color="text.400" />
@@ -45,7 +45,7 @@ export default function DepositScreen() {
         <Box pl={3} py={3} pr={6}>
           <HStack justifyContent="space-between">
             <Text>Minimum deposit</Text>
-            <Text fontWeight="medium">1.00 USDD OR TRX</Text>
+            <Text fontWeight="medium">1.00 USXD OR XDC</Text>
           </HStack>
           <HStack justifyContent="space-between">
             <Text>Expected arrival</Text>

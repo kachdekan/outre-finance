@@ -10,10 +10,8 @@ const listenerMiddleware = createListenerMiddleware();
 export const store = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().prepend(
-      listenerMiddleware.middleware,
-    ),
+    getDefaultMiddleware().prepend(listenerMiddleware.middleware),
 });
 
-const listeners = [essentialListeners,  loansListeners]; //walletListeners,];
+const listeners = [essentialListeners, loansListeners]; //walletListeners,];
 listeners.forEach((listener) => listener(listenerMiddleware.startListening));

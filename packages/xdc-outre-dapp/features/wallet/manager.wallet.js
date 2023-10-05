@@ -1,4 +1,4 @@
-import { WALLETS_STORE } from '@dapp/config';
+import { WALLETS_STORE } from '@dapp/config/constants';
 import { getUserWallets, storeUserWallet } from '@dapp/services';
 import { encryptData } from '@dapp/utils';
 import { utils } from 'ethers';
@@ -46,20 +46,13 @@ export function getWalletBalances(data) {
   if (!data) {
     return null;
   }
-  return data.data[0]
-    ? {
-
-      }
-    : {
-
-      };
+  return data.data[0] ? {} : {};
 }
 
 export function getWalletTxs(accountTxs, xrc20Txs, address) {
-  if (!accountTxs || !xrc20Txs ) return [];
-
+  if (!accountTxs || !xrc20Txs) return [];
 
   //thisTxs.push(...thisTrc20Txs);
   //thisTxs.sort((a, b) => Number(b.timestamp) - Number(a.timestamp));
-  return []//thisTxs;
+  return []; //thisTxs;
 }

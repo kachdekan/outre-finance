@@ -10,7 +10,6 @@ import { useNavigation } from '@react-navigation/native';
 import { HomeScreen, DummyScreen } from '@dapp/features/essentials';
 import { AccountScreen } from '@dapp/features/account';
 
-
 import { useSelector } from 'react-redux';
 import {
   //LoanInfoScreen,
@@ -18,9 +17,9 @@ import {
   //CreateOfferScreen,
   //FundLoanScreen,
   //SelectLoanScreen,
-  LoansHomeScreen, 
-  LoanOffersScreen, 
-  LoanRequestsScreen
+  LoansHomeScreen,
+  LoanOffersScreen,
+  LoanRequestsScreen,
 } from '@dapp/features/microloans';
 
 import { DepositScreen, TransferFundsScreen } from '@dapp/features/wallet';
@@ -35,7 +34,8 @@ export function AppNavigator() {
         name="Main"
         component={BottomTabNavigator}
         options={{ headerShown: false }}
-      />{/*
+      />
+      {/*
       <AppStack.Group screenOptions={{ presentation: 'modal' }}>
         <AppStack.Screen name="DummyModal" component={DummyScreen} />
         <AppStack.Screen name="AccountScreen" component={AccountScreen} />
@@ -66,9 +66,9 @@ const BottomTabNavigator = () => {
 
 const TAB_ICON = {
   Home: ['home-3-fill', 'home-3-line'],
-  Spaces: ['safe-2-fill', 'safe-2-line'],
-  Loans: ['hand-coin-fill', 'hand-coin-line'],
-  Account: ['user-3-fill', 'user-3-line'],
+  Loans: ['ri-refund-fill', 'ri-refund-line'],
+  Offers: ['ri-pantone-fill', 'ri-pantone-line'],
+  Requests: ['hand-coin-fill', 'hand-coin-line'],
 };
 
 const screenOptions = ({ route }) => {
