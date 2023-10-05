@@ -27,7 +27,7 @@ export const transactions = [
   },
 ];
 
-export const rates = { KES: 1, USDD: 145.05, TRX: 145.05 * 0.085, TRXusd: 0.085 };
+export const rates = { KES: 1, USXD: 148.7, XDC: 148.7 * 0.05, XDCusd: 0.05 };
 
 export const LoansData = [
   {

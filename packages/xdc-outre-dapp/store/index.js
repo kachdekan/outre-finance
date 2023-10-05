@@ -5,14 +5,18 @@ import { essentialListeners } from './essential/essential.effects';
 import { walletListeners } from './wallet/wallet.effects';
 import { loansListeners } from './microloans/loans.effects';
 
-import { outreAuthApi } from '@dapp/services';
+import { outreAuthApi, blockscoutApi } from '@dapp/services';
 
 const listenerMiddleware = createListenerMiddleware();
 
 export const store = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().prepend(listenerMiddleware.middleware, outreAuthApi.middleware),
+    getDefaultMiddleware().prepend(
+      listenerMiddleware.middleware,
+      outreAuthApi.middleware,
+      blockscoutApi.middleware,
+    ),
 });
 
 const listeners = [essentialListeners, loansListeners, walletListeners];

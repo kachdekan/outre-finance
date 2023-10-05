@@ -1,7 +1,7 @@
 import { Box, HStack, Stack, Text, VStack, Avatar } from 'native-base';
 import { rates } from '@dapp/utils';
 
-const FeaturedAssets = ({ trxBal, usddBal }) => {
+const FeaturedAssets = ({ nativeBal, stableBal }) => {
   return (
     <HStack space="2%" width="95%">
       <HStack justifyContent="space-between" bg="white" py={2} px={3} minW="48%" rounded="2xl">
@@ -11,18 +11,18 @@ const FeaturedAssets = ({ trxBal, usddBal }) => {
             bg="primary.200"
             _text={{ color: 'primary.800' }}
             source={{
-              uri: 'https://assets.coingecko.com/coins/images/22471/small/xOesRfpN_400x400.jpg',
+              uri: 'https://assets.coingecko.com/coins/images/2912/small/xdc-icon.png',
             }}
           >
-            TRX
+            XDC
           </Avatar>
-          <Text>TRX</Text>
+          <Text>XDC</Text>
         </HStack>
         <Stack mr={1}>
           <Text textAlign="right" color="warmGray.800" fontWeight="semibold">
-            {trxBal.toFixed(2)}
+            {nativeBal.toFixed(2)}
           </Text>
-          <Text textAlign="right">≈ $ {(trxBal * rates.TRXusd).toFixed(2)}</Text>
+          <Text textAlign="right">≈ $ {(nativeBal * rates.XDCusd).toFixed(2)}</Text>
         </Stack>
       </HStack>
       <HStack justifyContent="space-between" bg="white" py={2} px={3} minW="49%" rounded="2xl">
@@ -32,18 +32,18 @@ const FeaturedAssets = ({ trxBal, usddBal }) => {
             bg="primary.200"
             _text={{ color: 'primary.800' }}
             source={{
-              uri: 'https://assets.coingecko.com/coins/images/25380/small/UUSD.jpg',
+              uri: 'https://assets.coingecko.com/coins/images/13056/small/USDX_coin.png?1696512841',
             }}
           >
-            USDD
+            USXD
           </Avatar>
-          <Text>USDD</Text>
+          <Text>USXD</Text>
         </HStack>
         <Stack mr={1}>
           <Text textAlign="right" color="warmGray.800" fontWeight="semibold">
-            {usddBal.toFixed(2)}
+            {stableBal.toFixed(2)}
           </Text>
-          <Text textAlign="right">≈ $ {usddBal.toFixed(2)}</Text>
+          <Text textAlign="right">≈ $ {stableBal.toFixed(2)}</Text>
         </Stack>
       </HStack>
     </HStack>
