@@ -39,7 +39,7 @@ export default function HomeScreen() {
       const thisBalances = await getWalletBalances(isSignerSet, thisAddress);
       if (thisBalances !== null) {
         const { xdcBal, usxdBal } = thisBalances;
-        if (!!usxdBal) {
+        if (!!xdcBal) {
           setBalance({ xdcBal, usxdBal, balUSD: xdcBal * rates.XDCusd + usxdBal });
         }
       }

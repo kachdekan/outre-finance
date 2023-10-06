@@ -19,12 +19,12 @@ This product greatly reduces the cost of loans as it democratises lending and al
 
 #### Demo
 
-- Watch the [Live Demo](https://youtu.be/_sBZ6Gn0-1I).
-- Try it yourself. [Outre Finance Android App](https://github.com/kachdekan/outre-finance/blob/main/packages/outre-dapp/assets/OutreDapp.apk)
+- Watch the [Live Demo](https://youtu.be/gIwW4jLE-40).
+- Try it yourself. 
 
 #### Positive outcomes
 
 - Onboarding of the unbanked to web3.
-- Interest for participating chamas.
+- Interest for loans offered.
 - Credit score and credit worthiness for users.
 - Financial resilience through a simple channel.
