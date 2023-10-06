@@ -4,7 +4,7 @@ import { Feather } from '@expo/vector-icons';
 import { RefreshControl } from 'react-native';
 
 import { SectionHeader, LoansFeatureItem, FeaturesCard } from '@dapp/components';
-//import { getMyLoans, repayLoan } from '@dapp/contracts';
+import { getMyLoans, repayLoan } from '@dapp/contracts';
 
 export default function LoansHomeScreen({ navigation }) {
   const [refreshing, setRefreshing] = useState(false);
@@ -14,7 +14,7 @@ export default function LoansHomeScreen({ navigation }) {
   }, []);
   const [loans, setLoans] = useState([]);
   const [totalBalance, setTotalBalance] = useState(0);
-  /*
+
   useEffect(() => {
     let thisBal = 0;
     const getLoans = async () => {
@@ -36,7 +36,7 @@ export default function LoansHomeScreen({ navigation }) {
     });
 
     return unsubscribe;
-  }, [navigation, refreshing]);*/
+  }, [navigation, refreshing]);
 
   const handleTest = async () => {
     console.log('test repay funds', loans[7].address);
@@ -108,7 +108,7 @@ export default function LoansHomeScreen({ navigation }) {
             />
           </Box>
         )}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.address}
       />
     </Box>
   );

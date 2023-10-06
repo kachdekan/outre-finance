@@ -33,8 +33,8 @@ export default function CreateOfferScreen({ navigation }) {
   const [isSucess, setIsSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const balances = {
-    USDD: 1000,
-    TRX: 1000,
+    USXD: 1000,
+    XDC: 1000,
   }; //useSelector((s) => s.wallet.balances);
 
   useEffect(() => {
@@ -76,8 +76,11 @@ export default function CreateOfferScreen({ navigation }) {
       setIsLoading(true);
       console.log('Offer Data', offerData);
       const result = await createAnOffer(offerData);
-      if (result) {
-        //Do something
+      console.log('Offer Result', result);
+      if (result.status == 1) {
+        setIsSuccess(true);
+        setIsLoading(false);
+        onOpen();
       } else {
         setIsSuccess(false);
         setIsLoading(false);
@@ -96,7 +99,7 @@ export default function CreateOfferScreen({ navigation }) {
             <Box bg="white" roundedTop="xl" roundedBottom="md">
               <HStack m={3} space="xl">
                 <Text fontSize="lg" py={3} pl={4} fontWeight="semibold">
-                  USDD
+                  USXD
                 </Text>
                 <Input
                   py={2}
@@ -107,7 +110,7 @@ export default function CreateOfferScreen({ navigation }) {
                   keyboardType="numeric"
                   InputRightElement={
                     <Text fontSize="md" fontWeight="medium" pr={3}>
-                      USDD
+                      USXD
                     </Text>
                   }
                   value={amount}
@@ -115,7 +118,7 @@ export default function CreateOfferScreen({ navigation }) {
                 />
               </HStack>
               <Text px={5} mb={3}>
-                Max Lendable: {(balances.USDD * 1.0).toFixed(2)} USDD
+                Max Lendable: {(balances.USXD * 1.0).toFixed(2)} USXD
               </Text>
             </Box>
             <Stack bg="white" py={3} px={4} rounded="md">
@@ -159,7 +162,7 @@ export default function CreateOfferScreen({ navigation }) {
                 <Text fontSize="md">Limit</Text>
 
                 <Text fontSize="md" mr={3}>
-                  USDD
+                  USXD
                 </Text>
               </HStack>
               <HStack mt={2} justifyContent="space-between" alignItems="center">
@@ -170,7 +173,7 @@ export default function CreateOfferScreen({ navigation }) {
                   width="45%"
                   size="lg"
                   keyboardType="numeric"
-                  InputRightElement={<Text pr={3}>USDD</Text>}
+                  InputRightElement={<Text pr={3}>USXD</Text>}
                   value={limit.min}
                   onChangeText={(amount) => setLimit({ ...limit, min: amount })}
                 />
@@ -182,7 +185,7 @@ export default function CreateOfferScreen({ navigation }) {
                   width="45%"
                   size="lg"
                   keyboardType="numeric"
-                  InputRightElement={<Text pr={3}>USDD</Text>}
+                  InputRightElement={<Text pr={3}>USXD</Text>}
                   value={limit.max}
                   onChangeText={(amount) => setLimit({ ...limit, max: amount })}
                 />
@@ -197,7 +200,7 @@ export default function CreateOfferScreen({ navigation }) {
                 </Text>
               </HStack>
               <HStack mt={2} justifyContent="space-between" alignItems="center">
-                <Text>Repayment: {(amount * 1 * (100 + interest * 1)) / 100} USDD</Text>
+                <Text>Repayment: {(amount * 1 * (100 + interest * 1)) / 100} USXD</Text>
                 <Input
                   py={1}
                   textAlign="right"

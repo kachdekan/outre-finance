@@ -12,7 +12,7 @@ export default function LoanOffersScreen({ navigation }) {
     setRefreshing(true);
     setTimeout(() => setRefreshing(false), 3000);
   }, []);
-  /*
+
   useEffect(() => {
     setRefreshing(true);
     const getOffers = async () => {
@@ -25,7 +25,7 @@ export default function LoanOffersScreen({ navigation }) {
     });
     setRefreshing(false);
     return unsubscribe;
-  }, [navigation, refreshing]);*/
+  }, [navigation, refreshing]);
 
   return (
     <Box flex={1} bg="$muted100" alignItems="center">

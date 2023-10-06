@@ -7,7 +7,7 @@ import { SectionHeader, TransactionItem } from '@dapp/components';
 import { getLoanDetails } from '@dapp/contracts';
 import { getDaysBetween } from '@dapp/utils';
 import { getLoanTxs } from './loans.manager';
-import { useGetTokenTransfersQuery } from '@dapp/services';
+import { useGetTxsByAddrQuery } from '@dapp/services';
 import { useSelector } from 'react-redux';
 import { rates } from '@dapp/utils';
 
@@ -20,7 +20,7 @@ export default function LoanInfoScreen({ navigation, route }) {
   const [transactions, setTransactions] = useState([]);
   const isLender = route.params.isLender;
 
-  const { data: contractTxs, refetch: refetchTxs } = useGetTokenTransfersQuery(
+  const { data: contractTxs, refetch: refetchTxs } = useGetTxsByAddrQuery(
     route.params.address.replace('0x', 'xdc'),
   );
 
@@ -28,7 +28,7 @@ export default function LoanInfoScreen({ navigation, route }) {
     setRefreshing(true);
     setTimeout(() => setRefreshing(false), 2000);
   }, []);
-  /*
+
   useEffect(() => {
     const getLoan = async () => {
       const loan = await getLoanDetails(route.params.address);
@@ -49,11 +49,11 @@ export default function LoanInfoScreen({ navigation, route }) {
 
   useEffect(() => {
     const getTxs = async () => {
-      const thisTxs = await getLoanTxs(contractTxs, thisAddress);
+      const thisTxs = await getLoanTxs(contractTxs, thisAddress, route.params.address);
       setTransactions(thisTxs);
     };
     getTxs();
-  }, [contractTxs]);*/
+  }, [contractTxs]);
 
   return (
     <Box flex={1} bg="muted.100" alignItems="center">
@@ -68,7 +68,7 @@ export default function LoanInfoScreen({ navigation, route }) {
               color="warmGray.800"
               bg="white"
               balance={(loan.currentBal * 1).toFixed(4).toString()}
-              apprxBalance={(loan.currentBal * rates.USDD).toFixed(2).toString()}
+              apprxBalance={(loan.currentBal * rates.USXD).toFixed(2).toString()}
               expScreen="DummyModal"
               btn1={{
                 icon: (
@@ -147,7 +147,7 @@ export default function LoanInfoScreen({ navigation, route }) {
               spAmount={
                 (item.credited ? '+' : '-') + (item.amount * 1).toFixed(2) + ' ' + item.token
               }
-              eqAmount={(item.amount * rates.USDD).toFixed(2) + ' KES'}
+              eqAmount={(item.amount * rates.USXD).toFixed(2) + ' KES'}
               screen="DummyModal"
             />
           </Box>

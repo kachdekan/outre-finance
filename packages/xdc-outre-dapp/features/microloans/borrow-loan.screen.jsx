@@ -41,10 +41,10 @@ export default function BorrowLoanScreen({ navigation, route }) {
     lenderName: loanParams.lenderName,
     borrower: thisUser.address,
     borrowerName: thisUser.names,
-    principal: utils.parseEther(amount ? amount : '0').toString(),
+    principal: utils.parseUnits(amount ? amount : '0', 6).toString(),
     interest: loanParams.interest * 100,
-    balance: utils.parseEther('0').toString(),
-    paid: utils.parseEther('0').toString(),
+    balance: utils.parseUnits('0', 6).toString(),
+    paid: utils.parseUnits('0', 6).toString(),
     minDuration: loanParams.minDuration,
     maxDuration: loanParams.maxDuration,
     deadline: Date.parse(deadline),
@@ -90,8 +90,11 @@ export default function BorrowLoanScreen({ navigation, route }) {
     if (validate()) {
       setIsLoading(true);
       const result = await borrowLoan(loanData);
-      if (result) {
-        //Do something
+      console.log('Borrow Result', result);
+      if (result.status == 1) {
+        setIsSuccess(true);
+        setIsLoading(false);
+        onOpen();
       } else {
         setIsSuccess(false);
         setIsLoading(false);
@@ -105,10 +108,10 @@ export default function BorrowLoanScreen({ navigation, route }) {
       <VStack space={3} width="95%">
         <Stack mx={6} mt={8}>
           <Text>Set an amount and deadline for your loan</Text>
-          {loanParams.lender ? (
+          {!loanParams.lender ? (
             <Text fontSize="md">
-              Limit: {(loanParams.minLimit * 1).toFixed(2)} - {(loanParams.maxLimit * 1).toFixed(2)}{' '}
-              USDD
+              Limit: {(loanParams.minAmount * 1).toFixed(2)} -{' '}
+              {(loanParams.maxAmount * 1).toFixed(2)} USXD
             </Text>
           ) : (
             <Text fontSize="md">Duration: 2 - 3 weeks</Text>
@@ -119,7 +122,7 @@ export default function BorrowLoanScreen({ navigation, route }) {
             <Box bg="white" roundedTop="xl" roundedBottom="md">
               <HStack m={3} space="xl">
                 <Text fontSize="lg" py={3} pl={4} fontWeight="semibold">
-                  USDD
+                  USXD
                 </Text>
                 <Input
                   py={2}
@@ -130,7 +133,7 @@ export default function BorrowLoanScreen({ navigation, route }) {
                   keyboardType="numeric"
                   InputRightElement={
                     <Text fontSize="md" fontWeight="medium" pr={3}>
-                      USDD
+                      USXD
                     </Text>
                   }
                   value={amount}
@@ -138,7 +141,7 @@ export default function BorrowLoanScreen({ navigation, route }) {
                 />
               </HStack>
               <Text px={5} mb={3}>
-                Max Borrowable: {(loanParams.maxAmount * 1).toFixed(2)} USDD
+                Max Borrowable: {(loanParams.maxAmount * 1).toFixed(2)} USXD
               </Text>
             </Box>
           ) : null}
@@ -189,14 +192,14 @@ export default function BorrowLoanScreen({ navigation, route }) {
                 <HStack alignItems="center" space={2}>
                   {isOkValue ? null : <Icon as={Feather} name="alert-circle" color="danger.500" />}
                   <Text color={isOkValue ? null : 'danger.500'}>
-                    {(amount * 1).toFixed(2)} USDD
+                    {(amount * 1).toFixed(2)} USXD
                   </Text>
                 </HStack>
               </HStack>
               <HStack justifyContent="space-between" px={4}>
                 <Text fontWeight="medium">Repayment:</Text>
                 <Text>≈ {((amount * 120.75 * (100 + 5)) / 100).toFixed(2)} KES</Text>
-                <Text>{((amount * 1 * (100 + 5)) / 100).toFixed(2)} USDD</Text>
+                <Text>{((amount * 1 * (100 + 5)) / 100).toFixed(2)} USXD</Text>
               </HStack>
               <HStack justifyContent="space-between" pb={3} px={4}>
                 <Text fontWeight="medium">Repayment Date:</Text>
@@ -248,7 +251,7 @@ export default function BorrowLoanScreen({ navigation, route }) {
                   You have initiated a loan of
                 </Text>
                 <Text textAlign="center" fontWeight="semibold">
-                  {(amount * 1).toFixed(2)} USDD
+                  {(amount * 1).toFixed(2)} USXD
                 </Text>
                 <Text textAlign="center">from {loanParams.lenderName}</Text>
               </>

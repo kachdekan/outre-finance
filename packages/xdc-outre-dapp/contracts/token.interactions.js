@@ -18,7 +18,7 @@ const handleTransaction = async (transaction) => {
 };
 
 export const approveFunds = async (spender, amount) => {
-  const amountInWei = utils.parseUnits(amount, 18);
+  const amountInWei = utils.parseUnits(amount, 6);
   const results = await handleTransaction(
     async (contract) => await contract.approve(spender, amountInWei),
   );
@@ -26,7 +26,7 @@ export const approveFunds = async (spender, amount) => {
 };
 
 export const tranferFunds = async (to, amount) => {
-  const amountInWei = utils.parseUnits(amount, 18);
+  const amountInWei = utils.parseUnits(amount, 6);
   const results = await handleTransaction(
     async (contract) => await contract.transfer(to, amountInWei),
   );

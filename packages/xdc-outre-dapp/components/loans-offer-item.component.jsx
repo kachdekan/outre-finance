@@ -10,12 +10,12 @@ const LoansOfferItem = (props) => {
       ? title[0].slice(0, 1) + title[1].slice(0, 1)
       : title[0].slice(0, 2).toUpperCase();
   const fees = 0.0;
-  const apprxAmt = (props.principal * rates.USDD).toFixed(2);
+  const apprxAmt = (props.principal * rates.USXD).toFixed(2);
   const repayment = (props.principal * ((100 + props.interest * 1) / 100)).toFixed(2);
   const minDuration = (props.duration.min / 7).toFixed(0);
   const maxDuration = (props.duration.max / 7).toFixed(0);
-  const minAmount = props.isOffer ? (props.limit.min * rates.USDD).toFixed(2) : 0.0;
-  const maxAmount = props.isOffer ? (props.limit.max * rates.USDD).toFixed(2) : 0.0;
+  const minAmount = props.isOffer ? (props.limit.min * rates.USXD).toFixed(2) : 0.0;
+  const maxAmount = props.isOffer ? (props.limit.max * rates.USXD).toFixed(2) : 0.0;
   const minAPR = (
     ((props.interest + fees / (props.isOffer ? props.limit.max : props.principal)) /
       props.duration.max) *
@@ -40,14 +40,14 @@ const LoansOfferItem = (props) => {
           <HStack alignItems="flex-end" justifyContent="flex-end">
             <Heading size="md">{(props.principal * 1).toFixed(0)}</Heading>
             <Text fontWeight="medium" mb={0.5} ml={1}>
-              USDD
+              USXD
             </Text>
           </HStack>
           <Text textAlign="right" color="muted.700">
             apprx: {apprxAmt} KES
           </Text>
           <Text textAlign="right" color="muted.700">
-            {(props.isOffer ? 'repay: ' : 'receive: ') + repayment} USDD
+            {(props.isOffer ? 'repay: ' : 'receive: ') + repayment} USXD
           </Text>
           <Button
             maxW="80%"

@@ -14,7 +14,7 @@ import {
 import { useEffect, useState } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { useSelector, useDispatch } from 'react-redux';
-import { getUSDDBalance, repayLoan, fundLoan } from '@dapp/contracts';
+import { getTokenBalance, repayLoan, fundLoan } from '@dapp/contracts';
 
 export default function FundLoanScreen({ navigation, route }) {
   const thisAddress = useSelector((s) => s.wallet.walletInfo.address);
@@ -32,8 +32,11 @@ export default function FundLoanScreen({ navigation, route }) {
     const result = isLender
       ? await fundLoan(route.params.address, amount)
       : await repayLoan(route.params.address, amount);
-    if (result) {
-      //Do something
+    console.log('Fund Result', result);
+    if (result.status == 1) {
+      setIsSuccess(true);
+      setIsLoading(false);
+      onOpen();
     } else {
       setIsSuccess(false);
       setIsLoading(false);
@@ -43,7 +46,7 @@ export default function FundLoanScreen({ navigation, route }) {
 
   useEffect(() => {
     const getBalance = async () => {
-      const bal = await getUSDDBalance(thisAddress);
+      const bal = await getTokenBalance(thisAddress);
       setBalance(bal);
     };
     getBalance();
@@ -57,14 +60,14 @@ export default function FundLoanScreen({ navigation, route }) {
             <>
               <Text>Please fund the Full Amount</Text>
               <Text fontSize="md">
-                Fund a max of: {(route.params.principal * 1).toFixed(4)} USDD
+                Fund a max of: {(route.params.principal * 1).toFixed(4)} USXD
               </Text>
             </>
           ) : (
             <>
               <Text>Set an amount you wish to pay</Text>
               <Text fontSize="md">
-                Pay a max of: {(route.params.currentBal * 1).toFixed(4)} USDD
+                Pay a max of: {(route.params.currentBal * 1).toFixed(4)} USXD
               </Text>
             </>
           )}
@@ -72,7 +75,7 @@ export default function FundLoanScreen({ navigation, route }) {
         <Stack bg="white" rounded="2xl">
           <HStack m={3} space="xl">
             <Text fontSize="lg" py={3} pl={4} fontWeight="semibold">
-              USDD
+              USXD
             </Text>
             <Input
               py={2}
@@ -83,7 +86,7 @@ export default function FundLoanScreen({ navigation, route }) {
               keyboardType="numeric"
               InputRightElement={
                 <Text fontSize="md" fontWeight="medium" pr={3}>
-                  USDD
+                  USXD
                 </Text>
               }
               value={amount}
@@ -91,7 +94,7 @@ export default function FundLoanScreen({ navigation, route }) {
             />
           </HStack>
           <Text px={5} mb={3}>
-            Account Balance: {(balance * 1.0).toFixed(2)} USDD
+            Account Balance: {(balance * 1.0).toFixed(2)} USXD
           </Text>
         </Stack>
       </VStack>
@@ -110,7 +113,7 @@ export default function FundLoanScreen({ navigation, route }) {
                   Loan has been funded successfully!
                 </Text>
                 <Text textAlign="center" fontWeight="medium" mt={2}>
-                  + {(amount * 1).toFixed(2)} USDD
+                  + {(amount * 1).toFixed(2)} USXD
                 </Text>
               </>
             ) : (
