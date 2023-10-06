@@ -7,7 +7,7 @@
     "compile": "hardhat compile",
     "test-net": "hardhat test",
     "test-local": "hardhat test --network hardhat",
-    "deploy": "hardhat deploy --export-all ../outre-dapp/blockchain/Abis/Jsons/deployed.json"
+    "deploy": "hardhat deploy"
   },
   "devDependencies": {
     "@ethersproject/abi": "^5.4.7",

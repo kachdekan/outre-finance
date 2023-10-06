@@ -4,16 +4,15 @@ import { Feather } from '@expo/vector-icons';
 import { RefreshControl } from 'react-native';
 
 import { SectionHeader, LoansFeatureItem, FeaturesCard } from '@dapp/components';
-//import { getMyLoans, repayLoan } from '@dapp/contracts';
+import { getMyLoans } from '@dapp/contracts';
 
-export default function LoansHomeScreen({ navigation }) {
+export default function SelectLoanScreen({ navigation }) {
   const [refreshing, setRefreshing] = useState(false);
   const onRefresh = useCallback(async () => {
     setRefreshing(true);
     setTimeout(() => setRefreshing(false), 2000);
   }, []);
   const [loans, setLoans] = useState([]);
-  const [totalBalance, setTotalBalance] = useState(0);
   /*
   useEffect(() => {
     let thisBal = 0;
@@ -38,12 +37,6 @@ export default function LoansHomeScreen({ navigation }) {
     return unsubscribe;
   }, [navigation, refreshing]);*/
 
-  const handleTest = async () => {
-    console.log('test repay funds', loans[7].address);
-    const res = await repayLoan(loans[7].address, '2');
-    console.log(res);
-  };
-
   return (
     <Box flex={1} bg="muted.100" alignItems="center">
       <FlatList
@@ -52,33 +45,11 @@ export default function LoansHomeScreen({ navigation }) {
         showsVerticalScrollIndicator={false}
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
         ListHeaderComponent={
-          <Box mt="3">
-            <FeaturesCard
-              color="warmGray.800"
-              bg="white"
-              balance={totalBalance.toFixed(2).toString()}
-              apprxBalance={(totalBalance * 120.75).toFixed(2).toString()}
-              btn1={{
-                icon: <Icon as={Feather} name="plus" size="md" color="primary.600" mr="1" />,
-                name: 'Borrow',
-                screen: 'Offers',
-              }}
-              btn2={{
-                icon: <Icon as={Feather} name="arrow-right" size="md" color="primary.600" mr="1" />,
-                name: 'Repay',
-                screen: 'selectLoan',
-              }}
-              btn3={{
-                icon: <Icon as={Feather} name="more-horizontal" size="lg" color="primary.600" />,
-                name: 'More',
-                screen: 'DummyModal',
-              }}
-              itemBottom={false}
-            />
-            {loans.length > 0 ? (
-              <SectionHeader title="Loans" actionText="See all" action={() => handleTest()} />
-            ) : null}
-          </Box>
+          loans.length == 0 ? (
+            <Box mt="3">
+              <Text> You dont have any Loans yet </Text>
+            </Box>
+          ) : null
         }
         renderItem={({ item, index }) => (
           <Box

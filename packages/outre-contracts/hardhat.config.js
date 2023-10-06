@@ -4,7 +4,7 @@ require('hardhat-abi-exporter')
 require('@nomiclabs/hardhat-ethers')
 require('dotenv').config({path:__dirname+'/.env'})
 
-const defaultNetwork = 'mumbai'
+const defaultNetwork = 'apothem'
 const mnemonicPath = "m/44'/52752'/0'/0/" 
 const {DEV_MNEMONIC, ACC1, ACC2} = process.env
 
@@ -42,7 +42,7 @@ module.exports = {
         count: 5,
       },
       forking: {
-       url: 'https://rpc-mumbai.maticvigil.com'
+       url: 'https://erpc.apothem.network'
       }
     },
     localhost: {
@@ -52,12 +52,12 @@ module.exports = {
       gasPrice: 2500000000,
       gas: 35000000,
     },
-    mumbai: {
-      url: 'https://rpc-mumbai.maticvigil.com',
+    apothem: {
+      url: 'https://erpc.apothem.network',
       accounts: [ACC1, ACC2],
       gasPrice: 1550000000,
       gas: 35000000,
-      chainId: 80001,
+      chainId: 51,
       loggingEnabled: true,
     },
   },

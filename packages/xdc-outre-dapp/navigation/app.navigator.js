@@ -12,11 +12,11 @@ import { AccountScreen } from '@dapp/features/account';
 
 import { useSelector } from 'react-redux';
 import {
-  //LoanInfoScreen,
-  //BorrowLoanScreen,
-  //CreateOfferScreen,
-  //FundLoanScreen,
-  //SelectLoanScreen,
+  LoanInfoScreen,
+  BorrowLoanScreen,
+  CreateOfferScreen,
+  FundLoanScreen,
+  SelectLoanScreen,
   LoansHomeScreen,
   LoanOffersScreen,
   LoanRequestsScreen,
@@ -35,20 +35,20 @@ export function AppNavigator() {
         component={BottomTabNavigator}
         options={{ headerShown: false }}
       />
-      {/*
-      <AppStack.Group screenOptions={{ presentation: 'modal' }}>
-        <AppStack.Screen name="DummyModal" component={DummyScreen} />
-        <AppStack.Screen name="AccountScreen" component={AccountScreen} />
-        <AppStack.Screen name="depositFunds" component={DepositScreen} />
-        <AppStack.Screen name="transferFunds" component={TransferFundsScreen} />
+      {
+        <AppStack.Group screenOptions={{ presentation: 'modal' }}>
+          <AppStack.Screen name="DummyModal" component={DummyScreen} />
+          <AppStack.Screen name="AccountScreen" component={AccountScreen} />
+          <AppStack.Screen name="depositFunds" component={DepositScreen} />
+          <AppStack.Screen name="transferFunds" component={TransferFundsScreen} />
 
-        <AppStack.Screen name="LoanHome" component={LoanInfoScreen} />
-        <AppStack.Screen name="borrowLoan" component={BorrowLoanScreen} />
-        <AppStack.Screen name="createOffer" component={CreateOfferScreen} />
-        <AppStack.Screen name="fundLoan" component={FundLoanScreen} />
-        <AppStack.Screen name="selectLoan" component={SelectLoanScreen} />
-
-  </AppStack.Group>*/}
+          <AppStack.Screen name="LoanHome" component={LoanInfoScreen} />
+          <AppStack.Screen name="borrowLoan" component={BorrowLoanScreen} />
+          <AppStack.Screen name="createOffer" component={CreateOfferScreen} />
+          <AppStack.Screen name="fundLoan" component={FundLoanScreen} />
+          <AppStack.Screen name="selectLoan" component={SelectLoanScreen} />
+        </AppStack.Group>
+      }
     </AppStack.Navigator>
   );
 }
