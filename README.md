@@ -12,7 +12,7 @@ This product greatly reduces the cost of loans as it democratises lending and al
 #### Demo
 
 - Watch the [Live Demo](https://youtu.be/gIwW4jLE-40).
-- Try it yourself
+- Try it yourself. [SCAN THIS QRCODE](https://github.com/kachdekan/outre-finance/blob/outre-dapp-p2p/packages/xdc-outre-dapp/assets/eas-android.svg) on Expo Go 
 
 #### Positive outcomes
 
