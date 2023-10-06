@@ -30,13 +30,26 @@ export const tranferFunds = async (to, amount) => {
   const results = await handleTransaction(
     async (contract) => await contract.transfer(to, amountInWei),
   );
-  return results;
+  const txReceipt = await results.wait();
+  return {
+    txHash: txReceipt.transactionHash,
+    status: txReceipt.status,
+  };
 };
 
 export const tranferNativeToken = async (to, amount) => {
   const amountInWei = utils.parseUnits(amount, 18);
-  const results = 'sucess'; //await tronWeb.trx.sendTransaction(hexAddress, amountInSun);
-  return results;
+  const wallet = getSigner();
+  const results = await wallet.sendTransaction({
+    to,
+    value: amountInWei,
+    data: '0x',
+  });
+  const txReceipt = await results.wait();
+  return {
+    txHash: txReceipt.transactionHash,
+    status: txReceipt.status,
+  };
 };
 
 export const getTokenBalance = async (address) => {

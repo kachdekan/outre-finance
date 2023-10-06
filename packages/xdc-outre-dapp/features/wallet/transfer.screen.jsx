@@ -16,7 +16,7 @@ import {
 import { useState, useRef } from 'react';
 import { utils } from 'ethers';
 import { SuccessModal } from '@dapp/components';
-//import { tranferFunds, tranferTRX } from '@dapp/contracts';
+import { tranferFunds, tranferNativeToken } from '@dapp/contracts';
 import { rates } from '@dapp/utils';
 
 export default function TransferFundsScreen({ navigation, route }) {
@@ -28,7 +28,7 @@ export default function TransferFundsScreen({ navigation, route }) {
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(true);
   const approxAmount =
-    token === 'USXD' ? (amount * rates.USDD).toFixed(2) : (amount * rates.TRX).toFixed(2);
+    token === 'USXD' ? (amount * rates.USXD).toFixed(2) : (amount * rates.XDC).toFixed(2);
   let textSize = '5xl';
   if (amount.length > 6 && amount.length <= 8) {
     textSize = '4xl';
@@ -40,14 +40,14 @@ export default function TransferFundsScreen({ navigation, route }) {
     let tx;
     setIsLoading(true);
     if (token === 'XDC') {
-      tx = await tranferTRX(recipient, amount);
-      if (tx.result) {
+      tx = await tranferNativeToken(recipient, amount);
+      if (tx.status == 1) {
         setIsLoading(false);
         onOpen();
       }
     } else {
       tx = await tranferFunds(recipient, amount);
-      if (tx.length > 60) {
+      if (tx.status == 1) {
         setIsLoading(false);
         onOpen();
       }
@@ -85,14 +85,14 @@ export default function TransferFundsScreen({ navigation, route }) {
           borderColor="gray.100"
           space={2}
         >
-          <Select placeholder="USDD" onValueChange={(value) => setToken(value)}>
-            <Select.Item label="TRX" value="TRX" />
-            <Select.Item label="USDD" value="USDD" />
+          <Select placeholder="USXD" onValueChange={(value) => setToken(value)}>
+            <Select.Item label="XDC" value="XDC" />
+            <Select.Item label="USXD" value="USXD" />
           </Select>
-          {token === 'TRX' ? (
-            <Text>Available: {(route.params.trxBal * 1).toFixed(4)} TRX</Text>
+          {token === 'XDC' ? (
+            <Text>Available: {(route.params.xdcBal * 1).toFixed(4)} XDC</Text>
           ) : (
-            <Text>Available: {(route.params.usddBal * 1).toFixed(4)} USDD</Text>
+            <Text>Available: {(route.params.usxdBal * 1).toFixed(4)} USXD</Text>
           )}
           <HStack justifyContent="space-between" alignItems="center">
             <Button variant="subtle" size="sm" rounded="full">
@@ -146,7 +146,7 @@ export default function TransferFundsScreen({ navigation, route }) {
         isOpen={isOpen}
         onClose={onClose}
         message={`${(+amount).toFixed(2)} ${
-          token === 'USDD' ? 'USDD' : 'TRX'
+          token === 'USXD' ? 'USXD' : 'XDC'
         } \nsuccessfully sent to \n${recipient}`}
         screen="Main"
         scrnOptions={{ isSuccess }}
