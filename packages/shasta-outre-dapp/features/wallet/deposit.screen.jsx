@@ -35,7 +35,7 @@ export default function DepositScreen() {
         <HStack p={3} justifyContent="space-between" justifyItems="center">
           <Box width="70%">
             <Text color="text.600">Network</Text>
-            <Text fontWeight="medium">SHASTA Testnet (TRX & TRC20)</Text>
+            <Text fontWeight="medium">TRON Mainnet (TRX & TRC20)</Text>
           </Box>
           <Pressable p={3}>
             <Icon as={Ionicons} name="md-swap-horizontal" size="lg" color="text.400" />
