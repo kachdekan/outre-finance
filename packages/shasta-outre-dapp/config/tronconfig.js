@@ -7,9 +7,9 @@ export let tronWeb = null;
 export const setPrivateKey = (key) => {
   privateKey = key.slice(2);
   tronWeb = new TronWeb({
-    fullNode: 'https://api.shasta.trongrid.io',
-    solidityNode: 'https://api.shasta.trongrid.io',
-    eventServer: 'https://api.shasta.trongrid.io',
+    fullNode: 'https://api.trongrid.io', //'https://api.shasta.trongrid.io',
+    solidityNode: 'https://api.trongrid.io', //'https://api.shasta.trongrid.io',
+    eventServer: 'https://api.trongrid.io', //'https://api.shasta.trongrid.io',
     privateKey: privateKey,
     headers: { 'TRON-PRO-API-KEY': GRID_KEY },
   });
